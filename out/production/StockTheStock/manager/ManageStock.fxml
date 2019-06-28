@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="824.0" stylesheets="@../DarkTheme.css" fx:controller="manager.ManageStockController" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+      <TabPane layoutY="37.0" prefHeight="497.0" prefWidth="826.0" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+            <Tab text="Add Item">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="452.0" prefWidth="749.0" style="-fx-background-color: White;">
+                     <children>
+                        <Label layoutX="268.0" layoutY="115.0" text="Name" />
+                        <TextField layoutX="392.0" layoutY="61.0" />
+                        <Label layoutX="271.0" layoutY="168.0" text="Price" />
+                        <TextField layoutX="392.0" layoutY="110.0" />
+                        <Label layoutX="274.0" layoutY="66.0" text="Id" />
+                        <TextField layoutX="392.0" layoutY="163.0" />
+                        <Label layoutX="272.0" layoutY="225.0" text="Volume" />
+                        <TextField layoutX="392.0" layoutY="220.0" />
+                        <Label layoutX="272.0" layoutY="282.0" text="Distributor Id" />
+                        <TextField layoutX="392.0" layoutY="277.0" />
+                        <Button layoutX="308.0" layoutY="351.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="104.0" text="Add" />
+                        <Button layoutX="429.0" layoutY="351.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="110.0" text="Reset" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Delete Item">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="452.0" prefWidth="749.0" style="-fx-background-color: White;">
+                     <children>
+                        <TextField layoutX="327.0" layoutY="170.0" />
+                        <Label layoutX="274.0" layoutY="175.0" text="Id" />
+                        <Button layoutX="298.0" layoutY="235.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="104.0" text="Delete" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Find ">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <TableView layoutY="70.0" prefHeight="389.0" prefWidth="824.0">
+                           <columns>
+                              <TableColumn prefWidth="172.0" text="Id " />
+                              <TableColumn minWidth="0.0" prefWidth="174.0" text="Name" />
+                              <TableColumn prefWidth="120.0" text="Volume" />
+                              <TableColumn minWidth="5.0" prefWidth="112.0" text="Price" />
+                              <TableColumn prefWidth="245.0" text="Distributor Id" />
+                           </columns>
+                        </TableView>
+                        <Label layoutX="60.0" layoutY="27.0" text="Id" />
+                        <TextField layoutX="101.0" layoutY="22.0" />
+                        <Button layoutX="326.0" layoutY="22.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="104.0" text="Find" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="Update Item Record">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="452.0" prefWidth="749.0" style="-fx-background-color: White;">
+                     <children>
+                        <Label layoutX="268.0" layoutY="115.0" text="Name" />
+                        <TextField layoutX="392.0" layoutY="61.0" />
+                        <Label layoutX="271.0" layoutY="168.0" text="Price" />
+                        <TextField layoutX="392.0" layoutY="110.0" />
+                        <Label layoutX="274.0" layoutY="66.0" text="Id" />
+                        <TextField layoutX="392.0" layoutY="163.0" />
+                        <Label layoutX="272.0" layoutY="225.0" text="Volume" />
+                        <TextField layoutX="392.0" layoutY="220.0" />
+                        <Label layoutX="272.0" layoutY="282.0" text="Distributor Id" />
+                        <TextField layoutX="392.0" layoutY="277.0" />
+                        <Button layoutX="360.0" layoutY="337.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="104.0" text="Update" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+            <Tab text="View Stock">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
+                     <children>
+                        <TableView prefHeight="459.0" prefWidth="824.0">
+                           <columns>
+                              <TableColumn prefWidth="172.0" text="Id " />
+                              <TableColumn minWidth="0.0" prefWidth="174.0" text="Name" />
+                              <TableColumn prefWidth="120.0" text="Volume" />
+                              <TableColumn minWidth="5.0" prefWidth="112.0" text="Price" />
+                              <TableColumn prefWidth="245.0" text="Distributor Id" />
+                           </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
+        </tabs>
+      </TabPane>
+      <MenuBar layoutX="-3.0" layoutY="-1.0" prefHeight="37.0" prefWidth="826.0">
+         <menus>
+            <Menu text="File">
+               <items>
+                  <MenuItem text="Close" />
+               </items>
+            </Menu>
+            <Menu text="Edit">
+               <items>
+                  <MenuItem text="Delete" />
+               </items>
+            </Menu>
+            <Menu text="Help">
+               <items>
+                  <MenuItem text="About" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+    </children>
+</AnchorPane>

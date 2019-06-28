@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="485.0" prefWidth="722.0" style="-fx-background-color: black;" fx:controller="manager.ManagerHomeController" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="485.0" prefWidth="259.0" style="-fx-background-color: #C0C0C0;">
+         <children>
+            <Pane prefHeight="91.0" prefWidth="255.0" style="-fx-background-color: black;">
+               <children>
+                  <Label layoutX="14.0" layoutY="29.0" styleClass="headers" text="Stock The Stock" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="28.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="92.0" prefHeight="43.0" prefWidth="255.0" style="-fx-background-color: #995c00;" text="Home" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="142.0" prefHeight="43.0" prefWidth="255.0" style="-fx-background-color: #686868;" text="Manage Stock" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="192.0" prefHeight="43.0" prefWidth="255.0" style="-fx-background-color: #686868;" text="Manage Employee" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="292.0" prefHeight="43.0" prefWidth="255.0" style="-fx-background-color: #686868;" text="Logout" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutY="242.0" prefHeight="43.0" prefWidth="255.0" style="-fx-background-color: #686868;" text="Reports" textFill="WHITE">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="485.0" fitWidth="481.0" layoutX="259.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../Images/ManagerHome.jpg" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

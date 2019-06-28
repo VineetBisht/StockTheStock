@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="403.0" prefWidth="682.0" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employee.LoginController">
+   <children>
+      <MenuBar layoutX="1.0" layoutY="1.0" prefHeight="26.0" prefWidth="600.0" stylesheets="@../DarkTheme.css" AnchorPane.bottomAnchor="373.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="1.0">
+        <menus>
+          <Menu text="File">
+            <items>
+              <MenuItem onAction="#close" text="Close" />
+            </items>
+          </Menu>
+          <Menu text="Edit" />
+          <Menu text="Help">
+            <items>
+              <MenuItem fx:id="about" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Label layoutX="32.0" layoutY="39.0" stylesheets="@../../css/DarkTheme.css" text="Welcome" textFill="#684141">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="280.0" layoutY="62.0" styleClass="headers" stylesheets="@../../css/DarkTheme.css" text="Login" textFill="#bd1c67">
+         <font>
+            <Font name="System Italic" size="33.0" />
+         </font>
+      </Label>
+      <Label layoutX="157.0" layoutY="140.0" text="Username">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="157.0" layoutY="183.0" text="Password">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="username" layoutX="247.0" layoutY="138.0" promptText="Daren" />
+      <TextField fx:id="password" layoutX="247.0" layoutY="181.0" promptText="******" />
+      <Button layoutX="242.0" layoutY="253.0" onAction="#login" text="Login" />
+      <Button layoutX="343.0" layoutY="253.0" onAction="#signup" text="Sign Up" />
+      <Button layoutX="486.0" layoutY="348.0" onAction="#forgot" text="Forgot Password">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
