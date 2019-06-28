@@ -2,31 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="&quot;Updated the latest fxml files&quot;">
-      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/css/DarkTheme.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Complaint.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/Complaint.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ComplaintCust.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/ComplaintCust.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ComplaintEmp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/ComplaintEmp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ComplaintEmpGeneral.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/ComplaintEmpGeneral.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ComplaintGeneral.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/ComplaintGeneral.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/CreateTables.fxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/DataTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/DataTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/EmployeeControl.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/EmployeeControl.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/EmployeeDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/EmployeeDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/EmployeeMain.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/EmployeeMain.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Expired.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/Expired.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ManageStock.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/ManageStock.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ManageStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/ManageStock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ManageStockDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/ManageStockDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/ManagerHome.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/ManagerHome.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/MonthlyReport.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/MonthlyReport.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/SignUp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/SignUp.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/Tables.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/Tables.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/WeeklyNet.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/WeeklyNet.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,32 +65,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="46" column="42" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/employee/LoginController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/employee/SignUpController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+            <state relative-caret-position="467">
+              <caret line="57" column="5" lean-forward="true" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -123,13 +75,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/employee/TablesController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="28" lean-forward="true" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="60">
+                <caret line="4" selection-start-line="4" selection-end-line="4" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
@@ -198,6 +150,7 @@
         <option value="$PROJECT_DIR$/src/manager/WeeklyNet.fxml" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/employee/TablesController.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -228,12 +181,6 @@
               <item name="StockTheStock" type="b2602c69:ProjectViewProjectNode" />
               <item name="StockTheStock" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StockTheStock" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StockTheStock" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="employee" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -388,12 +335,12 @@
       <workItem from="1561610617932" duration="33000" />
       <workItem from="1561680368126" duration="23000" />
       <workItem from="1561740204163" duration="792000" />
-      <workItem from="1561743974451" duration="4056000" />
+      <workItem from="1561743974451" duration="4398000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="20162000" />
+    <option name="totallyTimeSpent" value="20504000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -408,7 +355,7 @@
       <window_info id="UI Designer" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32857144" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32857144" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -422,7 +369,7 @@
       <window_info anchor="bottom" id="Messages" order="13" />
       <window_info anchor="bottom" id="Docker" order="14" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="15" />
-      <window_info anchor="bottom" id="Terminal" order="16" weight="0.32959184" />
+      <window_info anchor="bottom" id="Terminal" order="16" visible="true" weight="0.32959184" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -763,16 +710,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="46" column="42" selection-start-line="46" selection-start-column="42" selection-end-line="46" selection-end-column="42" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/employee/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="124">
@@ -800,6 +737,26 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="467">
+          <caret line="57" column="5" lean-forward="true" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="60">
+            <caret line="4" selection-start-line="4" selection-end-line="4" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>
