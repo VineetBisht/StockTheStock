@@ -46,5 +46,14 @@ public class ComplaintController implements ControlledScreen {
         myController = screenPage;
     }
 
+    @FXML
+    void about(ActionEvent event) {
+
+    }
+
+    @FXML
+    void close(ActionEvent event) {
+
+    }
 }
 

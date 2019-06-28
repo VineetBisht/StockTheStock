@@ -44,6 +44,12 @@ public class LoginController implements ControlledScreen {
     public void setScreenParent(ScreensController screenParent) {
         myController=screenParent;
     }
+
+        @FXML
+        void about(ActionEvent event) {
+
+        }
+
 }
 
 

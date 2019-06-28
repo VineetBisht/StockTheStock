@@ -15,24 +15,20 @@
 
 <AnchorPane prefHeight="434.0" prefWidth="633.0" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employee.SignUpController">
    <children>
-      <MenuBar layoutX="193.0" layoutY="14.0" prefHeight="39.0" prefWidth="633.0" AnchorPane.bottomAnchor="399.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <menus>
-          <Menu text="File">
-            <items>
-              <MenuItem text="Close" />
-            </items>
-          </Menu>
-          <Menu text="Edit">
-            <items>
-              <MenuItem text="Delete" />
-            </items>
-          </Menu>
-          <Menu text="Help">
-            <items>
-              <MenuItem text="About" />
-            </items>
-          </Menu>
-        </menus>
+      <MenuBar prefHeight="29.0" prefWidth="956.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#close" text="Close" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit" />
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#about" text="About" />
+               </items>
+            </Menu>
+         </menus>
       </MenuBar>
       <Label layoutX="24.0" layoutY="39.0" text="Welcome" textFill="#684141">
          <font>

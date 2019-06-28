@@ -72,4 +72,14 @@ public class EmployeeMainController implements ControlledScreen {
     public void setScreenParent(ScreensController screenPage) {
         myController = screenPage;
     }
+
+    @FXML
+    void about(ActionEvent event) {
+
+    }
+
+    @FXML
+    void close(ActionEvent event) {
+
+    }
 }
