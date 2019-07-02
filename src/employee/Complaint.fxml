@@ -87,12 +87,12 @@
                   <Insets left="20.0" right="20.0" />
                </GridPane.margin>
             </TextField>
-            <TextField fx:id="txt_qty" prefHeight="27.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <TextField fx:id="txt_mob" prefHeight="27.0" prefWidth="198.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="20.0" right="100.0" />
                </GridPane.margin>
             </TextField>
-            <Label fx:id="product_err" text="Field Required" textFill="#d72b2b" visible="false" GridPane.columnIndex="2">
+            <Label fx:id="product_err" styleClass="error" text="Field Required" textFill="#d72b2b" visible="false" GridPane.columnIndex="2">
                <font>
                   <Font size="14.0" />
                </font>
@@ -100,7 +100,7 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="price_err" text="Field Required" textFill="#d72b2b" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Label fx:id="price_err" styleClass="error" text="Field Required" textFill="#d72b2b" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
                   <Font size="14.0" />
                </font>
@@ -108,7 +108,7 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="qty_err" text="Field Required" textFill="#d72b2b" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label fx:id="qty_err" styleClass="error" text="Field Required" textFill="#d72b2b" visible="false" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font size="14.0" />
                </font>
@@ -116,7 +116,7 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </Label>
-            <Button fx:id="button_complaint" alignment="CENTER" mnemonicParsing="false" prefHeight="41.0" prefWidth="233.0" text="File Complaint" textFill="#907272" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#complaint" prefHeight="41.0" prefWidth="233.0" text="File Complaint" textFill="#907272" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
                   <Font size="21.0" />
                </font>

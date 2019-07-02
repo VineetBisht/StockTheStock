@@ -5,15 +5,22 @@
  */
 package manager;
 
+import java.sql.*;
+import java.sql.DriverManager;
 import java.util.Date;
-
+import java.sql.Types;
 /**
  *
  * @author Shivam
  */
 public class ComplaintCust {
+    int compId;
     int prodId;
     Date dt;
+
+    public void setCompId(int compId) {
+        this.compId = compId;
+    }
     String desc;
     String customerNm;
 

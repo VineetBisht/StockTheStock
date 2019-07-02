@@ -50,21 +50,14 @@ public class EmployeeMainController implements ControlledScreen {
 
     @FXML
     void complaint(ActionEvent event) {
-
     }
 
     @FXML
     void refund(ActionEvent event) {
-
     }
 
     @FXML
     void showTables(ActionEvent event) {
-
-    }
-
-    @FXML
-    void soldOut(ActionEvent event) {
 
     }
 

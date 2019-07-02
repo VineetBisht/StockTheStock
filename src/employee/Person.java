@@ -1,4 +1,6 @@
-package employee;
+package sample;
+
+
 
 import java.sql.Date;
 
@@ -9,11 +11,11 @@ public class Person {
     private String lname;
     private String password;
     private String address;
-    private String phn_no;
+    private double phn_no;
     private Date birth_date;
     private String designation;
 
-    public Person(String username,String password, String fname, String lname, String address, String phn_no, Date birth_date, String designation) {
+    public Person(String username, String fname, String lname,String password, String address, double phn_no, Date birth_date, String designation) {
         this.user_name = username;
         this.password = password;
         this.fname = fname;
@@ -66,11 +68,11 @@ public class Person {
         this.address = address;
     }
 
-    public String getPhn_no() {
+    public double getPhn_no() {
         return phn_no;
     }
 
-    public void setPhn_no(String phn_no) {
+    public void setPhn_no(double phn_no) {
         this.phn_no = phn_no;
     }
 
@@ -90,5 +92,6 @@ public class Person {
         this.designation = designation;
     }
 }
+
 
 

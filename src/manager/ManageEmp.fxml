@@ -8,20 +8,21 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="852.0" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="manager.EmployeeControlController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="512.0" prefWidth="738.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Employee.ManageEmPController">
    <children>
-      <AnchorPane layoutX="3.0" layoutY="-21.0" prefHeight="68.0" prefWidth="594.0">
+      <AnchorPane layoutX="-33.0" layoutY="-21.0" prefHeight="68.0" prefWidth="630.0">
          <children>
-            <Label layoutX="297.0" layoutY="23.0" prefHeight="55.0" prefWidth="334.0" styleClass="headers" text="Manage Employees">
+            <Label layoutX="130.0" layoutY="16.0" prefHeight="55.0" prefWidth="334.0" text="Manage Employees">
                <font>
                   <Font name="Calibri" size="36.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <TabPane layoutX="9.0" layoutY="68.0" prefHeight="579.0" prefWidth="831.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="mytabpane" layoutX="11.0" layoutY="49.0" prefHeight="458.0" prefWidth="717.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Employee Schedule">
                <content>
@@ -29,8 +30,8 @@
                      <children>
                         <AnchorPane prefHeight="311.0" prefWidth="649.0">
                            <children>
-                              <Button layoutX="183.0" layoutY="51.0" mnemonicParsing="false" text="See Schedule" />
-                              <TableView layoutX="26.0" layoutY="91.0" prefHeight="451.0" prefWidth="752.0">
+                              <Button layoutX="92.0" layoutY="47.0" mnemonicParsing="false" text="See Schedule" />
+                              <TableView layoutX="26.0" layoutY="91.0" prefHeight="220.0" prefWidth="604.0">
                                 <columns>
                                   <TableColumn prefWidth="73.0" text="Monday" />
                                     <TableColumn minWidth="0.0" prefWidth="0.0" text="C1" />
@@ -39,8 +40,8 @@
                                     <TableColumn prefWidth="63.0" text="Thursday" />
                                     <TableColumn prefWidth="73.0" text="Friday" />
                                     <TableColumn prefWidth="73.0" text="Saturday" />
-                                    <TableColumn prefWidth="96.0" text="Sunday" />
-                                    <TableColumn prefWidth="214.0" text="Total Hours" />
+                                    <TableColumn prefWidth="73.0" text="Sunday" />
+                                    <TableColumn prefWidth="92.0" text="Total Hours" />
                                 </columns>
                               </TableView>
                               <Label layoutX="8.0" layoutY="15.0" text="Employee Id" />
@@ -53,14 +54,14 @@
           </Tab>
           <Tab text="Add/Remove Employee">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="403.0" prefWidth="630.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="31.0" layoutY="22.0" />
-                        <TabPane layoutX="-1.0" layoutY="8.0" prefHeight="309.0" prefWidth="700.0" tabClosingPolicy="UNAVAILABLE">
+                        <TabPane layoutX="-1.0" layoutY="8.0" prefHeight="309.0" prefWidth="630.0" tabClosingPolicy="UNAVAILABLE">
                           <tabs>
                             <Tab text="Add Employee">
                               <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="435.0" prefWidth="700.0">
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="408.0">
                                        <children>
                                           <Label layoutX="102.0" layoutY="43.0" text="Employee Id" />
                                           <Label layoutX="102.0" layoutY="87.0" text="Employee Name" />
@@ -70,7 +71,7 @@
                                           <TextField layoutX="286.0" layoutY="83.0" />
                                           <TextField layoutX="286.0" layoutY="128.0" />
                                           <TextField layoutX="286.0" layoutY="171.0" />
-                                          <Button layoutX="346.0" layoutY="224.0" mnemonicParsing="false" text="Add Employee" />
+                                          <Button layoutX="289.0" layoutY="227.0" mnemonicParsing="false" text="Add Employee" />
                                        </children>
                                     </AnchorPane>
                               </content>
@@ -79,9 +80,9 @@
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <Label layoutX="204.0" layoutY="74.0" text="Employee Id" />
+                                          <Label layoutX="172.0" layoutY="73.0" text="Employee Id" />
                                           <TextField layoutX="315.0" layoutY="69.0" />
-                                          <Button layoutX="360.0" layoutY="125.0" mnemonicParsing="false" text="Delete Employee" />
+                                          <Button layoutX="289.0" layoutY="128.0" mnemonicParsing="false" text="Delete Employee" />
                                        </children>
                                     </AnchorPane>
                               </content>
@@ -97,27 +98,28 @@
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="161.0" layoutY="79.0" text="Employee Id" />
-                        <TextField layoutX="287.0" layoutY="75.0" prefHeight="27.0" prefWidth="203.0" />
-                        <Button layoutX="339.0" layoutY="120.0" mnemonicParsing="false" text="See Salary Stub" />
+                        <TextField layoutX="287.0" layoutY="75.0" />
+                        <Button layoutX="244.0" layoutY="182.0" mnemonicParsing="false" text="See Salary Stub" />
                      </children>
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Employee Complaint Inbox">
+            <Tab fx:id="custcomtab" text="Customer Complaint Inbox">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="14.0" layoutY="14.0" prefHeight="516.0" prefWidth="794.0">
-                          <columns>
-                            <TableColumn prefWidth="91.0" text="Id" />
-                            <TableColumn prefWidth="170.0" text="Employee Name" />
-                              <TableColumn prefWidth="145.0" text="Complaint Date" />
-                              <TableColumn prefWidth="100.0" text="Subject" />
-                              <TableColumn prefWidth="287.0" text="Message" />
-                          </columns>
-                        </TableView>
+                        <TableView fx:id="mytableview1" layoutX="14.0" layoutY="14.0" prefHeight="390.0" prefWidth="704.0" />
                      </children>
                   </AnchorPane>
+               </content>
+            </Tab>
+            <Tab fx:id="empcumtab" text="Employee Complaint Inbox">
+               <content>
+                  <VBox prefHeight="429.0" prefWidth="404.0">
+                     <children>
+                        <TableView fx:id="mytableview2" prefHeight="429.0" prefWidth="717.0" />
+                     </children>
+                  </VBox>
                </content>
             </Tab>
         </tabs>

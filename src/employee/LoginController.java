@@ -1,55 +1,77 @@
 package employee;
 
-import backend.ControlledScreen;
-import backend.ScreensController;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.MenuItem;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class LoginController implements ControlledScreen {
+import java.net.URL;
+import java.util.ResourceBundle;
 
-        ScreensController myController;
+public class LoginController implements Initializable {
 
-        @FXML
-        private MenuItem about;
+    @FXML
+    private TextField username;
+    @FXML private PasswordField password;
 
-        @FXML
-        private TextField username;
+    private boolean validate() {
+        boolean b = true;
+        if (username.getText().isEmpty()) {
 
-        @FXML
-        private TextField password;
-
-        @FXML
-        void close(ActionEvent event) {
-
+            b = false;
         }
 
-        @FXML
-        void forgot(ActionEvent event) {
 
+        if (password.getText().isEmpty()) {
+
+            b = false;
         }
+        if(b==false)
+            return false;
+        else
+            return true;
+    }
+    private void reset() {
+        password.setText("");
 
-        @FXML
-        void login(ActionEvent event) {
+        username.setText("");
 
-        }
-
-        @FXML
-        void signup(ActionEvent event) {
-
-        }
-
-    @Override
-    public void setScreenParent(ScreensController screenParent) {
-        myController=screenParent;
+    }
+    private Alert createAlert(Alert.AlertType type, String message) {
+        return new Alert(type, message);
     }
 
-        @FXML
-        void about(ActionEvent event) {
-
+    @FXML
+    private void login() {
+        if(!validate()){
+            createAlert(Alert.AlertType.WARNING, "Please input valid information").show();
+            return;
         }
+        Datatable d = new Datatable();
+        sample.Person p=new sample.Person();
+        p.setUser_name(username.getText());
+        d.match(p,password.getText());
+        reset();
 
+    }
+    @FXML
+    private void forget() {
+        Datatable d = new Datatable();
+        if(!validate()){
+            createAlert(Alert.AlertType.WARNING, "Please input valid information").show();
+            return;
+        }
+        sample.Person p=new sample.Person();
+        p.setUser_name(username.getText());
+        p.setPassword(password.getText());
+        d.forgot(p);
+        reset();
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
 }
-
-

@@ -14,11 +14,20 @@ import java.util.Date;
 public class ComplaintEmp {
     int empid;
     Date dt;
+    int compId;
     String subject;
     String desc;
     String status;
 
+    public int getCompId() {
+        return compId;
+    }
+
     public ComplaintEmp() {
+    }
+
+    public void setCompId(int compId) {
+        this.compId = compId;
     }
 
     public void setEmpid(int empid) {
@@ -26,6 +35,7 @@ public class ComplaintEmp {
     }
 
     public ComplaintEmp(int empid, Date dt, String subject, String desc, String status) {
+        
         this.empid = empid;
         this.dt = dt;
         this.subject = subject;

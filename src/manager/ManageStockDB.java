@@ -1,4 +1,7 @@
 package manager;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.*;
 
 public class ManageStockDB {
@@ -74,11 +77,30 @@ public class ManageStockDB {
         }
     }
 
-    public void list(){
-        String listQuerry = "SELECT * FROM stock";
+    public ManageStock fDelete(ManageStock i){
+        String q = "SELECT * FROM stock WHERE product_id = ?";
+        try{
+            PreparedStatement pST = con.prepareStatement(q);
+            pST.setInt(1, i.getProduct_id());
 
+            ResultSet rs = pST.executeQuery();
+            ManageStock stockItem = new ManageStock();
+            if (rs.next()) {
+                stockItem.setProduct_id(rs.getInt("product_id"));
+                stockItem.setName(rs.getString("name"));
+                stockItem.setPrice(rs.getInt("price"));
+                stockItem.setVolume(rs.getInt("volume"));
+                stockItem.setDistributor_id(rs.getInt("distributor_id"));
+
+                return stockItem;
+            }
+            else
+                return null;
+        }catch(SQLException era){
+            System.err.println(era);
+            return null;
+        }
     }
-
 
     public int update(ManageStock i){
         String updateQuerry = "UPDATE stock SET name = ?, price = ?, volume = ?, distributor_id = ?"
@@ -98,26 +120,47 @@ public class ManageStockDB {
         }
     }
 
-    public int find(ManageStock i){
-        String findQuerry = "SELECT * FROM stock WHERE product_id = ?";
-        int flag = 0;
+    public ObservableList<ManageStock> list(){
+        String listQuerry = "SELECT * FROM stock";
+        ObservableList<ManageStock> obList = FXCollections.observableArrayList();
+
         try{
-            PreparedStatement pst = con.prepareStatement(findQuerry);
-            pst.setInt(1, i.getProduct_id());
-
-            ResultSet rs2 = pst.executeQuery();
-            if(rs2.next()){
-
-
-                return 1;
-            }else{
-                System.out.println("\nThere is not such record with the provided Product ID");
-                return 0;
+            PreparedStatement pST = con.prepareStatement(listQuerry);
+            ResultSet rs = pST.executeQuery();
+            if(rs.next()){
+                obList.add(new ManageStock(rs.getInt("product_id"), rs.getString("name"),
+                        rs.getInt("price"), rs.getInt("volume"), rs.getInt("distributor_id")));
+                return obList;
+            }
+            else{
+                return null;
             }
 
         }catch(SQLException e){
             System.err.println(e);
-            return 0;
+            return null;
+        }
+    }
+
+    public ObservableList<ManageStock> find(ManageStock i) {
+        String findQuerry = "SELECT * FROM atock WHERE product_id = ?";
+        ObservableList<ManageStock> obList = FXCollections.observableArrayList();
+        try {
+            PreparedStatement pST = con.prepareStatement(findQuerry);
+            pST.setInt(1, i.getProduct_id());
+
+            ResultSet rs = pST.executeQuery();
+            if (rs.next()) {
+                obList.add(new ManageStock(rs.getInt("product_id"), rs.getString("name"),
+                        rs.getInt("price"), rs.getInt("volume"), rs.getInt("distributor_id")));
+                return obList;
+            } else {
+                return null;
+            }
+
+        } catch (SQLException era) {
+            System.err.println(era);
+            return null;
         }
     }
 
