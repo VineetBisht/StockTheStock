@@ -17,24 +17,20 @@
 
 <FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1153.0" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employee.EmployeeMainController">
    <children>
-      <MenuBar prefHeight="29.0" prefWidth="1152.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
+      <MenuBar prefHeight="29.0" prefWidth="1154.0">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#close" text="Close" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit" />
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#about" text="About" />
+               </items>
+            </Menu>
+         </menus>
       </MenuBar>
       <HBox maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="1146.0" spacing="240.0">
          <children>
@@ -142,7 +138,7 @@
                   <Font size="23.0" />
                </font>
                <HBox.margin>
-                  <Insets left="30.0" top="300.0" />
+                  <Insets left="-80.0" top="300.0" />
                </HBox.margin>
             </Button>
          </children></HBox>
@@ -157,11 +153,6 @@
                </HBox.margin>
             </Button>
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#showTables" prefHeight="66.0" prefWidth="246.0" text="Tables" textFill="#907272">
-               <font>
-                  <Font size="23.0" />
-               </font>
-            </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#soldOut" prefHeight="58.0" prefWidth="348.0" text="Sold Out Request" textFill="#907272">
                <font>
                   <Font size="23.0" />
                </font>

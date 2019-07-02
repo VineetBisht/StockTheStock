@@ -88,3 +88,8 @@
     -fx-font-size: 250%;
     -fx-text-fill:#821807;
 }
+
+.error{
+    -fx-text-fill: red;
+    -fx-font-size: 80%;
+}

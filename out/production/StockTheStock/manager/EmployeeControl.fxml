@@ -10,11 +10,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="852.0" stylesheets="@../DarkTheme.css" fx:controller="manager.EmployeeControlController" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="655.0" prefWidth="852.0" stylesheets="@../DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="manager.EmployeeControlController">
    <children>
       <AnchorPane layoutX="3.0" layoutY="-21.0" prefHeight="68.0" prefWidth="594.0">
          <children>
-            <Label layoutX="168.0" layoutY="23.0" prefHeight="55.0" prefWidth="334.0" styleClass="headers" text="Manage Employees">
+            <Label layoutX="297.0" layoutY="23.0" prefHeight="55.0" prefWidth="334.0" styleClass="headers" text="Manage Employees">
                <font>
                   <Font name="Calibri" size="36.0" />
                </font>

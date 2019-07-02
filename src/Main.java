@@ -29,6 +29,9 @@ public class Main extends Application {
     public static String monthlyReportFile="/manager/MonthlyReport.fxml";
     public static String weeklyNet="weeklyNet";
     public static String weeklyNetFile="/manager/WeeklyNet.fxml";
+    public static String manageEmp="manageEmpcontroller";
+    public static String manageEmpFile="/manager/ManageEmp.fxml";
+
 
     @Override
     public void start(Stage stage) throws Exception{
@@ -44,14 +47,15 @@ public class Main extends Application {
         mainContainer.loadScreen(Main.manageStock,Main.manageStockFile);
         mainContainer.loadScreen(Main.monthlyReport,Main.monthlyReportFile);
         mainContainer.loadScreen(Main.weeklyNet,Main.weeklyNetFile);
-        mainContainer.setScreen(Main.login);
+        mainContainer.loadScreen(Main.manageEmp,Main.manageEmpFile);
+        mainContainer.setScreen(Main.manageEmp);
         mainContainer.setStage(stage);
 
         Group root=new Group();
         root.getChildren().addAll(mainContainer);
         Scene scene=new Scene(root);
         stage.setScene(scene);
-        stage.setAlwaysOnTop(true);
+      //  stage.setAlwaysOnTop(true);
         stage.setResizable(false);
         stage.initStyle(StageStyle.UTILITY);
         stage.show();

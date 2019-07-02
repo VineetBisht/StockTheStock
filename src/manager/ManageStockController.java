@@ -111,11 +111,11 @@ public class ManageStockController implements ControlledScreen, Initializable {
         ManageStockDB sdb = new ManageStockDB();
         setAlert();
         result = 0;
-        if(a_idField.getText() == null || a_idField.getText().trim().isEmpty()) {
+        if(d_idField.getText() == null || d_idField.getText().trim().isEmpty()) {
             alert2.setContentText("Please provide item Id Number");
             alert2.showAndWait();
         } else{
-            s.setProduct_id(Integer.parseInt(a_idField.getText()));
+            s.setProduct_id(Integer.parseInt(d_idField.getText()));
             s = sdb.fDelete(s);
             if(s != null){
                 String name = s.getName();
@@ -236,7 +236,6 @@ public class ManageStockController implements ControlledScreen, Initializable {
         v_priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         v_volumeColumn.setCellValueFactory(new PropertyValueFactory<>("volume"));
         v_distributorColumn.setCellValueFactory(new PropertyValueFactory<>("distributor_id"));
-
 
     }
 

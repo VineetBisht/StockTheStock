@@ -11,9 +11,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import backend.ControlledScreen;
+import backend.ScreensController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,103 +32,105 @@ import javafx.scene.control.cell.PropertyValueFactory;
  *
  * @author Shivam
  */
-public class ManageEmPController implements Initializable {
-    String usrnm="N01324490";
-        //String usrnm="N01328150";
-    String passwd="oracle";
-    String urld="jdbc:oracle:thin:@calvin.humber.ca:1521:grok";
-    @FXML private TableView mytableview1;
-    
-    @FXML private Label label;
-    
-    @FXML
-    private Tab empcumtab;
-    
-    @FXML
-    private TabPane mytabpane;
-    @FXML
-    private TableView mytableview2;
+public class ManageEmPController implements Initializable, ControlledScreen {
+    ScreensController myController;
    
-    @FXML
-    private void databaseName(ActionEvent event) {
+    @FXML private TableView<ComplaintEmp> mytable;
+    @FXML private TableView<ComplaintCust> mytable2;
+    @FXML private TabPane tp;
+    @FXML private Tab tab1;
+    @FXML private Tab tab5;
+    @FXML private Tab tab2;
+    @FXML private Tab tab3;
+    @FXML private Tab tab4;
+       @FXML private TableColumn<ComplaintEmp,Integer> compId;
         
+       @FXML private TableColumn<ComplaintEmp,Integer> empId;
+        
+       @FXML private TableColumn<ComplaintEmp,String> comSubject;
+        
+       @FXML private TableColumn<ComplaintEmp,String> comDesc;
+        
+       @FXML private TableColumn<ComplaintEmp,String> status;
+        
+       @FXML private TableColumn<ComplaintEmp,Date> date;
+       
+       @FXML TableColumn<ComplaintCust,Integer> compempId;
+        
+       @FXML TableColumn<ComplaintCust,Integer> prodId;
+        
+       @FXML TableColumn<ComplaintCust,String> custName;
+        
+       @FXML TableColumn<ComplaintCust,String> comempDesc;
+        
+       @FXML TableColumn<ComplaintCust,Date> comdate;
+       
+    @FXML
+    private void handleButtonAction(ActionEvent event) {
+      
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        TableColumn comId=new TableColumn("Complaint Id");
         
-        TableColumn empId=new TableColumn("Employee Id");
+            compId.setCellValueFactory(new PropertyValueFactory<ComplaintEmp,Integer>("compId"));
+            
+            empId.setCellValueFactory(new PropertyValueFactory<ComplaintEmp,Integer>("empid"));
+            
+            comSubject.setCellValueFactory(new PropertyValueFactory<ComplaintEmp,String>("subject"));
+            
+            comDesc.setCellValueFactory(new PropertyValueFactory<ComplaintEmp,String>("desc"));
+            
+            status.setCellValueFactory(new PropertyValueFactory<ComplaintEmp,String>("status"));
+            
+            date.setCellValueFactory(new PropertyValueFactory<ComplaintEmp,Date>("dt"));
+            
+            compempId.setCellValueFactory(new PropertyValueFactory<ComplaintCust,Integer>("compId"));
+            
+            prodId.setCellValueFactory(new PropertyValueFactory<ComplaintCust,Integer>("prodId"));
+            
+            custName.setCellValueFactory(new PropertyValueFactory<ComplaintCust,String>("customerNm"));
+            
+            comempDesc.setCellValueFactory(new PropertyValueFactory<ComplaintCust,String>("desc"));
+            
+            comdate.setCellValueFactory(new PropertyValueFactory<ComplaintCust,Date>("dt"));
+            
+        String usrnm="N01324490";
+//        String usrnm="N01328150";
+    String passwd="oracle";
+    String urld="jdbc:oracle:thin:@calvin.humber.ca:1521:grok";
+    
         
-        TableColumn comSubject=new TableColumn("Complaint Subject");
         
-        TableColumn comDesc=new TableColumn("Complaint Description");
-        
-        TableColumn status=new TableColumn("Status");
-        
-        TableColumn date=new TableColumn("Date");
-        
-        
-        TableColumn compempId=new TableColumn("Complaint Id");
-        
-        TableColumn prodId=new TableColumn("Product Id");
-        
-        TableColumn custName=new TableColumn("Customer Name");
-        
-        TableColumn comempDesc=new TableColumn("Complaint Description");
-        
-        TableColumn comdate=new TableColumn("Date");
-        
-        mytableview2.getColumns().addAll(comId,empId,date,comSubject,comDesc,status);
-        
-         mytableview1.getColumns().addAll(compempId,prodId,custName,comdate,comempDesc);
-        
-        try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(ManageEmPController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ObservableList<ComplaintEmp> obscom=FXCollections.observableArrayList();;
             try {
                  Connection con=DriverManager.getConnection(urld, usrnm,passwd);
             String query="Select * from employeecomplaint";
        
-            PreparedStatement ps=con.prepareStatement(query);
             
-            ResultSet rs=ps.executeQuery();
+            ResultSet rs=con.createStatement().executeQuery(query);
             
-                ComplaintEmp comp=new ComplaintEmp();
+                ComplaintEmp comp=null;
                 
-                ObservableList<ComplaintEmp> obscom=FXCollections.observableArrayList();
             while(rs.next())
             {
-                comp.setCompId(rs.getInt(1));
-                comp.setEmpid(rs.getInt(2));
-                comp.setDt(rs.getDate(3));
-                comp.setSubject(rs.getString(4));
-                comp.setDesc(rs.getString(5));
-                comp.setStatus(rs.getString(6));
-                
+                comp=new ComplaintEmp();
+                comp.setCompId(rs.getInt("complaintid"));
+                comp.setEmpid(rs.getInt("empid"));
+                comp.setDt(rs.getDate("complaintdate"));
+                comp.setSubject(rs.getString("subject"));
+                comp.setDesc(rs.getString("description"));
+                comp.setStatus(rs.getString("status"));
+                System.out.println(""+comp.getCompId()+comp.getEmpid()+comp.getDesc()+comp.getStatus());
                 obscom.add(comp);
-                
+            }
+    }
+            catch(Exception ex)
+            {
             }
             
-            comId.setCellValueFactory(new PropertyValueFactory<ComplaintEmp,String>("Complaint Id"));
-            
-            empId.setCellValueFactory(new PropertyValueFactory<ComplaintEmp,String>("Employee Id"));
-            
-            comSubject.setCellValueFactory(new PropertyValueFactory<ComplaintEmp,String>("Complaint Subject"));
-            
-            comDesc.setCellValueFactory(new PropertyValueFactory<ComplaintEmp,String>("Complaint Description"));
-            
-            status.setCellValueFactory(new PropertyValueFactory<ComplaintEmp,String>("Complaint Status"));
-            
-            date.setCellValueFactory(new PropertyValueFactory<ComplaintEmp,String>("Date"));
-            
-            mytableview2.setItems(obscom);
-        } catch (SQLException ex) {
-            Logger.getLogger(ManageEmPController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            
+            mytable.setItems(obscom);
+    
              try {
                  Connection con=DriverManager.getConnection(urld, usrnm,passwd);
             String query="Select * from customercomplaint";
@@ -133,38 +139,30 @@ public class ManageEmPController implements Initializable {
             
             ResultSet rs=ps.executeQuery();
             
-            ComplaintCust comp=new ComplaintCust();
+            ComplaintCust comp2;
                 
-            ObservableList<ComplaintCust> obscom=FXCollections.observableArrayList();
+            ObservableList<ComplaintCust> obscom2=FXCollections.observableArrayList();
                 
             while(rs.next())
             {
-                comp.setCompId(rs.getInt(1));
-                comp.setProdId(rs.getInt(2));
-                comp.setCustomerNm(rs.getString(3));
-                comp.setDt(rs.getDate(4));
-                comp.setDesc(rs.getString(5));
+                comp2=new ComplaintCust();
+                comp2.setCompId(rs.getInt(1));
+                comp2.setProdId(rs.getInt(2));
+                comp2.setCustomerNm(rs.getString(3));
+                comp2.setDt(rs.getDate(4));
+                comp2.setDesc(rs.getString(5));
                 
-                obscom.add(comp);
+                obscom2.add(comp2);
                 
             }
-            
-            compempId.setCellValueFactory(new PropertyValueFactory<ComplaintCust,String>("Complaint Id"));
-            
-            
-            prodId.setCellValueFactory(new PropertyValueFactory<ComplaintCust,String>("Product Id"));
-            
-            custName.setCellValueFactory(new PropertyValueFactory<ComplaintCust,String>("Customer Name"));
-            
-            comDesc.setCellValueFactory(new PropertyValueFactory<ComplaintCust,String>("Complaint Description"));
-            
-            comdate.setCellValueFactory(new PropertyValueFactory<ComplaintCust,String>("Date"));
-            
-            mytableview1.setItems(obscom);
+            mytable2.setItems(obscom2);
         } catch (SQLException ex) {
             Logger.getLogger(ManageEmPController.class.getName()).log(Level.SEVERE, null, ex);
         }
-           
-    }    
-    
+    }
+
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+        myController=screenPage;
+    }
 }
