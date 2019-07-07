@@ -1,7 +1,9 @@
 package employee;
 
 import backend.ControlledScreen;
+import backend.Files;
 import backend.ScreensController;
+import com.sun.media.jfxmediaimpl.platform.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -24,10 +26,13 @@ public class ComplaintController implements ControlledScreen {
     private Label shift;
 
     @FXML
-    private TextField txt_product;
+    private TextField txt_name;
 
     @FXML
     private TextField txt_mob;
+
+    @FXML
+    private TextField txt_prod;
 
     @FXML
     private Label product_err;
@@ -44,39 +49,44 @@ public class ComplaintController implements ControlledScreen {
 
     @FXML
     void complaint(ActionEvent event) {
-        if(txt_product.getText().isEmpty()| txt_mob.getText().isEmpty() | issuebox.getText().isEmpty()){
+        if (txt_name.getText().isEmpty() || txt_prod.getText().isEmpty() || txt_mob.getText().isEmpty() || issuebox.getText().isEmpty()) {
             showErrors();
             return;
-        }else{
+        } else {
             hideErrors();
         }
         String username = "n01324490";
         String password = "oracle";
         String url = "jdbc:oracle:thin:@calvin.humber.ca:1521:grok";
-        Connection con=null;
-        int rows=0;
+        Connection con = null;
+        int rows = 0;
         try {
-                Class.forName("oracle.jdbc.driver.OracleDriver");
-                con = DriverManager.getConnection(url, username, password);
-            } catch (Exception e) {
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            con = DriverManager.getConnection(url, username, password);
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        String addQuerry = "INSERT INTO complaint (name, product, mobile, issue) VALUES (?, ?, ?, ?)";
+        String addQuerry = "INSERT INTO CustomerComplaint (PRODID, CUSTOMERNAME, DESCRIPTION, PHONE) VALUES (?, ?, ?, ?)";
 
-        try{
+        try {
             //step1
             PreparedStatement pst = con.prepareStatement(addQuerry);
             //step 2
-            pst.setString(1,"temp");
-            pst.setString(2, txt_product.getText());
-            pst.setDouble(3, Double.parseDouble(txt_mob.getText()));
-            pst.setString(4, issuebox.getText());
+            pst.setString(1, txt_name.getText());
+            pst.setString(2, txt_prod.getText());
+            pst.setString(3, issuebox.getText());
+            pst.setDouble(4, Double.parseDouble(txt_mob.getText()));
 
             //step 3
             rows = pst.executeUpdate();
             Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully filed.");
             alert.showAndWait();
-        }catch(SQLException e){
+            txt_mob.setText("");
+            txt_prod.setText("");
+            txt_name.setText("");
+            issuebox.setText("");
+
+        } catch (SQLException e) {
             System.err.println(e);
         }
     }
@@ -93,16 +103,16 @@ public class ComplaintController implements ControlledScreen {
 
     @FXML
     void close(ActionEvent event) {
-        System.exit(0);
+        myController.getStage().hide();
     }
 
-    void showErrors(){
+    void showErrors() {
         qty_err.setVisible(true);
         price_err.setVisible(true);
         product_err.setVisible(true);
     }
 
-    void hideErrors(){
+    void hideErrors() {
         qty_err.setVisible(false);
         price_err.setVisible(false);
         product_err.setVisible(false);

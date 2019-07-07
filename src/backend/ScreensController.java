@@ -27,6 +27,10 @@ public class ScreensController extends StackPane {
         this.stage = stage;
     }
 
+    public Stage getStage(){
+        return stage;
+    }
+
     public ScreensController() {
         super();
     }
@@ -88,7 +92,6 @@ public class ScreensController extends StackPane {
                             }
                         }, new KeyValue(opacity, 0.0)));
                 fade.play();
-
             } else {
                 setOpacity(0.0);
                 getChildren().add(screens.get(name));       //no one else been displayed, then just show
@@ -97,7 +100,8 @@ public class ScreensController extends StackPane {
                         new KeyFrame(new Duration(2500), new KeyValue(opacity, 1.0)));
                 fadeIn.play();
             }
-            return true;
+
+           return true;
         } else {
             System.out.println("screen hasn't been loaded!!! \n");
             return false;
@@ -122,6 +126,7 @@ public class ScreensController extends StackPane {
 
     //This method will remove the screen with the given name from the collection of screens
     public boolean unloadScreen(String name) {
+        getChildren().remove(0);
         if (screens.remove(name) == null) {
             System.out.println("Screen didn't exist");
             return false;
