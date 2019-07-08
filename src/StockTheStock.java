@@ -14,17 +14,16 @@ public class StockTheStock extends Application {
     public void start(Stage stage){
         ScreensController mainContainer = new ScreensController();
         mainContainer.loadScreen(Files.employeeMain, Files.employeeMainFile);
-        mainContainer.loadScreen(Files.tables,Files.tablesFile);
+        mainContainer.loadScreen(Files.login,Files.tablesFile);
         mainContainer.setStage(stage);
-        mainContainer.setScreen(Files.employeeMain);
-
+        mainContainer.setScreen(Files.login);
 
         Group root = new Group();
         root.getChildren().addAll(mainContainer);
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.setResizable(false);
-//        stage.initStyle(StageStyle.UNDECORATED);
+        stage.initStyle(StageStyle.UNDECORATED);
         stage.show();
     }
 
