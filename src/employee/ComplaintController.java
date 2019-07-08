@@ -1,9 +1,7 @@
 package employee;
 
 import backend.ControlledScreen;
-import backend.Files;
 import backend.ScreensController;
-import com.sun.media.jfxmediaimpl.platform.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
