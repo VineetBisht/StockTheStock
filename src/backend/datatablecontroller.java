@@ -33,6 +33,7 @@ public class datatablecontroller implements Initializable{
     @FXML private RadioButton rb_m;
     @FXML private RadioButton rb_e;
     @FXML private Button signup;
+
     @FXML private Label l_phn;
     @FXML private Label l_bd;
     @FXML private Label l_fnm;

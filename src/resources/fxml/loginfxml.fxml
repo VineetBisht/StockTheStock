@@ -32,7 +32,7 @@
                 <Font size="18.0" />
             </font>
         </Label>
-        <Label layoutX="280.0" layoutY="62.0" styleClass="headers" text="Login" textFill="#bd1c67">
+        <Label layoutX="280.0" layoutY="62.0" styleClass="headers" text="TimeSheet" textFill="#bd1c67">
             <font>
                 <Font name="System Italic" size="33.0" />
             </font>
@@ -48,13 +48,14 @@
             </font>
         </Label>
         <TextField fx:id="username" layoutX="247.0" layoutY="138.0" promptText="Daren" />
-        <Button fx:id="login" layoutX="242.0" layoutY="253.0" onAction="#login" text="Login" />
+        <Button fx:id="login" layoutX="242.0" layoutY="253.0" onAction="#login" text="Start Shift" />
         <Button layoutX="242.0" layoutY="302.0" text="Create a New Account" />
-        <Button fx:id="forget" layoutX="333.0" layoutY="257.0" onAction="#forget" text="Reset Password">
+        <Button fx:id="forget" layoutX="448.0" layoutY="300.0" onAction="#forget" text="Reset Password">
             <font>
                 <Font size="14.0" />
             </font>
         </Button>
       <PasswordField fx:id="password" layoutX="247.0" layoutY="186.0" />
+      <Button fx:id="logout" layoutX="350.0" layoutY="254.0" mnemonicParsing="false" onAction="#logout" text="End Shift" />
     </children>
 </AnchorPane>

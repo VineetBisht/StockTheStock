@@ -3,6 +3,7 @@ package sample;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
@@ -15,6 +16,8 @@ public class logincontroller implements Initializable {
 
     @FXML
     private TextField username;
+
+
     @FXML private PasswordField password;
 
     private boolean Validate() {
@@ -53,7 +56,22 @@ public class logincontroller implements Initializable {
         datatable d = new datatable();
         Person p=new Person();
         p.setUser_name(username.getText());
-        d.match(p,password.getText());
+        if(d.match(p,password.getText()))
+        d.timesheet(p);
+        Reset();
+
+    }
+    @FXML
+    private void logout() {
+        if(!Validate()){
+            createAlert(Alert.AlertType.WARNING, "Please input valid information").show();
+            return;
+        }
+        datatable d = new datatable();
+        Person p=new Person();
+        p.setUser_name(username.getText());
+        if(d.match(p,password.getText()))
+        d.endshift(p);
         Reset();
 
     }
