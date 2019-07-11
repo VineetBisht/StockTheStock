@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="403.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.logincontroller">
+<AnchorPane prefHeight="403.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employee.LoginController">
     <children>
-        <MenuBar prefHeight="29.0" prefWidth="956.0">
+        <MenuBar prefHeight="29.0" prefWidth="683.0" stylesheets="@../css/DarkTheme.css">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
@@ -27,11 +27,6 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <Label layoutX="32.0" layoutY="39.0" text="Welcome" textFill="#684141">
-            <font>
-                <Font size="18.0" />
-            </font>
-        </Label>
         <Label layoutX="280.0" layoutY="62.0" styleClass="headers" text="TimeSheet" textFill="#bd1c67">
             <font>
                 <Font name="System Italic" size="33.0" />

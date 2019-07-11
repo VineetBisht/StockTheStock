@@ -48,7 +48,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Product Name" GridPane.rowIndex="1" />
+            <Label text="Product ID" GridPane.rowIndex="1" />
             <TextField fx:id="name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="quantity" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label text="Reason" GridPane.rowIndex="3" />

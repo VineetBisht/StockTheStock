@@ -1,5 +1,9 @@
-package sample;
+package employee;
 
+import backend.ControlledScreen;
+import backend.Person;
+import backend.ScreensController;
+import backend.datatable;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -12,8 +16,9 @@ import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
 
-public class logincontroller implements Initializable {
+public class LoginController implements Initializable, ControlledScreen {
 
+    ScreensController myController;
     @FXML
     private TextField username;
 
@@ -94,5 +99,10 @@ public class logincontroller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+        myController=screenPage;
     }
 }

@@ -14,7 +14,8 @@ public class StockTheStock extends Application {
     public void start(Stage stage){
         ScreensController mainContainer = new ScreensController();
         mainContainer.loadScreen(Files.employeeMain, Files.employeeMainFile);
-        mainContainer.loadScreen(Files.login,Files.tablesFile);
+        mainContainer.loadScreen(Files.login,Files.loginFile);
+        mainContainer.loadScreen(Files.SignUp,Files.SignUpFile);
         mainContainer.setStage(stage);
         mainContainer.setScreen(Files.login);
 

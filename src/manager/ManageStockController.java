@@ -1,7 +1,9 @@
 package manager;
 
+import backend.ControlledScreen;
 import backend.ManageStock;
 import backend.ManageStockDB;
+import backend.ScreensController;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -14,7 +16,7 @@ import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class ManageStockController implements Initializable {
+public class ManageStockController implements Initializable, ControlledScreen {
 
     //---------------------------Controller for ManageStock Page(variables + onAction methods)--------------------------
     @FXML
@@ -50,6 +52,7 @@ public class ManageStockController implements Initializable {
     int result = 0;
     Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
     Alert alert2 = new Alert(Alert.AlertType.ERROR);
+    ScreensController myController;
 
     public void setAlert(){
         alert1.setTitle("Stock Records");
@@ -265,4 +268,8 @@ public class ManageStockController implements Initializable {
     }
 
 
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+        myController=screenPage;
+    }
 }

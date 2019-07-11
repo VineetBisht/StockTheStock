@@ -14,9 +14,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="434.0" prefWidth="633.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.datatablecontroller">
+<AnchorPane prefHeight="434.0" prefWidth="633.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employee.DatatableController">
     <children>
-        <MenuBar prefHeight="29.0" prefWidth="956.0">
+        <MenuBar prefHeight="29.0" prefWidth="665.0" stylesheets="@../css/DarkTheme.css">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
@@ -48,8 +48,8 @@
         <Label layoutX="25.0" layoutY="209.0" text="Designation" />
         <Label fx:id="l_bd" layoutX="350.0" layoutY="257.0" text="Birth Date" />
         <Label fx:id="l_u" layoutX="26.0" layoutY="243.0" text="Username" />
-        <Label fx:id="l_p" layoutX="25.0" layoutY="276.0" text="Create Password" />
-        <Label fx:id="l_cp" layoutX="20.0" layoutY="311.0" text="Confirm Password" />
+        <Label fx:id="l_p" layoutX="26.0" layoutY="276.0" text="Create Password" />
+        <Label fx:id="l_cp" layoutX="22.0" layoutY="311.0" text="Confirm Password" />
         <Button fx:id="signup" layoutX="464.0" layoutY="368.0" onAction="#add" prefHeight="39.0" prefWidth="131.0" text="Sign Up" />
         <Button layoutX="536.0" layoutY="42.0" prefHeight="27.0" prefWidth="91.0" text="Help">
             <font>
@@ -63,7 +63,7 @@
                 <ToggleGroup fx:id="designation_group" />
             </toggleGroup></RadioButton>
         <RadioButton fx:id="rb_m" layoutX="139.0" layoutY="209.0" selected="true" text="Manager" toggleGroup="$designation_group" />
-        <TextField fx:id="username" layoutX="139.0" layoutY="239.0" />
+        <TextField fx:id="username" layoutX="149.0" layoutY="238.0" />
         <TextField fx:id="phone_number" layoutX="428.0" layoutY="136.0" />
         <TextArea fx:id="address" layoutX="429.0" layoutY="168.0" prefHeight="73.0" prefWidth="167.0" />
         <DatePicker fx:id="dob" layoutX="428.0" layoutY="252.0" prefHeight="27.0" prefWidth="167.0" promptText="D.O.B" />

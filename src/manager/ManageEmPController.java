@@ -1,8 +1,5 @@
 package Employee;
 
-import CreateDatabase.ComplaintCust;
-import CreateDatabase.ComplaintEmp;
-import CreateDatabase.Employee;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,6 +14,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import backend.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -32,9 +31,10 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Shivam
  */
-public class ManageEmPController implements Initializable {
+public class ManageEmPController implements Initializable, ControlledScreen {
     Button []buttonSchedule=new Button[100];
     Connection con;
+    ScreensController myController;
     int empCounter=0;//for kepping track of the buttons being built dynamically in the tableview
     
     @FXML
@@ -504,5 +504,10 @@ public class ManageEmPController implements Initializable {
         
         btnScheduleInsert.setDisable(true);
 
+    }
+
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+        myController=screenPage;
     }
 }
