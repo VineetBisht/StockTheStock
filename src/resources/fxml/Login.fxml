@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="403.0" prefWidth="682.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employee.LoginController">
+<AnchorPane prefHeight="397.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employee.LoginController">
     <children>
         <MenuBar prefHeight="29.0" prefWidth="683.0" stylesheets="@../css/DarkTheme.css">
             <menus>
