@@ -3,17 +3,14 @@ package employee;
 import backend.ControlledScreen;
 import backend.Person;
 import backend.ScreensController;
-import backend.datatable;
+import backend.Datatable;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.paint.Color;
 
 import java.net.URL;
-import java.sql.Date;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable, ControlledScreen {
@@ -58,7 +55,7 @@ public class LoginController implements Initializable, ControlledScreen {
             createAlert(Alert.AlertType.WARNING, "Please input valid information").show();
             return;
         }
-        datatable d = new datatable();
+        Datatable d = new Datatable();
         Person p=new Person();
         p.setUser_name(username.getText());
         if(d.match(p,password.getText()))
@@ -72,7 +69,7 @@ public class LoginController implements Initializable, ControlledScreen {
             createAlert(Alert.AlertType.WARNING, "Please input valid information").show();
             return;
         }
-        datatable d = new datatable();
+        Datatable d = new Datatable();
         Person p=new Person();
         p.setUser_name(username.getText());
         if(d.match(p,password.getText()))
@@ -82,7 +79,7 @@ public class LoginController implements Initializable, ControlledScreen {
     }
     @FXML
     private void forget() {
-        datatable d = new datatable();
+        Datatable d = new Datatable();
         if(!Validate()){
             createAlert(Alert.AlertType.WARNING, "Please input valid information").show();
             return;

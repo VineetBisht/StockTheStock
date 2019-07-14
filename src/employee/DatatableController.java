@@ -3,23 +3,18 @@ package employee;
 import backend.ControlledScreen;
 import backend.Person;
 import backend.ScreensController;
-import backend.datatable;
-import com.sun.javafx.scene.layout.region.Margins;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import backend.Datatable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.*;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -121,13 +116,19 @@ public class DatatableController implements Initializable, ControlledScreen {
 
             b = false;
         } else if (dob.getValue() != null) {
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yy HH:mm:ss");
             LocalDate now = LocalDate.now();
-            if (now.isBefore(dob.getValue())) {
+            Period period= Period.between(dob.getValue(),now);
+            int gap=period.getYears();
+            if (now.isBefore(dob.getValue()) ) {
                 l_bd.setTextFill(Color.web("red"));
                 e_dob.setText("Date of Birth should be less than current date");
                 b = false;
-            } else {
+            }
+            else if(gap<18 ){
+                l_bd.setTextFill(Color.web("red"));
+                e_dob.setText("User can't be less than 18 years old");
+                b=false;
+            }else {
 
                 e_dob.setText("");
                 l_bd.setTextFill(Color.web("black"));
@@ -156,6 +157,8 @@ public class DatatableController implements Initializable, ControlledScreen {
             return false;
         else
             return true;
+
+
     }
 
     private void PassReset() {
@@ -185,7 +188,7 @@ public class DatatableController implements Initializable, ControlledScreen {
 
     @FXML
     private void add() {
-        datatable d = new datatable();
+        Datatable d = new Datatable();
         if (!Validate()) {
             createAlert(AlertType.WARNING, "Please input valid information").show();
             return;
