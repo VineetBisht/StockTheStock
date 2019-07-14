@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="397.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employee.LoginController">
+<AnchorPane prefHeight="397.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employee.LoginController">
     <children>
         <MenuBar prefHeight="29.0" prefWidth="683.0" stylesheets="@../css/DarkTheme.css">
             <menus>
@@ -27,29 +27,25 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <Label layoutX="280.0" layoutY="62.0" styleClass="headers" text="TimeSheet" textFill="#bd1c67">
+        <Label layoutX="280.0" layoutY="62.0" styleClass="headers" text="Login" textFill="#bd1c67">
             <font>
                 <Font name="System Italic" size="33.0" />
             </font>
         </Label>
         <Label layoutX="157.0" layoutY="140.0" text="Username">
             <font>
-                <Font size="14.0" />
+                <Font size="18.0" />
             </font>
         </Label>
-        <Label layoutX="157.0" layoutY="183.0" text="Password">
+        <Label layoutX="157.0" layoutY="191.0" text="Password">
             <font>
-                <Font size="14.0" />
+                <Font size="18.0" />
             </font>
         </Label>
         <TextField fx:id="username" layoutX="247.0" layoutY="138.0" promptText="Daren" />
-        <Button fx:id="login" layoutX="242.0" layoutY="253.0" onAction="#login" text="Start Shift" />
+        <Button fx:id="login" layoutX="242.0" layoutY="253.0" onAction="#login" text="Login" />
         <Button layoutX="242.0" layoutY="302.0" text="Create a New Account" />
-        <Button fx:id="forget" layoutX="448.0" layoutY="300.0" onAction="#forget" text="Reset Password">
-            <font>
-                <Font size="14.0" />
-            </font>
-        </Button>
+        <Button fx:id="forget" layoutX="421.0" layoutY="301.0" onAction="#forget" text="Reset Password" />
       <PasswordField fx:id="password" layoutX="247.0" layoutY="186.0" />
       <Button fx:id="logout" layoutX="350.0" layoutY="254.0" mnemonicParsing="false" onAction="#logout" text="End Shift" />
     </children>
