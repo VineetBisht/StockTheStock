@@ -7,6 +7,7 @@ import backend.datatable;
 import com.sun.javafx.scene.layout.region.Margins;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.*;
 import javafx.fxml.Initializable;
@@ -218,6 +219,11 @@ public class DatatableController implements Initializable, ControlledScreen {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+    }
+
+    @FXML
+    void close(ActionEvent event) {
+        System.exit(0);
     }
 
     @Override

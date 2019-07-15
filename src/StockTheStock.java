@@ -17,7 +17,7 @@ public class StockTheStock extends Application {
         mainContainer.loadScreen(Files.login,Files.loginFile);
         mainContainer.loadScreen(Files.SignUp,Files.SignUpFile);
         mainContainer.setStage(stage);
-        mainContainer.setScreen(Files.login);
+        mainContainer.setScreen(Files.employeeMain);
 
         Group root = new Group();
         root.getChildren().addAll(mainContainer);

@@ -11,16 +11,18 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="434.0" prefWidth="633.0" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employee.DatatableController">
+<AnchorPane prefHeight="434.0" prefWidth="633.0" stylesheets="@../css/DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="employee.DatatableController">
     <children>
         <MenuBar prefHeight="29.0" prefWidth="665.0" stylesheets="@../css/DarkTheme.css">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="Close" />
+                        <MenuItem mnemonicParsing="false" onAction="#close" text="Close" />
                     </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Edit" />
@@ -31,12 +33,7 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <Label layoutX="24.0" layoutY="39.0" text="Welcome" textFill="#684141">
-            <font>
-                <Font size="17.0" />
-            </font>
-        </Label>
-        <Label layoutX="242.0" layoutY="73.0" styleClass="headers" text="Sign Up" textFill="#bd1c67">
+        <Label layoutX="291.0" layoutY="63.0" styleClass="headers" text="Sign Up" textFill="#bd1c67">
             <font>
                 <Font name="System Italic" size="32.0" />
             </font>
@@ -71,5 +68,10 @@
       <PasswordField fx:id="cpassword" layoutX="149.0" layoutY="306.0" />
       <Label fx:id="e_phn" layoutX="657.0" layoutY="141.0" />
       <Label fx:id="e_dob" layoutX="640.0" layoutY="257.0" />
+      <ImageView fitHeight="60.0" fitWidth="104.0" layoutX="171.0" layoutY="53.0">
+         <image>
+            <Image url="@../images/Logo.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

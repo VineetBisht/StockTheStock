@@ -11,9 +11,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.URL;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class TransactionController implements ControlledScreen, Initializable {
     ScreensController myController;
@@ -67,13 +76,30 @@ public class TransactionController implements ControlledScreen, Initializable {
             return;
         }
         hideErrors();
-        list.add(edb.findObject(Integer.parseInt(txt_product.getText()), Integer.parseInt(txt_qty.getText())));
+        Cart obj = edb.findObject(Integer.parseInt(txt_product.getText()),Integer.parseInt(txt_qty.getText()));
+        if (obj == null) {
+            txt_price.setText("");
+        }else{
+            list.add(edb.findObject(Integer.parseInt(txt_product.getText()), Integer.parseInt(txt_qty.getText())));
+        }
     }
 
     @FXML
     void checkout(ActionEvent event) {
         edb.update(list.toArray());
         new Alert(Alert.AlertType.INFORMATION,"Checkout Successful. Bill printed. ").showAndWait();
+        try{
+            JasperCompileManager.compileReportToFile(Files.jasperResourcePath,Files.jasperPath+"Bill.jasper");
+            ArrayList<Cart> arlist=new ArrayList<>(list);
+            JRBeanCollectionDataSource beanCollectionDataSource= new JRBeanCollectionDataSource(arlist);
+            Map parameters=new HashMap();
+            parameters.put("ds",beanCollectionDataSource);
+            JasperPrint js = JasperFillManager.fillReport(Files.jasperPath+"Bill.jasper",parameters,beanCollectionDataSource);
+            OutputStream os=new FileOutputStream(new File(Files.jasperPath+new Date().getTime()+".pdf"));
+            JasperExportManager.exportReportToPdfStream(js,os);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     @FXML

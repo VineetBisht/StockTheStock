@@ -1,6 +1,9 @@
 package backend;
 
 public class Files {
+
+    public static String jasperResourcePath="/resources/receipt/Bill.jrxml";
+    public static String jasperPath="/resources/receipt/";
     public static String login="login";
     public static String loginFile="/resources/fxml/Login.fxml";
     public static String complaint="complaint";
@@ -15,6 +18,8 @@ public class Files {
     public static String billingFile="/resources/fxml/Transaction.fxml";
     public static String refund="refund";
     public static String refundFile="/resources/fxml/Refund.fxml";
+    public static String managerMain="manager";
+    public static String managerMainFile="/resources/fxml/ManagerMain.fxml";
 
 //    public static String employeeControl="employeeControl";
 //    public static String employeeControlFile="/resources/fxml/EmployeeControl.fxml";
@@ -22,15 +27,14 @@ public class Files {
 //    public static String expiredFile="/resources/fxml/Expired.fxml";
 //    public static String managerHome="managerHome";
 //    public static String managerHomeFile="/resources/fxml/ManagerHome.fxml";
-//    public static String manageStock="manageStock";
-//    public static String manageStockFile="/resources/fxml/ManageStock.fxml";
+    public static String manageStock="manageStock";
+    public static String manageStockFile="/resources/fxml/ManageStock.fxml";
 //    public static String monthlyReport="monthlyReport";
 //    public static String monthlyReportFile="/resources/fxml/MonthlyReport.fxml";
 //    public static String weeklyNet="weeklyNet";
 //    public static String weeklyNetFile="/resources/fxml/WeeklyNet.fxml";
 //    public static String manageEmp="manageEmpcontroller";
 //    public static String manageEmpFile="/resources/fxml/ManageEmp.fxml";
-
 
 
 }

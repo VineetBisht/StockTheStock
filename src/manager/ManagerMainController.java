@@ -25,8 +25,8 @@ public class ManagerMainController implements ControlledScreen, Initializable {
     private Label shift;
 
     @FXML
-    void billing(ActionEvent event) {
-        mainController.setScreen(Files.billing);
+    void manageStock(ActionEvent event) {
+        mainController.setScreen(Files.manageStock);
         stage.show();
     }
 
@@ -42,14 +42,8 @@ public class ManagerMainController implements ControlledScreen, Initializable {
     }
 
     @FXML
-    void refund(ActionEvent event) {
+    void manageEmployees(ActionEvent event) {
         mainController.setScreen(Files.refund);
-        stage.show();
-    }
-
-    @FXML
-    void tables(ActionEvent event) {
-        myController.setScreen(Files.tables);
         stage.show();
     }
 
@@ -64,11 +58,7 @@ public class ManagerMainController implements ControlledScreen, Initializable {
         stage=new Stage();
         ScreensController mainContainer = new ScreensController();
         this.mainController=mainContainer;
-        mainContainer.loadScreen(Files.login, Files.loginFile);
-        mainContainer.loadScreen(Files.complaint, Files.complaintFile);
-        mainContainer.loadScreen(Files.SignUp, Files.SignUpFile);
-        mainContainer.loadScreen(Files.tables, Files.tablesFile);
-        mainContainer.loadScreen(Files.billing, Files.billingFile);
+        mainContainer.loadScreen(Files.manageStock,Files.manageStockFile);
         mainContainer.setStage(stage);
 
         Group root = new Group();

@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 
 public class EmployeeMainController implements ControlledScreen, Initializable {
     ScreensController myController, mainController;
+    static Stage primaryStage;
     Stage stage;
     Scene scene;
 
@@ -74,14 +75,12 @@ public class EmployeeMainController implements ControlledScreen, Initializable {
         stage = new Stage();
         ScreensController mainContainer = new ScreensController();
         this.mainController = mainContainer;
-        mainContainer.loadScreen(Files.login, Files.loginFile);
         mainContainer.loadScreen(Files.billing, Files.billingFile);
         mainContainer.loadScreen(Files.refund, Files.refundFile);
-        mainContainer.loadScreen(Files.SignUp, Files.SignUpFile);
         mainContainer.loadScreen(Files.tables, Files.tablesFile);
-        mainContainer.loadScreen(Files.SignUp, Files.SignUpFile);
         mainContainer.loadScreen(Files.complaint, Files.complaintFile);
         mainContainer.setStage(stage);
+        primaryStage=stage;
 
         Group root = new Group();
         root.getChildren().addAll(mainContainer);
@@ -95,5 +94,10 @@ public class EmployeeMainController implements ControlledScreen, Initializable {
 
     private void setCurrentHeightToStage(Number number2) {
         stage.setHeight((double) number2);
+    }
+
+    public static void resizeScreen() {
+        primaryStage.sizeToScene();
+        primaryStage.centerOnScreen();
     }
 }

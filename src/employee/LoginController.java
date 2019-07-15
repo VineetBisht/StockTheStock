@@ -4,6 +4,7 @@ import backend.ControlledScreen;
 import backend.Person;
 import backend.ScreensController;
 import backend.datatable;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -24,6 +25,11 @@ public class LoginController implements Initializable, ControlledScreen {
 
 
     @FXML private PasswordField password;
+
+    @FXML
+    void close(ActionEvent event) {
+        System.exit(0);
+    }
 
     private boolean Validate() {
         boolean b = true;
