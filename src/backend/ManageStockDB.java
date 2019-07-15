@@ -1,9 +1,9 @@
-package backend;
-
-import backend.ManageStock;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,6 +12,8 @@ public class ManageStockDB {
     private Connection con;
     int rows;
     int count =0;
+
+
     public ManageStockDB() {
         String username = "n01305083";
         String password = "oracle";
@@ -28,7 +30,7 @@ public class ManageStockDB {
 //                        "name VARCHAR2( 255 ) NOT NULL," +
 //                        "price NUMBER( 8, 2 )," +
 //                        "volume INTEGER, added_on DATE, expiry_date DATE" +
-//                        "distributor_id VARCHAR2( 255 ))";
+//                        "distributor_id VARCHAR2( 255 ), image BLOB)";
 //                int x=con.createStatement().executeUpdate(create);
 //                System.out.println("Created new 'Stock' table successfully ");
 //            }
@@ -43,12 +45,14 @@ public class ManageStockDB {
 
 
     public int addItem(ManageStock i){
-        String addQuerry = "INSERT INTO stock (product_id, name, price, volume, added_on, expiry_date, distributor_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String addQuerry = "INSERT INTO stock2 (product_id, name, price, volume, added_on, expiry_date, distributor_id, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         String added, expiry;
         long long_added, long_expiry;
         java.util.Date util_added, util_expiry;
         java.sql.Date sql_added, sql_expiry;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
+
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");
         try{
             //step1
             PreparedStatement pst = con.prepareStatement(addQuerry);
@@ -58,19 +62,24 @@ public class ManageStockDB {
             pst.setDouble(3, i.getPrice());
             pst.setInt(4, i.getVolume());
 
-            added = i.getAdded_on();
-            util_added = sdf.parse(added);
-            long_added = util_added.getTime();
-            sql_added = new java.sql.Date(long_added);
-
-            expiry = i.getExpiry_date();
-            util_expiry = sdf.parse(expiry);
-            long_expiry = util_expiry.getTime();
-            sql_expiry = new java.sql.Date(long_expiry);
+//            added = i.getAdded_on();
+//            util_added = sdf.parse(added);
+//            long_added = util_added.getTime();
+//            sql_added = new java.sql.Date(long_added);
+//
+//            expiry = i.getExpiry_date();
+//            util_expiry = sdf.parse(expiry);
+//            long_expiry = util_expiry.getTime();
+//            sql_expiry = new java.sql.Date(long_expiry);
 
             pst.setString(5, i.getAdded_on());
             pst.setString(6, i.getExpiry_date());
             pst.setString(7, i.getDistributor_id());
+
+            FileInputStream fis = new FileInputStream(i.getFile());
+
+            pst.setBinaryStream(8, (InputStream)fis, (int)i.getFile().length()); //length of file 3rd argument
+
 
             //step 3
             rows = pst.executeUpdate();
@@ -79,10 +88,14 @@ public class ManageStockDB {
         }catch(SQLException e){
             System.err.println(e);
             return 0;
-        } catch (ParseException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
             return 0;
         }
+//        catch (ParseException e) {
+//            e.printStackTrace();
+//            return 0;
+//        }
 
     }
 
@@ -101,7 +114,7 @@ public class ManageStockDB {
     }
 
     public ManageStock fDelete(ManageStock i){
-        String q = "SELECT * FROM stock WHERE product_id = ?";
+        String q = "SELECT * FROM stock2 WHERE product_id = ?";
         try{
             PreparedStatement pST = con.prepareStatement(q);
             pST.setInt(1, i.getProduct_id());
@@ -132,55 +145,72 @@ public class ManageStockDB {
         long long_added, long_expiry;
         java.util.Date util_added, util_expiry;
         java.sql.Date sql_added, sql_expiry;
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String updateQuerry = "UPDATE stock SET name = ?, price = ?, volume = ?, added_on = ?, " +
-                "expiry_date = ?, distributor_id = ?"
+                "expiry_date = ?, distributor_id = ?, image = ?"
                 + "WHERE product_id = ?";
         try{
             PreparedStatement pst = con.prepareStatement(updateQuerry);
             pst.setString(1, i.getName());
             pst.setDouble(2, i.getPrice());
             pst.setInt(3, i.getVolume());
-            pst.setString(6, i.getDistributor_id());
 
-            added = i.getAdded_on();
-            util_added = sdf.parse(added);
-            long_added = util_added.getTime();
-            sql_added = new java.sql.Date(long_added);
-
-            expiry = i.getExpiry_date();
-            util_expiry = sdf.parse(expiry);
-            long_expiry = util_expiry.getTime();
-            sql_expiry = new java.sql.Date(long_expiry);
 
             pst.setString(4, i.getAdded_on());
             pst.setString(5, i.getExpiry_date());
+            pst.setString(6, i.getDistributor_id());
 
-            pst.setInt(7, i.getProduct_id());
+            FileInputStream fis = new FileInputStream(i.getFile());
+            pst.setBinaryStream(7, (InputStream)fis, (int)i.getFile().length()); //length of file 3rd argument
+
+            pst.setInt(8, i.getProduct_id());
+
             rows = pst.executeUpdate();
-            return rows;
-        } catch (SQLException | ParseException e) {
+            return  rows;
+        }catch(SQLException e){
+            System.err.println(e);
+            return 0;
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
             return 0;
         }
     }
 
     public ObservableList<ManageStock> list(){
-        String listQuerry = "SELECT * FROM stock";
+        String listQuerry = "SELECT * FROM stock2 WHERE TO_DATE(expiry_date, 'DD-MON-YYYY') > current_date";
+        ObservableList<ManageStock> obList = FXCollections.observableArrayList();
+        String query2 = "WHERE TO_DATE(expiry_date, 'DD-MON-YYYY') - current_date <= 7 AND TO_DATE(expiry_date, 'DD-MON-YYYY') - current_date > 0";
+
+        try{
+            PreparedStatement pST = con.prepareStatement(listQuerry);
+            PreparedStatement pST2 = con.prepareStatement(query2);
+            ResultSet rs = pST.executeQuery();
+            while(rs.next()){
+
+                obList.add(new ManageStock(rs.getInt("product_id"), rs.getString("name"),
+                        rs.getInt("price"), rs.getInt("volume"),
+                        rs.getString("distributor_id"), rs.getString("added_on"), rs.getString("expiry_date")));
+
+            }
+
+            return obList;
+
+        }catch(SQLException e){
+            System.err.println(e);
+            return null;
+        }
+    }
+
+    public ObservableList<ManageStock> expiredList(){
+        String listQuerry = "SELECT * FROM stock2 WHERE TO_DATE(expiry_date, 'DD-MON-YYYY') < current_date";
         ObservableList<ManageStock> obList = FXCollections.observableArrayList();
 
         try{
             PreparedStatement pST = con.prepareStatement(listQuerry);
             ResultSet rs = pST.executeQuery();
             while(rs.next()){
-//                java.sql.Date added = rs.getDate("added_on");
-//                DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-//                String addedOnl = dateFormat.format(added);
-//
-//                java.sql.Date expiry = rs.getDate("expiry_date");
-//
-//                String expiryDatel = dateFormat.format(expiry);
-//                System.out.println(addedOnl);
+
                 obList.add(new ManageStock(rs.getInt("product_id"), rs.getString("name"),
                         rs.getInt("price"), rs.getInt("volume"),
                         rs.getString("distributor_id"), rs.getString("added_on"), rs.getString("expiry_date")));
@@ -196,7 +226,7 @@ public class ManageStockDB {
     }
 
     public ObservableList<ManageStock> find(ManageStock i) {
-        String findQuerry = "SELECT * FROM stock WHERE product_id = ?";
+        String findQuerry = "SELECT * FROM stock2 WHERE product_id = ?";
         ObservableList<ManageStock> obList = FXCollections.observableArrayList();
         try {
             PreparedStatement pST = con.prepareStatement(findQuerry);
@@ -204,18 +234,10 @@ public class ManageStockDB {
 
             ResultSet rs = pST.executeQuery();
             if (rs.next()) {
-                java.sql.Date added = rs.getDate("added_on");
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-                String addedOn = dateFormat.format(added);
-
-                java.sql.Date expiry = rs.getDate("expiry_date");
-
-                String expiryDate = dateFormat.format(expiry);
 
                 obList.add(new ManageStock(rs.getInt("product_id"), rs.getString("name"),
                         rs.getInt("price"), rs.getInt("volume"),
-                        rs.getString("distributor_id"), addedOn
-                        , expiryDate));
+                        rs.getString("distributor_id"), rs.getString("added_on"), rs.getString("expiry_date")));
                 return obList;
             } else {
                 return null;
@@ -227,5 +249,25 @@ public class ManageStockDB {
         }
     }
 
+
+    public InputStream findImage(ManageStock i ){
+        String findQuerry = "SELECT * FROM stock2 WHERE product_id = ?";
+        InputStream is = null;
+        try {
+            PreparedStatement pST = con.prepareStatement(findQuerry);
+            pST.setInt(1, i.getProduct_id());
+
+            ResultSet rs = pST.executeQuery();
+            if (rs.next()) {
+                is = rs.getBinaryStream("image");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+
+        return is;
+
+    }
 }
 
