@@ -1,10 +1,12 @@
-package backend;
+import java.io.File;
 
 public class ManageStock {
     int product_id;
     String name;
     double price;
     int volume;
+
+    File file;
 
     String distributor_id;
     String added_on, expiry_date;
@@ -18,6 +20,18 @@ public class ManageStock {
         this.added_on = added_on;
         this.expiry_date = expiry_date;
         this.distributor_id = distributor_id;
+    }
+
+    public ManageStock(int product_id, String name, double price, int volume, String distributor_id, String added_on,
+                       String expiry_date, File file) {
+        this.product_id = product_id;
+        this.name = name;
+        this.price = price;
+        this.volume = volume;
+        this.added_on = added_on;
+        this.expiry_date = expiry_date;
+        this.distributor_id = distributor_id;
+        this.file = file;
     }
 
     public ManageStock(){
@@ -78,5 +92,13 @@ public class ManageStock {
 
     public void setDistributor_id(String distributor_id) {
         this.distributor_id = distributor_id;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setFile(File file) {
+        this.file = file;
     }
 }

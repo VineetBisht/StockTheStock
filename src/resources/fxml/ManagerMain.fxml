@@ -37,9 +37,9 @@
                 <Image url="@../images/Logo.png" />
             </image>
         </ImageView>
-        <Button mnemonicParsing="false" onAction="#billing" prefHeight="39.0" prefWidth="309.0" text="Home" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-        <Button mnemonicParsing="false" onAction="#manageStock" prefHeight="39.0" prefWidth="308.0" text="Manage Stock" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-        <Button mnemonicParsing="false" onAction="#manageEmployees" prefHeight="39.0" prefWidth="307.0" text="Manage Employee" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+        <Button mnemonicParsing="false" onAction="#billing" prefHeight="39.0" prefWidth="309.0" text="Generate Monthly Report" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <Button mnemonicParsing="false" onAction="#manageStock" prefHeight="39.0" prefWidth="308.0" text="Manage Stock" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Button mnemonicParsing="false" onAction="#manageEmployees" prefHeight="39.0" prefWidth="307.0" text="Manage Employee" GridPane.columnIndex="1" GridPane.rowIndex="4" />
         <MenuBar prefHeight="29.0" prefWidth="683.0" GridPane.columnSpan="3">
             <menus>
                 <Menu mnemonicParsing="false" text="File">
@@ -55,7 +55,7 @@
                 </Menu>
             </menus>
         </MenuBar>
-        <Button mnemonicParsing="false" onAction="#complaints" prefHeight="39.0" prefWidth="306.0" text="Complaints" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+        <Button mnemonicParsing="false" onAction="#complaints" prefHeight="39.0" prefWidth="306.0" text="Complaints" GridPane.columnIndex="1" GridPane.rowIndex="5" />
         <HBox maxWidth="1.7976931348623157E308" prefHeight="64.0" prefWidth="1146.0" spacing="240.0" GridPane.columnSpan="3" GridPane.rowIndex="1">
             <children>
                 <Label fx:id="welcom_name" prefHeight="29.0" prefWidth="193.0" styleClass="top" text="Welcome " textFill="#684141">
