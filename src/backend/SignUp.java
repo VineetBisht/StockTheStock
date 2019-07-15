@@ -27,7 +27,7 @@ import java.util.Properties;
 
 
 
-public class Datatable {
+public class SignUp {
     private static SecretKeySpec secretKey;
     final String secret = "ssshhhhhhhhhhh!!!!";
     private static byte[] key;
@@ -37,7 +37,7 @@ public class Datatable {
     String url = "jdbc:oracle:thin:@calvin.humber.ca:1521:grok";
     Connection con;
 
-    public Datatable() {
+    public SignUp() {
         try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             this.con = DriverManager.getConnection(url, username, password);
@@ -315,7 +315,7 @@ public class Datatable {
 
                 //step 3
 
-               pst.executeUpdate();
+                pst.executeUpdate();
             }
         }  catch (Exception s) {
             System.out.println(s);

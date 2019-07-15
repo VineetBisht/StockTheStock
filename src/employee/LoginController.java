@@ -3,7 +3,7 @@ package employee;
 import backend.ControlledScreen;
 import backend.Person;
 import backend.ScreensController;
-import backend.Datatable;
+import backend.SignUp;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -55,7 +55,7 @@ public class LoginController implements Initializable, ControlledScreen {
             createAlert(Alert.AlertType.WARNING, "Please input valid information").show();
             return;
         }
-        Datatable d = new Datatable();
+        SignUp d = new SignUp();
         Person p=new Person();
         p.setUser_name(username.getText());
         if(d.match(p,password.getText()))
@@ -69,7 +69,7 @@ public class LoginController implements Initializable, ControlledScreen {
             createAlert(Alert.AlertType.WARNING, "Please input valid information").show();
             return;
         }
-        Datatable d = new Datatable();
+        SignUp d = new SignUp();
         Person p=new Person();
         p.setUser_name(username.getText());
         if(d.match(p,password.getText()))
@@ -79,7 +79,7 @@ public class LoginController implements Initializable, ControlledScreen {
     }
     @FXML
     private void forget() {
-        Datatable d = new Datatable();
+        SignUp d = new SignUp();
         if(!Validate()){
             createAlert(Alert.AlertType.WARNING, "Please input valid information").show();
             return;

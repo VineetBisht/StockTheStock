@@ -3,7 +3,7 @@ package employee;
 import backend.ControlledScreen;
 import backend.Person;
 import backend.ScreensController;
-import backend.Datatable;
+import backend.SignUp;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.*;
 import javafx.fxml.Initializable;
@@ -14,7 +14,6 @@ import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -188,7 +187,7 @@ public class DatatableController implements Initializable, ControlledScreen {
 
     @FXML
     private void add() {
-        Datatable d = new Datatable();
+        SignUp d = new SignUp();
         if (!Validate()) {
             createAlert(AlertType.WARNING, "Please input valid information").show();
             return;
