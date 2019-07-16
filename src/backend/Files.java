@@ -33,8 +33,7 @@ public class Files {
 //    public static String monthlyReportFile="/resources/fxml/MonthlyReport.fxml";
 //    public static String weeklyNet="weeklyNet";
 //    public static String weeklyNetFile="/resources/fxml/WeeklyNet.fxml";
-//    public static String manageEmp="manageEmpcontroller";
-//    public static String manageEmpFile="/resources/fxml/ManageEmp.fxml";
-
+    public static String manageEmp="manageEmpcontroller";
+    public static String manageEmpFile="/resources/fxml/ManageEmp.fxml";
 
 }

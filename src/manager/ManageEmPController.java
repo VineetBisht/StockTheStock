@@ -1,4 +1,4 @@
-package Employee;
+package manager;
 
 import java.net.URL;
 import java.sql.Connection;

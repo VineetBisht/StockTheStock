@@ -1,9 +1,6 @@
 package employee;
 
-import backend.ControlledScreen;
-import backend.ManageStock;
-import backend.ManageStockDB;
-import backend.ScreensController;
+import backend.*;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
