@@ -1,7 +1,10 @@
-package manager;
+package Employee;
 
-import backend.ComplaintEmp;
-import backend.Schedule;
+import CreateDatabase.ComplaintCust;
+import CreateDatabase.ComplaintEmp;
+import CreateDatabase.Employee;
+import CreateDatabase.Schedule;
+import javafx.event.Event;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,10 +19,6 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import backend.ComplaintCust;
-import backend.Employee;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,6 +28,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -51,6 +51,12 @@ public class ManageEmPController implements Initializable {
     
     @FXML private Button btnUpdate;
     @FXML private Button btnDelete;
+    @FXML private ComboBox updcmdAM;
+    @FXML private ComboBox updcmdPM;
+    @FXML private TextField updendtm;
+    
+    @FXML private TextField updstarttm;
+    
     
     int empCounter=0;//for kepping track of the buttons being built dynamically in the tableview
     
@@ -82,6 +88,9 @@ public class ManageEmPController implements Initializable {
     @FXML private ComboBox cb2;
     @FXML private ComboBox cb3;
     String []days={"Week","Sunday","Monday","Tuesday","Wednessday","Thursday","Friday","Saturday"};
+   
+    @FXML Button btnCancelSch;
+    @FXML Button btnCommitSch;
     
     int empScheduleId;//the id for which the schedule is being inserted
     
@@ -123,16 +132,17 @@ public class ManageEmPController implements Initializable {
 
     @FXML
     TableColumn<ComplaintCust, String> custName;
-
-    @FXML
-    TableColumn<ComplaintCust, String> comempDesc;
+    
+    @FXML TextField txtUpd;  
+    
+    @FXML TableColumn<ComplaintCust, String> comempDesc;
     
     @FXML Button btnScheduleInsert;
     
     @FXML TableColumn<ComplaintCust, Date> comdate;
     
     @FXML Button btnDisplaysch;
-    
+    @FXML Label lblUpd;
     int counterDateEmp = 0;//increasing the counter as we find records with the empid in the table for the current week
     //String usrnm="N01324490";
     String usrnm = "N01328150";
@@ -239,8 +249,163 @@ public class ManageEmPController implements Initializable {
             obscom.add(scd);
         mytableSchedule.setItems(obscom);
     
-    } 
+    }
+    
+    int columnNumber;
+    @FXML private void deleteSchedule()
+    {
+        
+    }
+    @FXML private void updateSchedule()
+    {
+        btnCancelSch.setVisible(true);
+        btnCommitSch.setVisible(true);
+           updcmdAM.getItems().add("AM");
+                 updcmdAM.getItems().add("PM");
+                 
+                 updcmdPM.getItems().add("AM");
+                 updcmdPM.getItems().add("PM");
+                 
+    }
+    @FXML private void commitSchedule() throws SQLException
+    {
+        int id=Integer.parseInt(txtid.getText());
+        Calendar cal=Calendar.getInstance();
+        int currentDayNo=cal.get(Calendar.DAY_OF_WEEK);
+        int difference=0;
+        columnNumber +=1;
+        if(columnNumber<currentDayNo)
+        {
+            difference=-(currentDayNo-columnNumber);
+        }
+        else
+        {
+            if(columnNumber>currentDayNo)
+            {
+                
+                difference=(columnNumber-currentDayNo);
+            }
+        }
+        
+            cal.add(Calendar.DAY_OF_MONTH, difference);
+            Date newDate=new Date();
+            newDate=cal.getTime();
+            
+                 int flag=0;
+                 int timeFlag=0;
+        String startDateValue="";
+        String endDateValue="";
+        try{
+            double startTimeValue=Double.parseDouble(updstarttm.getText());
+            double endTimeValue=Double.parseDouble(updendtm.getText());
+            String AmPm=updcmdAM.getValue().toString();
+            startDateValue =updstarttm.getText()+" "+AmPm;
+            AmPm=updcmdPM.getValue().toString();
+            endDateValue=updendtm.getText()+" "+AmPm;
+            
+            if(updcmdAM.getValue().equals(updcmdPM.getValue()))
+            {
+                if((startTimeValue<endTimeValue || (startTimeValue==12 && endTimeValue<startTimeValue))  && endTimeValue<12 && startTimeValue>0)
+                {
+                     timeFlag=0;
+                }
+                else
+                {
+                    Alert alert=new Alert(Alert.AlertType.WARNING,"Time is not set properly.",ButtonType.OK,ButtonType.CANCEL);
+                    Optional<ButtonType> res=alert.showAndWait();
+                    timeFlag=1;
+                }
+            }else
+            {
+                
+                 if((updcmdPM.getValue().equals("AM") && endTimeValue<12))
+                {
+                    timeFlag=0;
+                }
+                 else
+                 {
+                    timeFlag=1;
+                 }
+                 if(updcmdAM.getValue().equals("PM"))
+                 {
+                     if(updcmdPM.getValue().equals("AM"))
+                     {
+                        timeFlag=1;
+                     }
+                     else 
+                     {
+                        timeFlag=0;
+                     }
+                 }
+                 if(updcmdAM.getValue().equals("AM"))
+                 {
+                     if(updcmdPM.getValue().equals("PM"))
+                     {
+                        timeFlag=0;
+                     }
+                     else 
+                     {
+                        timeFlag=1;
+                     }
+                 }
+                 if(timeFlag==1)
+                 {
+                     
+                    Alert alert=new Alert(Alert.AlertType.WARNING,"Time is not set properly.",ButtonType.OK,ButtonType.CANCEL);
+                    Optional<ButtonType> res=alert.showAndWait();
+                 }
+            }
+            
+        }
+        catch(Exception ex)
+        {
+            
+            flag=1;
+        }
+        if(timeFlag==0)
+        {
+           if(flag==1|| updstarttm.getText().equals("") || updendtm.getText().equals("") ||  updcmdAM.getValue().equals("") || updcmdPM.getValue().equals(""))
+           {
+               Alert alert=new Alert(Alert.AlertType.WARNING,"No fields or combobox can be left empty and proper value should be inputed.",ButtonType.OK,ButtonType.CANCEL);
+            Optional<ButtonType> res=alert.showAndWait();
+           }
+           else{
+                 
+               
+                java.sql.Date sqldt1=new java.sql.Date(newDate.getTime());
+                String query = "update schedule set start_time='"+startDateValue+"',end_time='"+endDateValue+"' where emp_id="+id+" and dt='"+sqldt1+"'";
 
+                con = DriverManager.getConnection(urld, usrnm, passwd);
+
+                Statement prep=con.createStatement();
+                int x=prep.executeUpdate(query);
+                if(x==1)
+                {
+                    Alert alert=new Alert(Alert.AlertType.CONFIRMATION,"The schedule has been set.",ButtonType.OK,ButtonType.CANCEL);
+                    Optional<ButtonType> res=alert.showAndWait();
+                    
+                    
+                }
+            
+        }
+        }
+            
+    }
+    @FXML private void cancelSchedule()
+    {
+         btnCancelSch.setVisible(false);
+        btnCommitSch.setVisible(false);
+        lblUpd.setVisible(false);
+        txtUpd.setVisible(false);
+    }
+    
+    @FXML private void clickedColumn(MouseEvent event)
+    {
+        TablePosition tablePos=mytableSchedule.getSelectionModel().getSelectedCells().get(0);
+        columnNumber=tablePos.getColumn();
+        
+    }
+    
     @FXML private AnchorPane ap;
     
     @FXML
@@ -667,6 +832,7 @@ public class ManageEmPController implements Initializable {
         getEmployee();
         
         btnScheduleInsert.setDisable(true);
-
+        mytableSchedule.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        mytableSchedule.getSelectionModel().setCellSelectionEnabled(true);
     }
 }

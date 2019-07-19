@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package backend;
-
-import backend.Employee;
+package CreateDatabase;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
