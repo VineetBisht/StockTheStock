@@ -70,7 +70,13 @@ public class ComplaintController implements ControlledScreen {
             //step1
             PreparedStatement pst = con.prepareStatement(addQuerry);
             //step 2
-            pst.setString(1, txt_name.getText());
+            try {
+                pst.setInt(1, Integer.parseInt(txt_name.getText()));
+            } catch (Exception e) {
+                e.printStackTrace();
+                new Alert(Alert.AlertType.ERROR, "Invalid Product ID!").showAndWait();
+                return;
+            }
             pst.setString(2, txt_prod.getText());
             pst.setString(3, issuebox.getText());
             pst.setDouble(4, Double.parseDouble(txt_mob.getText()));
@@ -84,8 +90,14 @@ public class ComplaintController implements ControlledScreen {
             txt_name.setText("");
             issuebox.setText("");
 
+            String counter = "UPDATE compleintscounter SET counter = (SELECT counter FROM complaintscounter WHERE pid=?)+1 where pid=?";
+            PreparedStatement count = con.prepareStatement(counter);
+            count.setInt(1, Integer.parseInt(txt_prod.getText()));
+            count.setInt(2, Integer.parseInt(txt_prod.getText()));
+            count.executeUpdate();
+
         } catch (SQLException e) {
-            System.err.println(e);
+            e.printStackTrace();
         }
     }
 

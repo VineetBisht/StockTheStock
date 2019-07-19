@@ -1,4 +1,4 @@
-package Employee;
+package backend;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

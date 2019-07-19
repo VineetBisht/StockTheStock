@@ -1,9 +1,6 @@
 package employee;
 
-import backend.ControlledScreen;
-import backend.Person;
-import backend.ScreensController;
-import backend.SignUp;
+import backend.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -16,11 +13,14 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable, ControlledScreen {
 
     ScreensController myController;
+    Person p = null;
+
     @FXML
     private TextField username;
 
 
-    @FXML private PasswordField password;
+    @FXML
+    private PasswordField password;
 
     private boolean Validate() {
         boolean b = true;
@@ -29,62 +29,57 @@ public class LoginController implements Initializable, ControlledScreen {
             b = false;
         }
 
-
         if (password.getText().isEmpty()) {
-
             b = false;
         }
-        if(b==false)
+        if (b == false)
             return false;
         else
             return true;
     }
+
     private void Reset() {
         password.setText("");
-
-        username.setText("");
-
     }
+
     private Alert createAlert(Alert.AlertType type, String message) {
         return new Alert(type, message);
     }
 
     @FXML
     private void login() {
-        if(!Validate()){
+        if (!Validate()) {
             createAlert(Alert.AlertType.WARNING, "Please input valid information").show();
             return;
         }
-        SignUp d = new SignUp();
-        Person p=new Person();
+        Datatable d = new Datatable();
+        p = new Person();
         p.setUser_name(username.getText());
-        if(d.match(p,password.getText()))
-        d.timesheet(p);
+        if (d.match(p, password.getText()) == null) {
+            createAlert(Alert.AlertType.WARNING, "Invalid Credentials!");
+        } else if (d.match(p, password.getText()).equals("manager")) {
+             myController.setScreen(Files.managerMain);
+        } else if (d.match(p, password.getText()).equals("employee")) {
+            d.timesheet(p);
+            myController.setScreen(Files.employeeMain);
+        }
         Reset();
-
     }
+
+
     @FXML
-    private void logout() {
-        if(!Validate()){
-            createAlert(Alert.AlertType.WARNING, "Please input valid information").show();
-            return;
-        }
-        SignUp d = new SignUp();
-        Person p=new Person();
-        p.setUser_name(username.getText());
-        if(d.match(p,password.getText()))
-        d.endshift(p);
-        Reset();
-
+    private void signUp() {
+        myController.setScreen(Files.SignUp);
     }
+
     @FXML
     private void forget() {
-        SignUp d = new SignUp();
-        if(!Validate()){
+        Datatable d = new Datatable();
+        if (!Validate()) {
             createAlert(Alert.AlertType.WARNING, "Please input valid information").show();
             return;
         }
-        Person p=new Person();
+        Person p = new Person();
         p.setUser_name(username.getText());
         p.setPassword(password.getText());
         d.forgot(p);
@@ -95,11 +90,15 @@ public class LoginController implements Initializable, ControlledScreen {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
     }
 
     @Override
     public void setScreenParent(ScreensController screenPage) {
-        myController=screenPage;
+        myController = screenPage;
+    }
+
+    @FXML
+    private void close() {
+        System.exit(0);
     }
 }

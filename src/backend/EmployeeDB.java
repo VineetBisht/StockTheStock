@@ -35,6 +35,7 @@ public class EmployeeDB {
     public int update(Object list[]) {
         int rows = 0;
         String updateQuerry = "UPDATE stock SET volume = (SELECT volume FROM stock WHERE product_id=?)-? where product_id=?";
+        String counter = "UPDATE product_counter SET counter = (SELECT counter FROM product_counter WHERE product_id=?)+? where product_id=?";
         for (int i = 0; i < list.length; i++) {
             Cart item=(Cart)list[i];
             System.out.println(1);
@@ -43,9 +44,13 @@ public class EmployeeDB {
                 pst.setInt(1, item.getProduct_id());
                 pst.setInt(2, item.getVolume());
                 pst.setInt(3, item.getProduct_id());
-                System.out.println(2);
-                rows = pst.executeUpdate();
-                System.out.println(3);
+                pst.executeUpdate();
+
+                PreparedStatement count = con.prepareStatement(counter);
+                count.setInt(1, item.getProduct_id());
+                count.setInt(2, item.getVolume());
+                count.setInt(3, item.getProduct_id());
+                count.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
                 System.out.println(4);

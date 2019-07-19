@@ -1,28 +1,39 @@
 package employee;
+
 import backend.ControlledScreen;
+import backend.Datatable;
 import backend.Files;
 import backend.ScreensController;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.scene.control.Alert;
+import org.apache.commons.lang.time.StopWatch;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
+import javax.xml.crypto.Data;
 import java.net.URL;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
 
 public class EmployeeMainController implements ControlledScreen, Initializable {
     ScreensController myController, mainController;
     static Stage primaryStage;
     Stage stage;
     Scene scene;
+    StopWatch timer;
+
 
     @FXML
     private Label welcom_name;
@@ -49,7 +60,10 @@ public class EmployeeMainController implements ControlledScreen, Initializable {
 
     @FXML
     void logout(ActionEvent event) {
-
+        Datatable d = new Datatable();
+        d.endshift();
+        stage.close();
+        myController.setScreen(Files.login);
     }
 
     @FXML
@@ -80,24 +94,43 @@ public class EmployeeMainController implements ControlledScreen, Initializable {
         mainContainer.loadScreen(Files.tables, Files.tablesFile);
         mainContainer.loadScreen(Files.complaint, Files.complaintFile);
         mainContainer.setStage(stage);
-        primaryStage=stage;
+        primaryStage = stage;
+
+        Datatable d=new Datatable();
+        welcom_name.setText(welcom_name.getText()+" "+d.getUserName());
+
+        timer= new StopWatch();
+        timer.start();
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Runnable updater = new Runnable() {
+                    @Override
+                    public void run() {
+                        shift.setText(shift.getText().substring(0,13)+" "+LocalTime.ofSecondOfDay((int)timer.getTime()/1000).toString());
+                    }
+                };
+
+                while (true) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ex) {
+                    }
+
+                    // UI update is run on the Application thread
+                    Platform.runLater(updater);
+                }
+            }
+
+        });
+        // don't let thread prevent JVM shutdown
+        thread.setDaemon(true);
+        thread.start();
 
         Group root = new Group();
         root.getChildren().addAll(mainContainer);
         scene = new Scene(root, stage.getWidth(), stage.getHeight());
         stage.setScene(scene);
-       }
-
-    private void setCurrentWidthToStage(Number number2) {
-        stage.setWidth((double) number2);
-    }
-
-    private void setCurrentHeightToStage(Number number2) {
-        stage.setHeight((double) number2);
-    }
-
-    public static void resizeScreen() {
-        primaryStage.sizeToScene();
-        primaryStage.centerOnScreen();
     }
 }

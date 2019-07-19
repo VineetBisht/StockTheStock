@@ -14,7 +14,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="ManagerMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="824.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="manager.ManageStockController">
+<AnchorPane fx:id="ManagerMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="824.0" stylesheets="@../css/DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="manager.ManageStockController">
     <children>
         <TabPane layoutY="37.0" prefHeight="497.0" prefWidth="826.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
@@ -39,7 +39,7 @@
                         <DatePicker fx:id="a_addedOn" layoutX="151.0" layoutY="145.0" prefHeight="31.0" prefWidth="187.0" />
                         <DatePicker fx:id="a_expiryDate" layoutX="509.0" layoutY="145.0" prefHeight="31.0" prefWidth="187.0" />
                         <Label layoutX="57.0" layoutY="251.0" text="Image" />
-                        <Button fx:id="a_choose" layoutX="168.0" layoutY="246.0" mnemonicParsing="false" onAction="#fileChooser" prefHeight="31.0" prefWidth="104.0" text="Choose FIle" />
+                        <Button fx:id="a_choose" layoutX="160.0" layoutY="249.0" mnemonicParsing="false" onAction="#fileChooser" prefHeight="39.0" prefWidth="132.0" text="Choose FIle" />
                         <ImageView fx:id="a_imageView" fitHeight="154.0" fitWidth="300.0" layoutX="400.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true" />
                             </children>
                         </AnchorPane>
@@ -49,9 +49,9 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="452.0" prefWidth="749.0" style="-fx-background-color: White;">
                             <children>
-                                <TextField fx:id="d_idField" layoutX="327.0" layoutY="170.0" />
-                                <Label layoutX="274.0" layoutY="175.0" text="Id" />
-                                <Button fx:id="deleteButton" layoutX="298.0" layoutY="235.0" mnemonicParsing="false" onAction="#delete" prefHeight="31.0" prefWidth="104.0" text="Delete" />
+                                <TextField fx:id="d_idField" layoutX="298.0" layoutY="170.0" />
+                                <Label layoutX="246.0" layoutY="175.0" text="Id" />
+                                <Button fx:id="deleteButton" layoutX="330.0" layoutY="232.0" mnemonicParsing="false" onAction="#delete" prefHeight="31.0" prefWidth="104.0" text="Delete" />
                             </children>
                         </AnchorPane>
                     </content>

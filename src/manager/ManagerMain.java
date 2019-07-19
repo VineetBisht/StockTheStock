@@ -1,6 +1,7 @@
 package manager;
 
 import backend.ControlledScreen;
+import backend.Datatable;
 import backend.Files;
 import backend.ScreensController;
 import javafx.event.ActionEvent;
@@ -25,7 +26,6 @@ public class ManagerMain implements ControlledScreen, Initializable {
 
     @FXML
     void report(ActionEvent event) {
-
     }
 
     @FXML
@@ -35,7 +35,10 @@ public class ManagerMain implements ControlledScreen, Initializable {
 
     @FXML
     void logout(ActionEvent event) {
-
+        Datatable d = new Datatable();
+        d.endshift();
+        stage.close();
+        myController.setScreen(Files.login);
     }
 
     @FXML
@@ -68,6 +71,9 @@ public class ManagerMain implements ControlledScreen, Initializable {
         mainContainer.loadScreen(Files.manageStock, Files.manageStockFile);
         mainContainer.loadScreen(Files.manageEmp, Files.manageEmpFile);
         mainContainer.setStage(stage);
+
+        Datatable d=new Datatable();
+        welcom_name.setText(welcom_name.getText()+" "+d.getUserName());
 
         Group root = new Group();
         root.getChildren().addAll(mainContainer);

@@ -1,9 +1,7 @@
-package Employee;
+package manager;
 
-import CreateDatabase.ComplaintCust;
-import CreateDatabase.ComplaintEmp;
-import CreateDatabase.Employee;
-import CreateDatabase.Schedule;
+import backend.ComplaintEmp;
+import backend.Schedule;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,6 +16,9 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import backend.ComplaintCust;
+import backend.Employee;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

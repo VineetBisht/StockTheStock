@@ -1,9 +1,6 @@
 package employee;
 
-import backend.ControlledScreen;
-import backend.Person;
-import backend.ScreensController;
-import backend.SignUp;
+import backend.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert.*;
 import javafx.fxml.Initializable;
@@ -14,12 +11,14 @@ import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DatatableController implements Initializable, ControlledScreen {
+public class SignUpController implements Initializable, ControlledScreen {
     ScreensController myController;
+    String otpc="";
 
     @FXML
     private TextField fname;
@@ -34,6 +33,8 @@ public class DatatableController implements Initializable, ControlledScreen {
     @FXML
     private TextField phone_number;
     @FXML
+    private TextField email;
+    @FXML
     private TextArea address;
     @FXML
     private DatePicker dob;
@@ -41,13 +42,19 @@ public class DatatableController implements Initializable, ControlledScreen {
     private RadioButton rb_m;
     @FXML
     private RadioButton rb_e;
+
     @FXML
     private Button signup;
+
+    @FXML
+    private Button otpButton;
 
     @FXML
     private Label l_phn;
     @FXML
     private Label l_bd;
+    @FXML
+    private Label email_label;
     @FXML
     private Label l_fnm;
     @FXML
@@ -65,6 +72,11 @@ public class DatatableController implements Initializable, ControlledScreen {
     @FXML
     private Label e_dob;
 
+    @FXML
+    private Label otpLabel;
+
+    @FXML
+    private TextField otp;
 
     private boolean Validate() {
         boolean b = true;
@@ -85,6 +97,13 @@ public class DatatableController implements Initializable, ControlledScreen {
             b = false;
         } else
             l_ln.setTextFill(Color.web("black"));
+
+        if (email.getText().isEmpty()) {
+            email_label.setTextFill(Color.web("red"));
+            b = false;
+        } else
+            email_label.setTextFill(Color.web("black"));
+
 
         if (password.getText().isEmpty()) {
             l_p.setTextFill(Color.web("red"));
@@ -135,11 +154,11 @@ public class DatatableController implements Initializable, ControlledScreen {
         }
 
 
-        Pattern p = Pattern.compile("[0-9]{9}");
+        Pattern p = Pattern.compile("[0-9]{10}");
         Matcher m = p.matcher(phone_number.getText());
         if (!(m.find() && m.group().equals(phone_number.getText()))) {
             l_phn.setTextFill(Color.web("red"));
-            e_phn.setText("Phone number should be 9 digits");
+            e_phn.setText("Phone number should be 10 digits");
             b = false;
         } else {
             l_phn.setTextFill(Color.web("black"));
@@ -163,8 +182,6 @@ public class DatatableController implements Initializable, ControlledScreen {
     private void PassReset() {
         password.setText("");
         cpassword.setText("");
-
-
     }
 
     private void Reset() {
@@ -175,7 +192,7 @@ public class DatatableController implements Initializable, ControlledScreen {
         lname.setText("");
         address.setText("");
         phone_number.setText("");
-
+        email.setText("");
         dob.setValue(null);
         username.setText("");
 
@@ -186,34 +203,41 @@ public class DatatableController implements Initializable, ControlledScreen {
     }
 
     @FXML
+    private void close() {
+        System.exit(0);
+    }
+
+        @FXML
     private void add() {
-        SignUp d = new SignUp();
         if (!Validate()) {
             createAlert(AlertType.WARNING, "Please input valid information").show();
             return;
         }
 
+        otpc=SignUpController.OTP();
 
-        String des;
-        if (rb_e.isSelected())
-            des = "employee";
-        else
-            des = "manager";
-
-        Person data = new Person(username.getText(), fname.getText(), lname.getText(), password.getText(), address.getText()
-                , Double.parseDouble(phone_number.getText()), (Date.valueOf(dob.getValue())), des);
-
-        boolean isAdded = d.add(data);
-
-        if (isAdded) {
-            createAlert(AlertType.INFORMATION, "Record is added successfully").show();
-
-
-            Reset();
-
-        } else {
-            createAlert(AlertType.INFORMATION, "Task Unsuccessful").show();
+        try{
+            Datatable.sendMail(email.getText(),"Your OTP :"+ otpc);
+        }catch (Exception e){
+            e.printStackTrace();
         }
+
+        fname.setDisable(true);
+        lname.setDisable(true);
+        password.setDisable(true);
+        cpassword.setDisable(true);
+        phone_number.setDisable(true);
+        address.setDisable(true);
+        username.setDisable(true);
+        dob.setDisable(true);
+        rb_e.setDisable(true);
+        rb_m.setDisable(true);
+        signup.setDisable(true);
+        otp.setVisible(true);
+        otpButton.setVisible(true);
+        otpLabel.setVisible(true);
+        email.setDisable(true);
+        createAlert(AlertType.INFORMATION, "Confirmation OTP has been generated. Please confirm your email.").show();
     }
 
 
@@ -225,5 +249,71 @@ public class DatatableController implements Initializable, ControlledScreen {
     @Override
     public void setScreenParent(ScreensController screenPage) {
         myController = screenPage;
+    }
+
+    @FXML
+    private void back() {
+        myController.setScreen(Files.login);
+    }
+
+        @FXML
+    private void confirmOTP() {
+
+        if(otp.getText().isEmpty()){
+            createAlert(AlertType.INFORMATION, "Enter the OTP").show();
+            return;
+        }
+
+        if(!otpc.equals(otp.getText())){
+            createAlert(AlertType.INFORMATION, "Wrong OTP!").show();
+            return;
+        }
+
+        Datatable d = new Datatable();
+
+        String des;
+        if (rb_e.isSelected())
+            des = "employee";
+        else
+            des = "manager";
+
+        Person data = new Person(username.getText(), fname.getText(), lname.getText(), password.getText(), address.getText()
+                , Double.parseDouble(phone_number.getText()), (Date.valueOf(dob.getValue())), des, email.getText());
+
+        boolean isAdded = d.add(data);
+
+        if (isAdded) {
+            createAlert(AlertType.INFORMATION, "Record is added successfully").show();
+            Reset();
+            myController.setScreen(Files.login);
+        } else {
+            createAlert(AlertType.ERROR, "Task Unsuccessful").show();
+        }
+
+    }
+
+    static String OTP()
+    {
+        int len=6;
+        System.out.println("Generating OTP using random() : ");
+        System.out.print("You OTP is : ");
+
+        // Using numeric values
+        String numbers = "0123456789";
+
+        // Using random method
+        Random rndm_method = new Random();
+
+        String otpt = "";
+
+        for (int i = 0; i < len; i++)
+        {
+            // Use of charAt() method : to get character value
+            // Use of nextInt() as it is scanning the value as int
+            otpt +=
+                    numbers.charAt(rndm_method.nextInt(numbers.length()));
+        }
+        System.out.println(otpt);
+        return otpt;
     }
 }

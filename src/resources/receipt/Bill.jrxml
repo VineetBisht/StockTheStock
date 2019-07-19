@@ -47,7 +47,7 @@
 		<field name="price" class="java.lang.Double"/>
 		<field name="volume" class="java.lang.Integer"/>
 	</subDataset>
-	<parameter name="ds" class="java.lang.String"/>
+	<parameter name="ds" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -58,7 +58,7 @@
 		<band height="125" splitType="Stretch">
 			<image>
 				<reportElement x="70" y="0" width="90" height="58" uuid="ddc15723-2728-421f-b95e-2df9faf64ce1"/>
-				<imageExpression><![CDATA["/Users/vineetsingh/Documents/Java/2nd Sem Java/StockTheStock2/src/resources/images/Logo.png"]]></imageExpression>
+				<imageExpression><![CDATA["Logo.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement style="Title" x="170" y="0" width="374" height="62" uuid="1a652692-054a-40f3-ade5-68d8da36626d">
@@ -78,14 +78,6 @@
 				</textElement>
 				<text><![CDATA[Bill Receipt]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="460" y="80" width="70" height="20" uuid="60f7794a-adc4-4b61-befd-5cf0bd858fd3"/>
-				<textFieldExpression><![CDATA[DATE(DATE( ))]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="460" y="100" width="60" height="25" uuid="f020bebe-a5e4-4045-9ad7-01d512f029a4"/>
-				<textFieldExpression><![CDATA[TIME( )]]></textFieldExpression>
-			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -117,7 +109,7 @@
 					</reportElement>
 					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
 						<datasetRun subDataset="list" uuid="1560dbbf-01d5-47eb-9f80-12d43e6aa3d0">
-							<dataSourceExpression><![CDATA[$P(ds)]]></dataSourceExpression>
+							<dataSourceExpression><![CDATA[$P{ds}]]></dataSourceExpression>
 						</datasetRun>
 						<jr:column width="100" uuid="99e53f08-78a6-4cc6-ba67-b994dce38752">
 							<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>

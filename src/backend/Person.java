@@ -14,8 +14,9 @@ public class Person {
     private double phn_no;
     private Date birth_date;
     private String designation;
+    private String email;
 
-    public Person(String username, String fname, String lname,String password, String address, double phn_no, Date birth_date, String designation) {
+    public Person(String username, String fname, String lname,String password, String address, double phn_no, Date birth_date, String designation, String email) {
         this.user_name = username;
         this.password = password;
         this.fname = fname;
@@ -24,6 +25,7 @@ public class Person {
         this.phn_no=phn_no;
         this.birth_date=birth_date;
         this.designation=designation;
+        this.email=email;
     }
 
     public Person(){}
@@ -91,6 +93,16 @@ public class Person {
     public void setDesignation(String designation) {
         this.designation = designation;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
 }
 
 

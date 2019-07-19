@@ -86,6 +86,11 @@ public class TransactionController implements ControlledScreen, Initializable {
 
     @FXML
     void checkout(ActionEvent event) {
+        if(list.toArray().length==0){
+            new Alert(Alert.AlertType.WARNING,"Cart Empty!").showAndWait();
+            return;
+        }
+
         edb.update(list.toArray());
         new Alert(Alert.AlertType.INFORMATION,"Checkout Successful. Bill printed. ").showAndWait();
         try{

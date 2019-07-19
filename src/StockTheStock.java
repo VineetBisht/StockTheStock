@@ -6,8 +6,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-import java.nio.file.FileStore;
-
 public class StockTheStock extends Application {
 
     @Override
@@ -18,9 +16,9 @@ public class StockTheStock extends Application {
         mainContainer.loadScreen(Files.SignUp,Files.SignUpFile);
         mainContainer.loadScreen(Files.manageEmp,Files.manageEmpFile);
         mainContainer.loadScreen(Files.managerMain,Files.managerMainFile);
+        mainContainer.loadScreen(Files.billing,Files.billingFile);
         mainContainer.setStage(stage);
-        mainContainer.setScreen(Files.manageEmp);
-
+        mainContainer.setScreen(Files.login);
         Group root = new Group();
         root.getChildren().addAll(mainContainer);
         Scene scene = new Scene(root);
