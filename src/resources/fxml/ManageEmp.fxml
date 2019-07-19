@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="manager.ManageEmPController">
+<AnchorPane fx:id="ap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="592.0" prefWidth="769.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Employee.ManageEmPController">
    <children>
       <TabPane fx:id="tp" layoutX="11.0" layoutY="49.0" prefHeight="547.0" prefWidth="717.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -62,24 +62,25 @@
                <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <AnchorPane prefHeight="311.0" prefWidth="649.0">
+                        <AnchorPane layoutX="-4.0" layoutY="33.0" prefHeight="311.0" prefWidth="649.0">
                            <children>
-                              <Button layoutX="125.0" layoutY="49.0" mnemonicParsing="false" text="See Schedule" />
-                              <TableView layoutX="26.0" layoutY="91.0" prefHeight="220.0" prefWidth="604.0">
+                              <Button fx:id="btnDisplaysch" layoutX="305.0" layoutY="54.0" mnemonicParsing="false" onAction="#displaySchedule2" text="See Schedule" />
+                              <TableView fx:id="mytableSchedule" layoutX="8.0" layoutY="100.0" prefHeight="84.0" prefWidth="717.0">
                                 <columns>
-                                  <TableColumn prefWidth="73.0" text="Monday" />
-                                    <TableColumn minWidth="0.0" prefWidth="0.0" text="C1" />
-                                    <TableColumn prefWidth="73.0" text="Tuesday" />
-                                    <TableColumn prefWidth="83.0" text="Wednessday" />
-                                    <TableColumn prefWidth="63.0" text="Thursday" />
-                                    <TableColumn prefWidth="73.0" text="Friday" />
-                                    <TableColumn prefWidth="73.0" text="Saturday" />
-                                    <TableColumn prefWidth="73.0" text="Sunday" />
-                                    <TableColumn prefWidth="92.0" text="Total Hours" />
+                                  <TableColumn fx:id="mon" prefWidth="83.0" text="Monday" />
+                                    <TableColumn fx:id="tue" prefWidth="90.0" text="Tuesday" />
+                                    <TableColumn fx:id="wed" prefWidth="99.0" text="Wednessday" />
+                                    <TableColumn fx:id="thurs" prefWidth="101.0" text="Thursday" />
+                                    <TableColumn fx:id="fri" prefWidth="84.0" text="Friday" />
+                                    <TableColumn fx:id="sat" prefWidth="85.0" text="Saturday" />
+                                    <TableColumn fx:id="sun" prefWidth="95.0" text="Sunday" />
+                                    <TableColumn fx:id="hours" prefWidth="77.0" text="Total Hours" />
                                 </columns>
                               </TableView>
-                              <Label layoutX="8.0" layoutY="15.0" text="Employee Id" />
-                              <TextField layoutX="118.0" layoutY="11.0" />
+                              <Label layoutX="260.0" layoutY="15.0" text="Employee Id" />
+                              <TextField fx:id="txtid" layoutX="363.0" layoutY="11.0" />
+                              <Button fx:id="btnUpdate" layoutX="337.0" layoutY="210.0" mnemonicParsing="false" text="Update" />
+                              <Button fx:id="btnDelete" layoutX="337.0" layoutY="251.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="58.0" text="Delete" />
                            </children>
                         </AnchorPane>
                      </children>

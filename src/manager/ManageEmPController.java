@@ -1,5 +1,9 @@
-package manager;
+package Employee;
 
+import CreateDatabase.ComplaintCust;
+import CreateDatabase.ComplaintEmp;
+import CreateDatabase.Employee;
+import CreateDatabase.Schedule;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,8 +18,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
-import backend.*;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -31,10 +34,23 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Shivam
  */
-public class ManageEmPController implements Initializable, ControlledScreen {
+public class ManageEmPController implements Initializable {
     Button []buttonSchedule=new Button[100];
     Connection con;
-    ScreensController myController;
+    @FXML private TextField txtid;
+    @FXML private TableView<Schedule> mytableSchedule;
+    @FXML private TableColumn<Schedule,String> sun;
+    @FXML private TableColumn<Schedule,String> mon;
+    @FXML private TableColumn<Schedule,String> tue;
+    @FXML private TableColumn<Schedule,String> wed;
+    @FXML private TableColumn<Schedule,String> thurs;
+    @FXML private TableColumn<Schedule,String> fri;
+    @FXML private TableColumn<Schedule,String> sat;
+    @FXML private TableColumn<Schedule,Double> hours;
+    
+    @FXML private Button btnUpdate;
+    @FXML private Button btnDelete;
+    
     int empCounter=0;//for kepping track of the buttons being built dynamically in the tableview
     
     @FXML
@@ -109,10 +125,12 @@ public class ManageEmPController implements Initializable, ControlledScreen {
 
     @FXML
     TableColumn<ComplaintCust, String> comempDesc;
-    @FXML Button btnScheduleInsert;
-    @FXML
-    TableColumn<ComplaintCust, Date> comdate;
     
+    @FXML Button btnScheduleInsert;
+    
+    @FXML TableColumn<ComplaintCust, Date> comdate;
+    
+    @FXML Button btnDisplaysch;
     
     int counterDateEmp = 0;//increasing the counter as we find records with the empid in the table for the current week
     //String usrnm="N01324490";
@@ -121,7 +139,107 @@ public class ManageEmPController implements Initializable, ControlledScreen {
     String passwd = "oracle";
     
     String urld = "jdbc:oracle:thin:@calvin.humber.ca:1521:grok";
+    @FXML private void displaySchedule2() throws SQLException
+    {
+        int id=Integer.parseInt(txtid.getText());
+        Calendar cal=Calendar.getInstance();
+        int weekNoSchedule=cal.get(Calendar.WEEK_OF_YEAR);
+
+        mon.setCellValueFactory(new PropertyValueFactory<Schedule,String>("monTime"));
+        tue.setCellValueFactory(new PropertyValueFactory<Schedule, String>("tuesTime"));
+        wed.setCellValueFactory(new PropertyValueFactory<Schedule, String>("wedTime"));
+        thurs.setCellValueFactory(new PropertyValueFactory<Schedule,String>("thursTime"));
+        fri.setCellValueFactory(new PropertyValueFactory<Schedule, String>("friTime"));
+        sat.setCellValueFactory(new PropertyValueFactory<Schedule, String>("satTime"));
+        sun.setCellValueFactory(new PropertyValueFactory<Schedule, String>("sunTime"));
+        hours.setCellValueFactory(new PropertyValueFactory<Schedule,Double>("totHours"));
+
+        ObservableList<Schedule> obscom = FXCollections.observableArrayList();;
+        
+            String query = "Select * from Schedule where emp_id=?";
+
+            con = DriverManager.getConnection(urld, usrnm, passwd);
+
+            PreparedStatement prep=con.prepareStatement(query);
+            prep.setInt(1,id);
+            
+            ResultSet rs=prep.executeQuery();
+
+            Schedule scd =new Schedule();
+            Calendar cal2=Calendar.getInstance();
+            Calendar calTemp=Calendar.getInstance();
+            int f=calTemp.get(Calendar.DAY_OF_WEEK);
+            while (rs.next()) {
+                Date dt=rs.getDate("dt");
+                cal2.setTime(dt);
+                int weekNoSchedule2=cal2.get(Calendar.WEEK_OF_YEAR);
+                if(weekNoSchedule2==weekNoSchedule)
+                {
+                    int dayNo=cal2.get(Calendar.DAY_OF_WEEK);
+                    switch(dayNo)
+                    {
+                        case 1:
+                        {
+                            String timing=rs.getString("start_time")+" - "+rs.getString("end_time");
+                            scd.setSunTime(timing);
+                            
+                        break;
+                        }
+                        case 2:
+                        {
+                            String timing=rs.getString("start_time")+" - "+rs.getString("end_time");
+                            scd.setMonTime(timing);
+                            
+                            
+                        break;
+                        }
+                        case 3:
+                        {
+                        String timing=rs.getString("start_time")+" - "+rs.getString("end_time");
+                            scd.setTuesTime(timing);
+                            
+                            
+                        break;
+                        }
+                        case 4:
+                        {
+                            String timing=rs.getString("start_time")+" - "+rs.getString("end_time");
+                            scd.setWedTime(timing);
+                            
+                        break;
+                        }
+                        case 5:
+                        {
+                            String timing=rs.getString("start_time")+" - "+rs.getString("end_time");
+                            scd.setThursTime(timing);
+                            
+                        break;
+                        }
+                        case 6:
+                        {
+                            String timing=rs.getString("start_time")+" - "+rs.getString("end_time");
+                            scd.setFriTime(timing);
+                            
+                        break;
+                        }
+                        case 7:
+                        {
+                            String timing=rs.getString("start_time")+" - "+rs.getString("end_time");
+                            scd.setSatTime(timing);
+                            
+                        break;
+                        }
+                    }
+            
+                }
+                
+            }
+            scd.calculateTotalHours();
+            obscom.add(scd);
+        mytableSchedule.setItems(obscom);
     
+    } 
+
     @FXML private AnchorPane ap;
     
     @FXML
@@ -201,7 +319,6 @@ public class ManageEmPController implements Initializable, ControlledScreen {
                                                 //between the two day and then add the differnce of days  it to the current day    
                     cal.add(Calendar.DAY_OF_MONTH, difference); //adding the difference in the current date 
                     newDate=cal.getTime();
-                    //System.out.println(""+newDate);
                 }
                 else
                 {
@@ -223,10 +340,9 @@ public class ManageEmPController implements Initializable, ControlledScreen {
             
             if(cb2.getValue().equals(cb3.getValue()))
             {
-                System.out.println(""+cb1.getValue()+cb2.getValue());
-                if(startTimeValue<endTimeValue && endTimeValue<13 && startTimeValue>0)
+                if((startTimeValue<endTimeValue || (startTimeValue==12 && endTimeValue<startTimeValue))  && endTimeValue<12 && startTimeValue>0)
                 {
-                    
+                     timeFlag=0;
                 }
                 else
                 {
@@ -234,6 +350,44 @@ public class ManageEmPController implements Initializable, ControlledScreen {
                     Optional<ButtonType> res=alert.showAndWait();
                     timeFlag=1;
                 }
+            }else
+            {
+                 if((cb3.getValue().equals("AM") && endTimeValue<12))
+                {
+                    timeFlag=0;
+                }
+                 else
+                 {
+                    timeFlag=1;
+                 }
+                 if(cb2.getValue().equals("PM"))
+                 {
+                     if(cb3.getValue().equals("AM"))
+                     {
+                        timeFlag=1;
+                     }
+                     else 
+                     {
+                        timeFlag=0;
+                     }
+                 }
+                 if(cb2.getValue().equals("AM"))
+                 {
+                     if(cb3.getValue().equals("PM"))
+                     {
+                        timeFlag=0;
+                     }
+                     else 
+                     {
+                        timeFlag=1;
+                     }
+                 }
+                 if(timeFlag==1)
+                 {
+                     
+                    Alert alert=new Alert(Alert.AlertType.WARNING,"Time is not set properly.",ButtonType.OK,ButtonType.CANCEL);
+                    Optional<ButtonType> res=alert.showAndWait();
+                 }
             }
             
         }
@@ -249,8 +403,7 @@ public class ManageEmPController implements Initializable, ControlledScreen {
             Optional<ButtonType> res=alert.showAndWait();
            }
            else{
-           try {
-                System.out.println(""+startDateValue);       
+           try {      
                 java.sql.Date sqldt=new java.sql.Date(newDate.getTime());
                 String query = "insert into schedule values(?,?,?,?)";
 
@@ -370,7 +523,9 @@ public class ManageEmPController implements Initializable, ControlledScreen {
                 Statement stmt2 = con.createStatement();
                 
                 ResultSet rs2 = stmt2.executeQuery(query2);
-
+                
+                int minDays=7;//total days
+                
                 while (rs2.next()) {                                     //checking whether the current employee has been scheduled for all the days or not
                     
                     Date d = rs2.getDate("dt");                          //if the employee is scheduled for all the days in the week his name will not visible in the 
@@ -378,17 +533,25 @@ public class ManageEmPController implements Initializable, ControlledScreen {
                     cal.setTime(d);
                     
                     int storedWeekNo=cal.get(Calendar.WEEK_OF_YEAR);    //getting the data from the table schedule and comparing the date that we recieved 
-                    
+                   
+                   
                     if(storedWeekNo==weekNo)                            //from the current record with the current week record.
                     {
+                         if(minDays>cal.get(Calendar.DAY_OF_WEEK))           //for getting the smallest day of the week for which schedule is set
+                        {
+                            minDays=cal.get(Calendar.DAY_OF_WEEK);         //getting min day value
+                        }
                         counterDateEmp++;                      //increasing the counter as we find records with the empid in the table for the current week
-                    }                               
+                    }
+                    
                 }
                 
                 Employee emp;
-                
-                if(counterDateEmp<6)                //if the counter is less than 6 that means schedule for some days for this empid is not set
-                {
+                int diff=7-minDays;                             //counting the days left after the min day value,ie if the least day stored is tuesday
+                                                                  //then the remaining days should be 7-3=4              
+                if(counterDateEmp<6 && counterDateEmp<=diff)                //if the counter is less than 6 that means schedule for some days for this empid is not set
+                {                                                           //and if the counteremp is greater than diff, that means from this day the
+                                                                            //current date the employee schedule has been set for all the days.
                     buttonSchedule[empCounter]=new Button("Set Schedule");                              //setting a button in listview
                     
                     buttonSchedule[empCounter].setOnAction(this::handleButtonAction);                  //setting a handling button for every event
@@ -411,7 +574,7 @@ public class ManageEmPController implements Initializable, ControlledScreen {
     }
     
     @FXML
-    private void insertDays() throws SQLException                               //inserting week days into combobox for which the schedule has not been set
+    private void insertDays() throws SQLException                            //inserting week days into combobox for which the schedule has not been set
     {
         Calendar cal = Calendar.getInstance();
         Date dt = new Date();
@@ -504,10 +667,5 @@ public class ManageEmPController implements Initializable, ControlledScreen {
         
         btnScheduleInsert.setDisable(true);
 
-    }
-
-    @Override
-    public void setScreenParent(ScreensController screenPage) {
-        myController=screenPage;
     }
 }
