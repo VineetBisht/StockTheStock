@@ -29,7 +29,7 @@ public class ManageStockDB {
 
 
     public ManageStockDB() {
-        String username = "n01305083";
+        String username = "n01324490";
         String password = "oracle";
         String url = "jdbc:oracle:thin:@calvin.humber.ca:1521:grok";
         try {
