@@ -27,7 +27,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <TableView fx:id="myTableEmp" layoutX="214.0" layoutY="107.0" prefHeight="193.0" prefWidth="290.0">
+                              <TableView fx:id="myTableEmp" layoutX="160.0" layoutY="107.0" prefHeight="193.0" prefWidth="361.0">
                                 <columns>
                                   <TableColumn fx:id="employeeId" prefWidth="75.0" text="Employee Id" />
                                   <TableColumn fx:id="employeeName" prefWidth="121.0" text="Employee Name" />
@@ -62,71 +62,50 @@
                <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <AnchorPane layoutX="-4.0" layoutY="33.0" prefHeight="467.0" prefWidth="725.0">
-                           <children>
-                              <Button fx:id="btnDisplaysch" layoutX="305.0" layoutY="54.0" mnemonicParsing="false" onAction="#displaySchedule2" text="See Schedule" />
-                              <TableView fx:id="mytableSchedule" layoutX="8.0" layoutY="100.0" onMouseClicked="#clickedColumn" prefHeight="84.0" prefWidth="717.0">
-                                <columns>
-                                    <TableColumn fx:id="sun" prefWidth="95.0" text="Sunday" />
-                                  <TableColumn fx:id="mon" prefWidth="83.0" text="Monday" />
-                                    <TableColumn fx:id="tue" prefWidth="90.0" text="Tuesday" />
-                                    <TableColumn fx:id="wed" prefWidth="99.0" text="Wednessday" />
-                                    <TableColumn fx:id="thurs" prefWidth="101.0" text="Thursday" />
-                                    <TableColumn fx:id="fri" prefWidth="84.0" text="Friday" />
-                                    <TableColumn fx:id="sat" prefWidth="85.0" text="Saturday" />
-                                    <TableColumn fx:id="hours" prefWidth="77.0" text="Total Hours" />
-                                </columns>
-                              </TableView>
-                              <Label layoutX="260.0" layoutY="15.0" text="Employee Id" />
-                              <TextField fx:id="txtid" layoutX="363.0" layoutY="11.0" />
-                              <Button fx:id="btnUpdate" layoutX="337.0" layoutY="210.0" mnemonicParsing="false" onAction="#updateSchedule" text="Update" />
-                              <Button fx:id="btnDelete" layoutX="337.0" layoutY="251.0" mnemonicParsing="false" onAction="#deleteSchedule" prefHeight="25.0" prefWidth="58.0" text="Delete" />
-                              <Button fx:id="btnCancelSch" layoutX="157.0" layoutY="373.0" mnemonicParsing="false" onAction="#cancelSchedule" prefHeight="32.0" prefWidth="65.0" text="Cancel" />
-                              <TextField fx:id="txtUpd" layoutX="73.0" layoutY="282.0" visible="false" />
-                              <Button fx:id="btnCommitSch" layoutX="79.0" layoutY="374.0" mnemonicParsing="false" onAction="#commitSchedule" prefHeight="31.0" prefWidth="71.0" text="Commit" />
-                              <Label layoutX="73.0" layoutY="332.0" text="End Time" />
-                              <Label layoutX="71.0" layoutY="284.0" text="Start Time" />
-                              <TextField fx:id="updstarttm" layoutX="160.0" layoutY="280.0" prefHeight="25.0" prefWidth="46.0" />
-                              <TextField fx:id="updendtm" layoutX="160.0" layoutY="328.0" prefHeight="25.0" prefWidth="46.0" />
-                              <ComboBox fx:id="updcmdAM" layoutX="230.0" layoutY="280.0" prefHeight="30.0" prefWidth="67.0" />
-                              <ComboBox fx:id="updcmdPM" layoutX="230.0" layoutY="325.0" prefHeight="31.0" prefWidth="70.0" />
-                           </children>
-                        </AnchorPane>
+                        <Button fx:id="btnDisplaysch" layoutX="315.0" layoutY="102.0" mnemonicParsing="false" onAction="#displaySchedule2" text="See Schedule" />
+                        <TableView fx:id="mytableSchedule" layoutY="155.0" onMouseClicked="#clickedColumn" prefHeight="84.0" prefWidth="717.0">
+                          <columns>
+                              <TableColumn fx:id="sun" prefWidth="95.0" text="Sunday" />
+                            <TableColumn fx:id="mon" prefWidth="83.0" text="Monday" />
+                              <TableColumn fx:id="tue" prefWidth="90.0" text="Tuesday" />
+                              <TableColumn fx:id="wed" prefWidth="99.0" text="Wednessday" />
+                              <TableColumn fx:id="thurs" prefWidth="101.0" text="Thursday" />
+                              <TableColumn fx:id="fri" prefWidth="84.0" text="Friday" />
+                              <TableColumn fx:id="sat" prefWidth="85.0" text="Saturday" />
+                              <TableColumn fx:id="hours" prefWidth="77.0" text="Total Hours" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="197.0" layoutY="59.0" text="Employee Id" />
+                        <TextField fx:id="txtid" layoutX="312.0" layoutY="55.0" />
+                        <Button fx:id="btnUpdate" layoutX="346.0" layoutY="247.0" mnemonicParsing="false" onAction="#updateSchedule" text="Update" />
+                        <Button fx:id="btnDelete" layoutX="345.0" layoutY="288.0" mnemonicParsing="false" onAction="#deleteSchedule" prefHeight="25.0" prefWidth="58.0" text="Delete" />
+                        <TextField fx:id="updstarttm" layoutX="141.0" layoutY="316.0" prefHeight="25.0" prefWidth="46.0" visible="false" />
+                        <Button fx:id="btnCancelSch" layoutX="188.0" layoutY="441.0" mnemonicParsing="false" onAction="#cancelSchedule" prefHeight="32.0" prefWidth="65.0" text="Cancel" visible="false" />
+                        <Button fx:id="btnCommitSch" layoutX="79.0" layoutY="442.0" mnemonicParsing="false" onAction="#commitSchedule" prefHeight="31.0" prefWidth="71.0" text="Commit" visible="false" />
+                        <TextField fx:id="updendtm" layoutX="141.0" layoutY="370.0" prefHeight="25.0" prefWidth="46.0" visible="false" />
+                        <ComboBox fx:id="updcmdAM" layoutX="220.0" layoutY="313.0" prefHeight="30.0" prefWidth="67.0" visible="false" />
+                        <ComboBox fx:id="updcmdPM" layoutX="218.0" layoutY="367.0" prefHeight="31.0" prefWidth="70.0" visible="false" />
+                        <Label fx:id="lblupdStart" layoutX="75.0" layoutY="320.0" text="Start Time" visible="false" />
+                        <Label fx:id="lblupdend" layoutX="75.0" layoutY="374.0" text="End Time" visible="false" />
                      </children>
                   </AnchorPane>
                </content>
           </Tab>
-          <Tab fx:id="tab2" text="Add/Remove Employee">
+          <Tab fx:id="tab2" text="Remove Employee">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="31.0" layoutY="22.0" />
                         <TabPane layoutX="-1.0" layoutY="8.0" prefHeight="309.0" prefWidth="630.0" tabClosingPolicy="UNAVAILABLE">
                           <tabs>
-                            <Tab text="Add Employee">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="171.0" prefWidth="408.0">
-                                       <children>
-                                          <Label layoutX="102.0" layoutY="43.0" text="Employee Id" />
-                                          <Label layoutX="102.0" layoutY="87.0" text="Employee Name" />
-                                          <Label layoutX="102.0" layoutY="132.0" text="Employee Birthdate" />
-                                          <Label layoutX="102.0" layoutY="175.0" text="Employee Salary(per Hour)" />
-                                          <TextField layoutX="286.0" layoutY="39.0" />
-                                          <TextField layoutX="286.0" layoutY="83.0" />
-                                          <TextField layoutX="286.0" layoutY="128.0" />
-                                          <TextField layoutX="286.0" layoutY="171.0" />
-                                          <Button layoutX="289.0" layoutY="227.0" mnemonicParsing="false" text="Add Employee" />
-                                       </children>
-                                    </AnchorPane>
-                              </content>
-                            </Tab>
                             <Tab text="Delete Employee">
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
                                           <Label layoutX="172.0" layoutY="73.0" text="Employee Id" />
                                           <TextField layoutX="315.0" layoutY="69.0" />
-                                          <Button layoutX="289.0" layoutY="128.0" mnemonicParsing="false" text="Delete Employee" />
+                                          <Button layoutX="291.0" layoutY="128.0" mnemonicParsing="false" text="Delete Employee" />
+                                          <Label layoutX="260.0" layoutY="190.0" text="Future Enhancement" />
                                        </children>
                                     </AnchorPane>
                               </content>
@@ -141,9 +120,10 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="161.0" layoutY="79.0" text="Employee Id" />
-                        <TextField layoutX="287.0" layoutY="75.0" />
-                        <Button layoutX="244.0" layoutY="182.0" mnemonicParsing="false" text="See Salary Stub" />
+                        <Label layoutX="212.0" layoutY="79.0" text="Employee Id" />
+                        <TextField fx:id="txtEmpSal" layoutX="338.0" layoutY="75.0" />
+                        <Button fx:id="btnEmpSal" layoutX="315.0" layoutY="138.0" mnemonicParsing="false" onAction="#getEmployeeSalary" text="See Salary Stub" />
+                        <Label fx:id="lblSalaryDisplay" layoutX="265.0" layoutY="210.0" prefHeight="29.0" prefWidth="198.0" text="Label" />
                      </children>
                   </AnchorPane>
                </content>
