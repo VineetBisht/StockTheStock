@@ -62,8 +62,8 @@ You can download or clone the entire project from this repo.
 
 All these are required to run the program successfully. 
 
-* libraries
-make sure that all the libraries that are in the resources/library folder have been included in you project structure
+* Libraries
+make sure that all the libraries that are in the src/resources/library folder have been included in you project structure
 
 ### Installation
 
@@ -72,14 +72,11 @@ Clone the repo
 git clone https://github.com/2019-summer-db-java-itc5201-b/project-brogrammers
 ```
 
-
-
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-_For more examples, please refer to the [Documentation](https://example.com)_
-
+![Logo](project-brogrammers/tree/master/src/resources/images?raw=true "Title")
 
 
 ## Roadmap
@@ -95,7 +92,7 @@ Contribution is what made this project possible. Here are the people to be credi
 1. Simranjeet Singh Sahni.
 2. Simranjeet Singh
 3. Vineet Bisht
-4. Shivam Gupta
+4. Shivam Ghai
 
 ## License
 
