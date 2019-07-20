@@ -1,15 +1,7 @@
-[![Build Status][build-shield]][build-url]
-[![Contributors][contributors-shield]][contributors-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
-
-<!-- PROJECT LOGO -->
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="https://github.com/2019-summer-db-java-itc5201-b/project-brogrammers/tree/master/src/resources/images/Logo.png" alt="Logo" width="80" height="80">
+    ![Alt text](https://github.com/2019-summers/tree/master/src/resources/images/Logo.png "Logo")
   </a>
 
   <h3 align="center">Stock The Stock</h3>
