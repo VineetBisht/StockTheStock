@@ -148,7 +148,7 @@ public class ManageStockDB {
         java.util.Date util_added, util_expiry;
         java.sql.Date sql_added, sql_expiry;
         SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
-//        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
         String updateQuerry = "UPDATE stock SET name = ?, price = ?, volume = ?, added_on = ?, " +
                 "expiry_date = ?, distributor_id = ?, image = ?"
                 + "WHERE product_id = ?";
@@ -186,7 +186,7 @@ public class ManageStockDB {
 
         try{
             PreparedStatement pST = con.prepareStatement(listQuerry);
-            PreparedStatement pST2 = con.prepareStatement(query2);
+            con.prepareStatement(query2);
             ResultSet rs = pST.executeQuery();
             while(rs.next()){
 

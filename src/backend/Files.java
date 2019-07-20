@@ -2,8 +2,8 @@ package backend;
 
 public class Files {
 
-    public static String jasperResourcePath="/Macintosh HD/Users/vineetsingh/Documents/Java/2nd Sem Java/StockTheStock2/src/resources/receipt/Bill.jrxml";
-    public static String jasperPath="/resources/receipt/";
+    public static String jasperResourcePath="src/resources/template/Bill.jrxml";
+    public static String jasperPath="src/resources/template/";
     public static String login="login";
     public static String loginFile="/resources/fxml/Login.fxml";
     public static String complaint="complaint";

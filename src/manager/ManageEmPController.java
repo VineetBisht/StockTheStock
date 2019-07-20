@@ -1,7 +1,7 @@
 package manager;
 
-import backend.ComplaintEmp;
-import backend.Schedule;
+import backend.*;
+
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -17,8 +17,6 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import backend.ComplaintCust;
-import backend.Employee;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,9 +33,10 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author Shivam
  */
-public class ManageEmPController implements Initializable {
+public class ManageEmPController implements Initializable, ControlledScreen {
     Button []buttonSchedule=new Button[100];
     Connection con;
+    ScreensController myController;
     @FXML private TextField txtid;
     @FXML private TableView<Schedule> mytableSchedule;
     @FXML private TableColumn<Schedule,String> sun;
@@ -668,5 +667,10 @@ public class ManageEmPController implements Initializable {
         
         btnScheduleInsert.setDisable(true);
 
+    }
+
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+        myController=screenPage;
     }
 }

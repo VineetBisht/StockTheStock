@@ -107,7 +107,7 @@
 						<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
 						<property name="com.jaspersoft.studio.table.style.detail" value="Table_TD"/>
 					</reportElement>
-					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" whenNoDataType="AllSectionsNoDetail">
 						<datasetRun subDataset="list" uuid="1560dbbf-01d5-47eb-9f80-12d43e6aa3d0">
 							<dataSourceExpression><![CDATA[$P{ds}]]></dataSourceExpression>
 						</datasetRun>
@@ -205,7 +205,7 @@
 							<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
 								<textField>
 									<reportElement x="0" y="0" width="100" height="30" uuid="15e28467-171b-4dcb-8816-ea10a47cf183"/>
-									<textFieldExpression><![CDATA[PRODUCT($F{price},$F{volume})]]></textFieldExpression>
+									<textFieldExpression><![CDATA[($F{price}*$F{volume})]]></textFieldExpression>
 								</textField>
 							</jr:columnHeader>
 							<jr:columnFooter style="Table_CH" height="30" rowSpan="1"/>

@@ -11,16 +11,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.*;
 
@@ -91,12 +88,17 @@ public class TransactionController implements ControlledScreen, Initializable {
             return;
         }
 
-        edb.update(list.toArray());
+       // edb.update(list.toArray());
         new Alert(Alert.AlertType.INFORMATION,"Checkout Successful. Bill printed. ").showAndWait();
         try{
-            JasperCompileManager.compileReportToFile(Files.jasperResourcePath,Files.jasperPath+"Bill.jasper");
-            ArrayList<Cart> arlist=new ArrayList<>(list);
-            JRBeanCollectionDataSource beanCollectionDataSource= new JRBeanCollectionDataSource(arlist);
+            InputStream input = new FileInputStream(new File(Files.jasperResourcePath));
+            JasperDesign jasperDesign = JRXmlLoader.load(input);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            List<Cart> li= new ArrayList<>(list);
+
+            for(Cart i: li)System.out.println(i.getProduct_id());
+
+            JRBeanCollectionDataSource beanCollectionDataSource= new JRBeanCollectionDataSource(li);
             Map parameters=new HashMap();
             parameters.put("ds",beanCollectionDataSource);
             JasperPrint js = JasperFillManager.fillReport(Files.jasperPath+"Bill.jasper",parameters,beanCollectionDataSource);
@@ -144,9 +146,10 @@ public class TransactionController implements ControlledScreen, Initializable {
                 if (list != null) {
                     table.setItems(list);
                     double total=0;
-                    for(Cart i : list){
+
+                    for(Cart i : list)
                         total += (i.getVolume() * i.getPrice());
-                    }
+
                     txt_total.setText( "$"+total );
                 }
             }
@@ -163,23 +166,23 @@ public class TransactionController implements ControlledScreen, Initializable {
        });
 
         txt_qty.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(!newValue.isEmpty() && !txt_product.getText().isEmpty()) {
-                Cart item=edb.findObject(Integer.parseInt(txt_product.getText()),Integer.parseInt(txt_qty.getText()));
-                txt_price.setText(String.valueOf(item.getVolume()*item.getPrice()));
-            }else {
-                txt_price.setText("");
-            }
+        calc(newValue);
         });
 
         txt_product.textProperty().addListener((observable, oldValue, newValue) -> {
-            if(!newValue.isEmpty() && !txt_qty.getText().isEmpty()) {
-                Cart item=edb.findObject(Integer.parseInt(txt_product.getText()),Integer.parseInt(txt_qty.getText()));
-                txt_price.setText(String.valueOf(item.getVolume()*item.getPrice()));
-            }else {
-                txt_price.setText("");
-            }
+        calc(newValue);
         });
 
+    }
+
+    private void calc(String newValue) {
+        if(!(newValue.isEmpty() || txt_product.getText().isEmpty() ||txt_qty.getText().isEmpty())) {
+            Cart item=edb.findObject(Integer.parseInt(txt_product.getText()),Integer.parseInt(txt_qty.getText()));
+            System.out.println(item.getVolume());
+            txt_price.setText(String.valueOf(item.getVolume()*item.getPrice()));
+        }else {
+            txt_price.setText("");
+        }
     }
 
     void showErrors() {

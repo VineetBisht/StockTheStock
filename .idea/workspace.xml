@@ -2,34 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/StockTheStock.iml" beforeDir="false" afterPath="$PROJECT_DIR$/StockTheStock.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/StockTheStock.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/StockTheStock.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/ComplaintCust.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/ComplaintCust.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/ComplaintEmp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/ComplaintEmp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/ComplaintEmpGeneral.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/ComplaintEmpGeneral.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/ComplaintGeneral.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/ComplaintGeneral.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/EmployeeDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/EmployeeDB.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/backend/Files.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/Files.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/ManageEmpJava.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/ManageEmpJava.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/ManageEmployeeClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/ManageEmployeeClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/Schedule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/Schedule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/ScreensController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/ScreensController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/backend/SignUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/backend/Datatable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/employee/ComplaintController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/ComplaintController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/employee/DatatableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/SignUpController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/employee/EmployeeMainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/EmployeeMainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/employee/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/employee/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/employee/TransactionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/manager/ManageEmPController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/ManageEmPController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/manager/ManagerMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/manager/ManagerMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/receipt/Bill.jrxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/receipt/Bill.jrxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/fxml/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/Login.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/fxml/ManageStock.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/ManageStock.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/resources/fxml/SignUp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/SignUp.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/fxml/ManageEmp.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/resources/fxml/ManageEmp.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/receipt/Bill.jrxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/receipt/Bill_descriptor.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/receipt/Logo.png" beforeDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -92,115 +74,45 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/StockTheStock.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
+            <state relative-caret-position="150">
+              <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1243#1244#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/resources/fxml/ManageStock.fxml">
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="315" selection-start-line="16" selection-start-column="315" selection-end-line="16" selection-end-column="315" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/resources/fxml/SignUp.fxml">
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="20" column="89" selection-start-line="20" selection-start-column="89" selection-end-line="20" selection-end-column="89" />
+        <entry file="file://$PROJECT_DIR$/src/backend/Files.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="59" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/resources/fxml/Login.fxml">
-          <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/employee/LoginController.java">
+        <entry file="file://$PROJECT_DIR$/src/employee/TransactionController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
-              <folding>
-                <element signature="e#1742#1743#0" expanded="true" />
-                <element signature="e#1794#1795#0" expanded="true" />
-                <element signature="e#2355#2356#0" expanded="true" />
-                <element signature="e#2396#2397#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/employee/EmployeeMainController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="64" column="22" lean-forward="true" selection-start-line="64" selection-start-column="22" selection-end-line="64" selection-end-column="22" />
+            <state relative-caret-position="261">
+              <caret line="80" column="9" lean-forward="true" selection-start-line="70" selection-start-column="8" selection-end-line="80" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#3487#3488#0" expanded="true" />
+                <element signature="e#3884#3885#0" expanded="true" />
+                <element signature="e#4004#4005#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/manager/ManagerMain.java">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/backend/Datatable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="158" column="20" lean-forward="true" selection-start-line="158" selection-start-column="20" selection-end-line="158" selection-end-column="20" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/backend/EmployeeDB.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="49" column="28" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/employee/ComplaintController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-675">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#3194#3195#0" expanded="true" />
-                <element signature="e#3341#3342#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="255">
+              <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -262,14 +174,10 @@
         <option value="$PROJECT_DIR$/src/backend/ManageStock.java" />
         <option value="$PROJECT_DIR$/src/backend/ManageStockDB.java" />
         <option value="$PROJECT_DIR$/src/manager/ManageStockController.java" />
-        <option value="$PROJECT_DIR$/src/resources/fxml/ManageEmp.fxml" />
         <option value="$PROJECT_DIR$/src/resources/fxml/ManageStock.fxml" />
         <option value="$PROJECT_DIR$/src/resources/fxml/SignUp.fxml" />
         <option value="$PROJECT_DIR$/src/backend/ScreensController.java" />
-        <option value="$PROJECT_DIR$/src/employee/TransactionController.java" />
-        <option value="$PROJECT_DIR$/src/backend/Files.java" />
         <option value="$PROJECT_DIR$/src/backend/Person.java" />
-        <option value="$PROJECT_DIR$/src/StockTheStock.java" />
         <option value="$PROJECT_DIR$/src/employee/SignUpController.java" />
         <option value="$PROJECT_DIR$/src/backend/Employee.java" />
         <option value="$PROJECT_DIR$/src/backend/ManageEmployeeClass.java" />
@@ -278,7 +186,6 @@
         <option value="$PROJECT_DIR$/src/backend/ComplaintEmpGeneral.java" />
         <option value="$PROJECT_DIR$/src/backend/ComplaintGeneral.java" />
         <option value="$PROJECT_DIR$/src/backend/Schedule.java" />
-        <option value="$PROJECT_DIR$/src/manager/ManageEmPController.java" />
         <option value="$PROJECT_DIR$/src/backend/ManageEmpJava.java" />
         <option value="$PROJECT_DIR$/src/backend/EmployeeDB.java" />
         <option value="$PROJECT_DIR$/src/employee/ComplaintController.java" />
@@ -287,6 +194,11 @@
         <option value="$PROJECT_DIR$/src/backend/Datatable.java" />
         <option value="$PROJECT_DIR$/src/employee/LoginController.java" />
         <option value="$PROJECT_DIR$/src/resources/fxml/Login.fxml" />
+        <option value="$PROJECT_DIR$/src/resources/fxml/ManageEmp.fxml" />
+        <option value="$PROJECT_DIR$/src/manager/ManageEmPController.java" />
+        <option value="$PROJECT_DIR$/src/backend/Files.java" />
+        <option value="$PROJECT_DIR$/src/StockTheStock.java" />
+        <option value="$PROJECT_DIR$/src/employee/TransactionController.java" />
       </list>
     </option>
   </component>
@@ -324,24 +236,6 @@
               <item name="StockTheStock2" type="b2602c69:ProjectViewProjectNode" />
               <item name="StockTheStock2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="backend" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StockTheStock2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StockTheStock2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="employee" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StockTheStock2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StockTheStock2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="manager" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="StockTheStock2" type="b2602c69:ProjectViewProjectNode" />
-              <item name="StockTheStock2" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -349,7 +243,14 @@
               <item name="StockTheStock2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="fxml" type="462c0819:PsiDirectoryNode" />
+              <item name="receipt" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="StockTheStock2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="StockTheStock2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="template" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -513,17 +414,18 @@
       <workItem from="1563302387731" duration="173000" />
       <workItem from="1563302682448" duration="1186000" />
       <workItem from="1563387824996" duration="14463000" />
-      <workItem from="1563552899555" duration="12135000" />
+      <workItem from="1563552899555" duration="17183000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87053000" />
+    <option name="totallyTimeSpent" value="92101000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="23" width="1680" height="960" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.21367522" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.21367522" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -532,7 +434,7 @@
       <window_info id="UI Designer" order="6" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32949308" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32949308" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32949308" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -619,13 +521,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/employee/Complaint.fxml" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="24" lean-forward="true" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/backend/Emp_UI.java" />
     <entry file="file://$PROJECT_DIR$/src/employee/ManageEmpJava.java" />
     <entry file="file://$PROJECT_DIR$/src/resources/fxml/Tables.fxml">
@@ -713,14 +608,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/resources/fxml/ManageEmp.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="14" column="255" selection-start-line="14" selection-start-column="255" selection-end-line="14" selection-end-column="255" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/resources/receipt/Bill.jrxml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2885" />
@@ -793,16 +680,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/manager/ManageEmPController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-161">
-          <caret line="63" column="22" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/backend/ManageEmpJava.java">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -814,13 +691,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/backend/Files.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
         </state>
       </provider>
     </entry>
@@ -842,13 +712,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/backend/ManageStockDB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/backend/Person.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
@@ -863,23 +726,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="754">
           <caret line="88" column="32" selection-start-line="88" selection-start-column="32" selection-end-line="88" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/employee/TransactionController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="93" column="19" selection-start-line="93" selection-start-column="19" selection-end-line="93" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/backend/EmployeeDB.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="49" column="28" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -938,16 +784,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/StockTheStock.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="14" column="22" selection-start-line="14" selection-start-column="22" selection-end-line="14" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/resources/fxml/ManageStock.fxml">
       <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
       <provider editor-type-id="text-editor">
@@ -969,6 +805,78 @@
       <provider editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="16" column="17" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/resources/fxml/ManageEmp.fxml">
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="265" selection-start-line="14" selection-start-column="265" selection-end-line="14" selection-end-column="265" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/manager/ManageEmPController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="38" column="35" selection-start-line="38" selection-start-column="35" selection-end-line="38" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#24943#24944#0" expanded="true" />
+            <element signature="e#24961#24962#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/backend/ManageStockDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/backend/EmployeeDB.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="146">
+          <caret line="37" column="96" lean-forward="true" selection-start-line="37" selection-start-column="96" selection-end-line="37" selection-end-column="96" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="24" selection-start-line="17" selection-start-column="24" selection-end-line="17" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/backend/Files.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="59" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StockTheStock.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="19" selection-start-line="10" selection-start-column="19" selection-end-line="10" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1243#1244#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/employee/TransactionController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="80" column="9" lean-forward="true" selection-start-line="70" selection-start-column="8" selection-end-line="80" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3487#3488#0" expanded="true" />
+            <element signature="e#3884#3885#0" expanded="true" />
+            <element signature="e#4004#4005#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1000,7 +908,7 @@
       </state>
       <state key="GlobalLibrariesConfigurable.UI">
         <settings>
-          <last-edited>commons-digester-2.1</last-edited>
+          <last-edited>com.lowagie.text-2.1.7</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
