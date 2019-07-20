@@ -3,6 +3,8 @@
 
   <h1 align="center">Stock The Stock</h1>
 
+![Logo](src/resources/images/Logo.png?raw=true | width=100 "Logo")
+
   <p align="center">
     Best way to manage your stock inventory
     <br />
@@ -75,9 +77,6 @@ git clone https://github.com/2019-summer-db-java-itc5201-b/project-brogrammers
 ## Usage
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-![Logo](src/resources/images/Logo.png?raw=true "Logo")
-
 
 ## Roadmap
 
