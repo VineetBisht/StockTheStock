@@ -4,7 +4,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
+import java.util.Date;
+
 
 public class EmployeeDB {
     String username = "n01324490";
@@ -22,14 +23,23 @@ public class EmployeeDB {
     }
 
 
-    public void list() {
-        String listQuerry = "SELECT * FROM stock";
+    public ObservableList<Complaint> list() {
+        String listQuerry = "SELECT * FROM customercomplaint";
         try {
             PreparedStatement preparedStatement = con.prepareStatement(listQuerry);
-            ResultSet resultSet = preparedStatement.executeQuery();
+            ResultSet rs = preparedStatement.executeQuery();
+            ObservableList<Complaint> obList = FXCollections.observableArrayList();
+
+            while(rs.next()){
+                obList.add(new Complaint(rs.getInt("complaintid"), rs.getString("prodid"),
+                        rs.getString("customername"), new Date(rs.getDate("complaintdate").getTime()),
+                        rs.getString("description"), rs.getDouble("phone")));
+            return obList;
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     public int update(Object list[]) {
@@ -95,6 +105,16 @@ public class EmployeeDB {
             era.printStackTrace();
         }
         return 0;
+    }
+
+    public void deleteCompl(Complaint selectedItem) {
+        try {
+            PreparedStatement ps = con.prepareStatement("DELETE FROM customercomplaint WHERE complaintid=?");
+            ps.setInt(1, selectedItem.getComplaintID());
+            ps.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
 

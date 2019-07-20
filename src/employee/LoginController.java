@@ -56,7 +56,7 @@ public class LoginController implements Initializable, ControlledScreen {
         p = new Person();
         p.setUser_name(username.getText());
         if (d.match(p, password.getText()) == null) {
-            createAlert(Alert.AlertType.WARNING, "Invalid Credentials!");
+            createAlert(Alert.AlertType.ERROR, "Invalid Credentials!");
         } else if (d.match(p, password.getText()).equals("manager")) {
             d.timesheet(p);
             myController.setScreen(Files.managerMain);
