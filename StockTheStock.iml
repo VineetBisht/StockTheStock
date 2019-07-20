@@ -17,5 +17,6 @@
     <orderEntry type="library" name="commons-collections-3.2.1-1.0.0" level="application" />
     <orderEntry type="library" name="org.apache.commons.beanutils" level="application" />
     <orderEntry type="library" name="com.lowagie.text-2.1.7" level="application" />
+    <orderEntry type="library" name="bin" level="application" />
   </component>
 </module>

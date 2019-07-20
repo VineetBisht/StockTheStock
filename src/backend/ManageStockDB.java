@@ -113,7 +113,7 @@ public class ManageStockDB {
 
     public int addItemIdToProductCounter(ManageStock i){
 
-        String addQuerry = "INSERT INTO productcounter (product_id, counter) VALUES (?, ?)";
+        String addQuerry = "INSERT INTO product_counter (product_id, counter) VALUES (?, ?)";
         try{
 
             PreparedStatement pst = con.prepareStatement(addQuerry);
