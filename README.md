@@ -51,7 +51,7 @@ Here are the libraries that we have used for this project.
 * [jasper](https://community.jaspersoft.com/download)
 * [jasperreports](https://community.jaspersoft.com/download)
 * [javax.mail](https://javaee.github.io/javamail/)
-* [ojdbc]()https://www.oracle.com/technetwork/database/features/jdbc/jdbc-drivers-12c-download-1958347.html
+* [ojdbc](https://www.oracle.com/technetwork/database/features/jdbc/jdbc-drivers-12c-download-1958347.html)
 * [org.apache.commons.beanutils](http://www.java2s.com/Code/Jar/o/Downloadorgapachecommonsbeanutilsjar.htm)
 
 ## Getting Started
@@ -62,7 +62,11 @@ You can download or clone the entire project from this repo.
 All these are required to run the program successfully. 
 
 * Libraries
-make sure that all the libraries that are in the src/resources/library folder have been included in you project structure
+make sure that all the libraries that are in the 
+```
+src/resources/library 
+```
+folder have been included in you project structure.
 
 ### Installation
 
@@ -73,7 +77,15 @@ git clone https://github.com/2019-summer-db-java-itc5201-b/project-brogrammers
 
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+The default username and pass for testing are :
+```
+Employee -> Username:vineet, Pass:admin
+Manager -> Username:sam, Pass:sam
+```
+
+Or you can simply create a new account. 
+
+* The SignUp screen makes use of an OTP which will be sent to your registered email for confirmation. 
 
 ## Roadmap
 
