@@ -1,7 +1,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    ![Alt text](https://github.com/2019-summers/tree/master/src/resources/images/Logo.png "Logo")
+   ![Alt text](/master/src/resources/images/Logo.png?raw=true "Logo")
   </a>
 
   <h3 align="center">Stock The Stock</h3>
