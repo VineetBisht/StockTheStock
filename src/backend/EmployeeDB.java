@@ -41,15 +41,15 @@ public class EmployeeDB {
             System.out.println(1);
             try {
                 PreparedStatement pst = con.prepareStatement(updateQuerry);
-                pst.setInt(1, item.getProduct_id());
+                pst.setString(1, item.getProduct_id());
                 pst.setInt(2, item.getVolume());
-                pst.setInt(3, item.getProduct_id());
+                pst.setString(3, item.getProduct_id());
                 pst.executeUpdate();
 
                 PreparedStatement count = con.prepareStatement(counter);
-                count.setInt(1, item.getProduct_id());
+                count.setString(1, item.getProduct_id());
                 count.setInt(2, item.getVolume());
-                count.setInt(3, item.getProduct_id());
+                count.setString(3, item.getProduct_id());
                 count.executeUpdate();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -59,15 +59,15 @@ public class EmployeeDB {
         return rows;
     }
 
-    public Cart findObject(int id,int qty) {
+    public Cart findObject(String id,int qty) {
         String findQuerry = "SELECT * FROM stock WHERE product_id = ?";
         try {
             PreparedStatement pST = con.prepareStatement(findQuerry);
-            pST.setInt(1, id);
+            pST.setString(1, id);
 
             ResultSet rs = pST.executeQuery();
             if (rs.next()) {
-                return new Cart(rs.getInt("product_id"), rs.getString("name"),
+                return new Cart(rs.getString("product_id"), rs.getString("name"),
                         rs.getInt("price"), qty);
             } else {
                 return null;
@@ -79,11 +79,11 @@ public class EmployeeDB {
         }
     }
 
-    public int findPrice(int id) {
+    public int findPrice(String id) {
         String findQuerry = "SELECT PRICE FROM stock WHERE product_id = ?";
         try {
             PreparedStatement pST = con.prepareStatement(findQuerry);
-            pST.setInt(1, id);
+            pST.setString(1, id);
 
             ResultSet rs = pST.executeQuery();
             if (rs.next()) {

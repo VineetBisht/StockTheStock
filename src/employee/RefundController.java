@@ -82,7 +82,7 @@ public class RefundController implements Initializable, ControlledScreen {
                 pst.setInt(2, Integer.parseInt(quantity.getText()));
                 pst.setInt(3, Integer.parseInt(name.getText()));
                 rows = pst.executeUpdate();
-                new Alert(Alert.AlertType.INFORMATION,"Stock Re-Added. Return Price:$" +(edb.findPrice(Integer.parseInt(name.getText()))*Integer.parseInt(quantity.getText()))).showAndWait();
+                new Alert(Alert.AlertType.INFORMATION,"Stock Re-Added. Return Price:$" +(edb.findPrice(name.getText())*Integer.parseInt(quantity.getText()))).showAndWait();
             } catch (SQLException e) {
                 System.err.println(e);
         }

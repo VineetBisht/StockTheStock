@@ -129,6 +129,24 @@ public class ManageStockDB {
 
     }
 
+    public int addItemIdToComplaintCounter(ManageStock i){
+
+        String addQuerry = "INSERT INTO complaintscounter (pid, counter) VALUES (?, ?)";
+        try{
+
+            PreparedStatement pst = con.prepareStatement(addQuerry);
+            int counter = 0;
+            pst.setString(1, i.getProduct_id());
+            pst.setInt(2, counter);
+            rows = pst.executeUpdate();
+            return rows;
+        }catch(SQLException e){
+            System.err.println(e);
+            return 0;
+        }
+
+    }
+
 
     public int[] setGrapgh(ManageStock i){
         int complaintCounter = 0, soldCounter = 0;

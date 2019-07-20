@@ -1,12 +1,12 @@
 package backend;
 
 public class Cart {
-    int product_id;
+    String product_id;
     double price;
     int volume;
     String name;
 
-      public Cart(int product_id, String name, double price, int volume) {
+      public Cart(String product_id, String name, double price, int volume) {
         this.product_id = product_id;
         this.name=name;
         this.price = price;
@@ -16,11 +16,11 @@ public class Cart {
     public Cart(){
     }
 
-    public int getProduct_id() {
+    public String getProduct_id() {
         return product_id;
     }
 
-    public void setProduct_id(int product_id) {
+    public void setProduct_id(String product_id) {
         this.product_id = product_id;
     }
 

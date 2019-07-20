@@ -70,31 +70,29 @@ public class ComplaintController implements ControlledScreen {
             //step1
             PreparedStatement pst = con.prepareStatement(addQuerry);
             //step 2
-            try {
-                pst.setInt(1, Integer.parseInt(txt_name.getText()));
-            } catch (Exception e) {
-                e.printStackTrace();
-                new Alert(Alert.AlertType.ERROR, "Invalid Product ID!").showAndWait();
-                return;
-            }
-            pst.setString(2, txt_prod.getText());
+            pst.setString(1, txt_prod.getText());
+            pst.setString(2, txt_name.getText());
             pst.setString(3, issuebox.getText());
             pst.setDouble(4, Double.parseDouble(txt_mob.getText()));
 
             //step 3
             rows = pst.executeUpdate();
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully filed.");
-            alert.showAndWait();
+
+            String counter = "UPDATE complaintscounter SET counter = ((SELECT counter FROM complaintscounter WHERE pid=?)+1) where pid=?";
+            PreparedStatement count = con.prepareStatement(counter);
+            count.setString(1, txt_prod.getText());
+            count.setString(2, txt_prod.getText());
+            count.executeUpdate();
+
             txt_mob.setText("");
             txt_prod.setText("");
             txt_name.setText("");
             issuebox.setText("");
 
-            String counter = "UPDATE compleintscounter SET counter = (SELECT counter FROM complaintscounter WHERE pid=?)+1 where pid=?";
-            PreparedStatement count = con.prepareStatement(counter);
-            count.setInt(1, Integer.parseInt(txt_prod.getText()));
-            count.setInt(2, Integer.parseInt(txt_prod.getText()));
-            count.executeUpdate();
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Successfully filed.");
+            alert.showAndWait();
+
+
 
         } catch (SQLException e) {
             e.printStackTrace();

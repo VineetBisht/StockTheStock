@@ -229,7 +229,8 @@ public class ManageStockController implements Initializable, ControlledScreen {
 
                 result = sdb.addItem(snew);
                 result2 = sdb.addItemIdToProductCounter(snew);      //Adding product id to productCounter table
-                if(result != 0 && result2 != 0){
+                int result3 = sdb.addItemIdToComplaintCounter(snew);
+                if(result != 0 && result2 != 0 && result3 != 0){
                     alert1.setContentText("Details for item " + a_nameField.getText() + " added successfully");
                     reset(actionEvent);
                     alert1.showAndWait();

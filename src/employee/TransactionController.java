@@ -72,7 +72,7 @@ public class TransactionController implements ControlledScreen, Initializable {
             return;
         }
         hideErrors();
-        Cart obj = edb.findObject(Integer.parseInt(txt_product.getText()),Integer.parseInt(txt_qty.getText()));
+        Cart obj = edb.findObject(txt_product.getText(),Integer.parseInt(txt_qty.getText()));
         if (obj == null) {
             txt_price.setText("");
         }else{
@@ -87,8 +87,9 @@ public class TransactionController implements ControlledScreen, Initializable {
             return;
         }
 
-       // edb.update(list.toArray());
+         edb.update(list.toArray());
         new Alert(Alert.AlertType.INFORMATION,"Checkout Successful. Bill printed. ").showAndWait();
+
         try{
             InputStream input = new FileInputStream(new File(Files.jasperResourcePath));
             JasperDesign jasperDesign = JRXmlLoader.load(input);
@@ -115,7 +116,7 @@ public class TransactionController implements ControlledScreen, Initializable {
     void update(ActionEvent event) {
         int index= table.getSelectionModel().getSelectedIndex();
         list.remove(table.getSelectionModel().getSelectedItem());
-        list.add(index, edb.findObject(Integer.parseInt(txt_product.getText()), Integer.parseInt(txt_qty.getText())));
+        list.add(index, edb.findObject(txt_product.getText(), Integer.parseInt(txt_qty.getText())));
     }
 
     @FXML
@@ -175,7 +176,7 @@ public class TransactionController implements ControlledScreen, Initializable {
     private void calc(String newValue) {
         try{
             if(!(newValue.isEmpty() || txt_product.getText().isEmpty() ||txt_qty.getText().isEmpty())) {
-                Cart item=edb.findObject(Integer.parseInt(txt_product.getText()),Integer.parseInt(txt_qty.getText()));
+                Cart item=edb.findObject(txt_product.getText(),Integer.parseInt(txt_qty.getText()));
                 System.out.println(item.getVolume());
                 txt_price.setText(String.valueOf(item.getVolume()*item.getPrice()));
             }else {
