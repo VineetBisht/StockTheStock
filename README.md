@@ -2,9 +2,7 @@
 <p align="center">
 
   <h1 align="center">Stock The Stock</h1>
-
-![Logo](src/resources/images/Logo.png?raw=true | width=100 "Logo")
-
+  <img src="src/resources/images/Logo.png?raw=true" width="80">
   <p align="center">
     Best way to manage your stock inventory
     <br />
