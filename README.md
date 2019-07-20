@@ -1,8 +1,9 @@
 <br />
 <p align="center">
 
-  <h1 align="center">Stock The Stock</h1>
-  <img src="src/resources/images/Logo.png?raw=true" width="80">
+  <center>
+  <img src="src/resources/images/Logo.png?raw=true" width="200">
+  </center>
   <p align="center">
     Best way to manage your stock inventory
     <br />
