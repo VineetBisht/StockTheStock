@@ -1,18 +1,9 @@
-package Employee;
+package manager;
 
-<<<<<<< HEAD
 import backend.*;
 
-||||||| merged common ancestors
 import backend.ComplaintEmp;
 import backend.Schedule;
-=======
-import CreateDatabase.ComplaintCust;
-import CreateDatabase.ComplaintEmp;
-import CreateDatabase.Employee;
-import CreateDatabase.Schedule;
-import javafx.event.Event;
->>>>>>> 1bb5349455ca8e14bd2500f403e5476a333d4606
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,16 +18,8 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-<<<<<<< HEAD
-
-import javafx.beans.property.SimpleStringProperty;
-||||||| merged common ancestors
-
 import backend.ComplaintCust;
 import backend.Employee;
-import javafx.beans.property.SimpleStringProperty;
-=======
->>>>>>> 1bb5349455ca8e14bd2500f403e5476a333d4606
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

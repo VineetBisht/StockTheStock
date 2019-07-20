@@ -1,3 +1,7 @@
+package manager;
+
+import backend.ManageStock;
+import backend.ManageStockDB;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;

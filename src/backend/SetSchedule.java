@@ -1,4 +1,4 @@
-package CreateDatabase;
+package backend;
 
 import java.util.Date;
 

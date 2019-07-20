@@ -1,3 +1,5 @@
+package backend;
+
 import java.io.File;
 
 public class ManageStock {
