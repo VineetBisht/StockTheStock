@@ -2,7 +2,7 @@
 <p align="center">
 
   <center>
-  <img src="src/resources/images/Logo.png?raw=true" width="200">
+  <img src="src/resources/images/Logo.png?raw=true" width="200" style="display: block;margin-left: auto;margin-right: auto;width: 50%;">
   </center>
   <p align="center">
     Best way to manage your stock inventory
