@@ -1,9 +1,3 @@
-package manager;
-
-import backend.ControlledScreen;
-import backend.ManageStock;
-import backend.ManageStockDB;
-import backend.ScreensController;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -19,21 +13,25 @@ import javafx.stage.Stage;
 
 import javafx.scene.image.ImageView ;
 import javafx.scene.image.Image;
+//import javax.swing.text.html.ImageView;
+import java.awt.*;
 import java.io.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class ManageStockController implements Initializable, ControlledScreen {
-
-    ScreensController myController;
+public class ManageStockController implements Initializable {
 
     //---------------------------Controller for ManageStock Page(variables + onAction methods)--------------------------
     @FXML
     private AnchorPane ManagerMain;
     @FXML
     private ImageView a_imageView, f_imageView;
+    @FXML
+    private ImageView a_profitLogo, u_profitLogo;
+    @FXML
+    private ImageView f_graphLogo;
     @FXML
     private TextField a_idField, d_idField, f_idField, u_idField;
     @FXML
@@ -44,6 +42,8 @@ public class ManageStockController implements Initializable, ControlledScreen {
     private TextField a_volumeField, u_volumeField;
     @FXML
     private TextField a_distributor_idField, u_distributor_idField;
+    @FXML
+    private TextField a_profitField, u_profitField;
     @FXML
     private TableView<ManageStock> viewTable, findTable, expiredTable;
     @FXML
@@ -66,9 +66,10 @@ public class ManageStockController implements Initializable, ControlledScreen {
     private Tab viewTab, expiredTab;
 
 
-
+    Tooltip tool = new Tooltip();
     private FileInputStream fio;
     private File file;
+    Image defaultImage, toolLogo;     //To hold default image
     int result = 0;
     Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
     Alert alert2 = new Alert(Alert.AlertType.ERROR);
@@ -87,49 +88,101 @@ public class ManageStockController implements Initializable, ControlledScreen {
         ManageStockDB sdb = new ManageStockDB();
         setAlert();
         result = 0;
-        if(a_idField.getText() == null || a_idField.getText().trim().isEmpty()) {
-            alert2.setContentText("Please provide item Id Number");
-            alert2.showAndWait();
-        } else if(a_nameField.getText() == null || a_nameField.getText().trim().isEmpty()){
-            alert2.setContentText("Please provide item Name");
-            alert2.showAndWait();
-        }else if(a_priceField.getText() == null || a_priceField.getText().trim().isEmpty()){
-            alert2.setContentText("Please provide item price");
-            alert2.showAndWait();
-        }else if(a_volumeField.getText() == null || a_volumeField.getText().trim().isEmpty()){
-            alert2.setContentText("Please provide item total volume");
-            alert2.showAndWait();
-        }else if(a_addedOn.getValue() == null){
-            alert2.setContentText("Please provide date for the item");
-            alert2.showAndWait();
-        }else if(a_expiryDate.getValue() == null){
-            alert2.setContentText("Please provide expiry date for the item");
-            alert2.showAndWait();
-        }else if(a_distributor_idField.getText() == null || a_distributor_idField.getText().trim().isEmpty()){
-            alert2.setContentText("Please provide distributor name for item");
-            alert2.showAndWait();
-        }else{
-            s.setProduct_id(Integer.parseInt(a_idField.getText()));
-            s.setName(a_nameField.getText());
-            s.setPrice(Double.parseDouble(a_priceField.getText()));
-            s.setVolume(Integer.parseInt(a_volumeField.getText()));
-            s.setDistributor_id(a_distributor_idField.getText());
-            s.setAdded_on(a_addedOn.getValue().format(DateTimeFormatter.ofPattern("dd/MMM/yyyy")));
-            s.setExpiry_date(a_expiryDate.getValue().format(DateTimeFormatter.ofPattern("dd/MMM/yyyy")));
-            s.setFile(file);
 
-            result = sdb.addItem(s);
+        s.setProduct_id(a_idField.getText());
+        s = sdb.fDelete(s);
+        if(s != null){
+            s.setProduct_id(a_idField.getText());
+            s.setVolume(Integer.parseInt(a_volumeField.getText()));
+            result = sdb.addToExisting(s);
             if(result != 0){
-                alert1.setContentText("Details for item " + a_nameField.getText() + " added successfully");
+                alert1.setContentText("Volume for item with id " + a_idField.getText() + " is updated successfully");
                 reset(actionEvent);
                 alert1.showAndWait();
             }
-            else{
-                alert2.setContentText("Something unexpected error occurred");
+
+        }else{
+            if(a_idField.getText() == null || a_idField.getText().trim().isEmpty()) {
+                alert2.setContentText("Please provide item Id Number");
+                alert2.showAndWait();
+            } else if(a_nameField.getText() == null || a_nameField.getText().trim().isEmpty()){
+                alert2.setContentText("Please provide item Name");
                 alert2.showAndWait();
             }
+//        else if(isNumeric(a_nameField)){
+//            alert2.setContentText("Only characters are allowed for name");
+//            alert2.showAndWait();
+//        }
+            else if(a_priceField.getText() == null || a_priceField.getText().trim().isEmpty()){
+                alert2.setContentText("Please provide item price");
+                alert2.showAndWait();
+            }else if(isInt(a_priceField)){
+                alert2.setContentText("Only numbers are allowed for price");
+                alert2.showAndWait();
+            }else if(a_volumeField.getText() == null || a_volumeField.getText().trim().isEmpty()){
+                alert2.setContentText("Please provide item total volume");
+                alert2.showAndWait();
+            }else if(isInt(a_volumeField)){
+                alert2.setContentText("Only numbers are allowed for volume");
+                alert2.showAndWait();
+            }else if(a_addedOn.getValue() == null){
+                alert2.setContentText("Please provide date for the item");
+                alert2.showAndWait();
+            }else if(a_expiryDate.getValue() == null){
+                alert2.setContentText("Please provide expiry date for the item");
+                alert2.showAndWait();
+            }else if(a_distributor_idField.getText() == null || a_distributor_idField.getText().trim().isEmpty()){
+                alert2.setContentText("Please provide distributor name for item");
+                alert2.showAndWait();
+            }else{
+                s.setProduct_id(a_idField.getText());
+                s.setName(a_nameField.getText());
+                s.setPrice(Double.parseDouble(a_priceField.getText()));
+                s.setVolume(Integer.parseInt(a_volumeField.getText()));
+                s.setDistributor_id(a_distributor_idField.getText());
+                s.setAdded_on(a_addedOn.getValue().format(DateTimeFormatter.ofPattern("dd/MMM/yyyy")));
+                s.setExpiry_date(a_expiryDate.getValue().format(DateTimeFormatter.ofPattern("dd/MMM/yyyy")));
+                s.setFile(file);
+
+                result = sdb.addItem(s);
+                if(result != 0){
+                    alert1.setContentText("Details for item " + a_nameField.getText() + " added successfully");
+                    reset(actionEvent);
+                    alert1.showAndWait();
+                }
+                else{
+                    alert2.setContentText("Something unexpected error occurred");
+                    alert2.showAndWait();
+                }
+            }
+        }
+
+
+    }
+
+    private boolean isInt(TextField fieldInput){
+        try{
+            int input = Integer.parseInt(fieldInput.getText());
+
+            return false;
+        }catch(NumberFormatException e){
+
+            return true;
         }
     }
+
+//    public static boolean isNumeric(TextField fieldInput) {
+//        boolean isNumeric = true;
+//        String validateString = fieldInput.getText();
+//
+//        for(int i = 0; i < validateString.length(); i++){
+//            if (validateString.charAt(i). "[0-9]+") {
+//                isNumeric = false;
+//            }
+//        }
+//
+//        return isNumeric;
+//    }
 
     public void reset(ActionEvent actionEvent) {
         a_idField.setText("");
@@ -137,9 +190,31 @@ public class ManageStockController implements Initializable, ControlledScreen {
         a_priceField.setText("");
         a_volumeField.setText("");
         a_distributor_idField.setText("");
-        a_imageView.setImage(null);
-        a_addedOn.getEditor().clear();
+//        a_addedOn.getEditor().clear();
         a_expiryDate.getEditor().clear();
+
+        u_idField.setText("");
+        u_nameField.setText("");
+        u_priceField.setText("");
+        u_volumeField.setText("");
+        u_distributor_idField.setText("");
+//        u_addedOn.getEditor().clear();
+        u_expiryDate.getEditor().clear();
+
+        a_addedOn.setValue(LocalDate.now());
+        u_addedOn.setValue(LocalDate.now());
+
+        d_idField.setText("");
+        f_idField.setText("");
+
+        a_addedOn.setValue(LocalDate.now());
+        u_addedOn.setValue(LocalDate.now());
+
+        a_imageView.setImage(defaultImage);
+        f_imageView.setImage(defaultImage);
+
+        a_profitLogo.setImage(toolLogo);
+        u_profitLogo.setImage(toolLogo);
     }
 
     public void delete(ActionEvent actionEvent) {
@@ -151,7 +226,7 @@ public class ManageStockController implements Initializable, ControlledScreen {
             alert2.setContentText("Please provide item Id Number");
             alert2.showAndWait();
         } else{
-            s.setProduct_id(Integer.parseInt(d_idField.getText()));
+            s.setProduct_id(d_idField.getText());
             s = sdb.fDelete(s);
             if(s != null){
                 String name = s.getName();
@@ -180,7 +255,7 @@ public class ManageStockController implements Initializable, ControlledScreen {
             alert2.setContentText("Please provide item Id Number");
             alert2.showAndWait();
         } else{
-            s.setProduct_id(Integer.parseInt(f_idField.getText()));
+            s.setProduct_id(f_idField.getText());
             s = sdb.fDelete(s);
             if(s != null){
                 ObservableList<ManageStock> obj = sdb.find(s);
@@ -224,17 +299,29 @@ public class ManageStockController implements Initializable, ControlledScreen {
         }else if(u_priceField.getText() == null || u_priceField.getText().trim().isEmpty()){
             alert2.setContentText("Please provide item price");
             alert2.showAndWait();
+        }else if(isInt(u_priceField)){
+            alert2.setContentText("Only numbers are allowed for price");
+            alert2.showAndWait();
         }else if(u_volumeField.getText() == null || u_volumeField.getText().trim().isEmpty()){
             alert2.setContentText("Please provide item total volume");
+            alert2.showAndWait();
+        }else if(isInt(u_volumeField)){
+            alert2.setContentText("Only numbers are allowed for volume");
+            alert2.showAndWait();
+        }else if(u_addedOn.getValue() == null){
+            alert2.setContentText("Please provide date for the item");
+            alert2.showAndWait();
+        }else if(u_expiryDate.getValue() == null){
+            alert2.setContentText("Please provide expiry date for the item");
             alert2.showAndWait();
         }else if(u_distributor_idField.getText() == null || u_distributor_idField.getText().trim().isEmpty()){
             alert2.setContentText("Please provide distributor name for item");
             alert2.showAndWait();
         } else{
-            s.setProduct_id(Integer.parseInt(u_idField.getText()));
+            s.setProduct_id(u_idField.getText());
             s = sdb.fDelete(s);
             if(s != null){
-                s.setProduct_id(Integer.parseInt(u_idField.getText()));
+                s.setProduct_id(u_idField.getText());
                 s.setName(u_nameField.getText());
                 s.setPrice(Double.parseDouble(u_priceField.getText()));
                 s.setVolume(Integer.parseInt(u_volumeField.getText()));
@@ -310,6 +397,7 @@ public class ManageStockController implements Initializable, ControlledScreen {
         a_volumeField.setPromptText("Enter product volume");
         a_expiryDate.setPromptText("Select Date");
         a_distributor_idField.setPromptText("Enter distributor id");
+        a_profitField.setPromptText("Enter profit % for product");
 
         d_idField.setPromptText("Enter product id");
 
@@ -321,7 +409,30 @@ public class ManageStockController implements Initializable, ControlledScreen {
         u_volumeField.setPromptText("Enter product volume");
         u_expiryDate.setPromptText("Select Date");
         u_distributor_idField.setPromptText("Enter distributor id");
+        u_profitField.setPromptText("Enter profit % for product");
 
+        //Default image for image view
+        defaultImage = new Image("IMG/no-image.png");
+        a_imageView.setImage(defaultImage);
+        f_imageView.setImage(defaultImage);
+
+        //profitLogo image set
+        toolLogo = new Image("IMG/logo_question.png");
+        a_profitLogo.setImage(toolLogo);
+        u_profitLogo.setImage(toolLogo);
+        f_graphLogo.setImage(toolLogo);
+
+
+        //ToolTip for profit
+//        final Tooltip profit = new Tooltip();
+        String text = "For: \n\t0 to 75$ - 2.5% \n\t75 to 150$ - 4% \n\t150 to 500$ - 8% \n\t500 to 1500$ - 13%";
+        Tooltip.install(a_profitLogo, new Tooltip(text));
+        Tooltip.install(u_profitLogo, new Tooltip(text));
+
+        //ToolTip for profit
+        String graphText = "This graph gives graphical representation\nof how many products sold " +
+                "vs how many \ntimes complaints received for that\nparticular product.";
+        Tooltip.install(f_graphLogo, new Tooltip(graphText));
 
     }
 
@@ -363,8 +474,4 @@ public class ManageStockController implements Initializable, ControlledScreen {
     }
 
 
-    @Override
-    public void setScreenParent(ScreensController screenPage) {
-        myController=screenPage;
-    }
 }

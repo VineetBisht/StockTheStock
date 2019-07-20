@@ -1,20 +1,19 @@
-package backend;
-
 import java.io.File;
 
 public class ManageStock {
-    int product_id;
+    String product_id;
     String name;
     double price;
     int volume;
+    double profit_percent;
 
     File file;
 
     String distributor_id;
     String added_on, expiry_date;
 
-    public ManageStock(int product_id, String name, double price, int volume, String distributor_id, String added_on,
-                       String expiry_date) {
+    public ManageStock(String product_id, String name, double price, int volume, String distributor_id, String added_on,
+                       String expiry_date, double profit_percent) {
         this.product_id = product_id;
         this.name = name;
         this.price = price;
@@ -22,10 +21,11 @@ public class ManageStock {
         this.added_on = added_on;
         this.expiry_date = expiry_date;
         this.distributor_id = distributor_id;
+        this.profit_percent = profit_percent;
     }
 
-    public ManageStock(int product_id, String name, double price, int volume, String distributor_id, String added_on,
-                       String expiry_date, File file) {
+    public ManageStock(String product_id, String name, double price, int volume, String distributor_id, String added_on,
+                       String expiry_date, File file, double profit_percent) {
         this.product_id = product_id;
         this.name = name;
         this.price = price;
@@ -34,17 +34,18 @@ public class ManageStock {
         this.expiry_date = expiry_date;
         this.distributor_id = distributor_id;
         this.file = file;
+        this.profit_percent = profit_percent;
     }
 
     public ManageStock(){
 
     }
 
-    public int getProduct_id() {
+    public String getProduct_id() {
         return product_id;
     }
 
-    public void setProduct_id(int product_id) {
+    public void setProduct_id(String product_id) {
         this.product_id = product_id;
     }
 
@@ -102,5 +103,13 @@ public class ManageStock {
 
     public void setFile(File file) {
         this.file = file;
+    }
+
+    public double getProfit_percent() {
+        return profit_percent;
+    }
+
+    public void setProfit_percent(double profit_percent) {
+        this.profit_percent = profit_percent;
     }
 }

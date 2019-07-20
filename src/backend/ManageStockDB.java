@@ -1,5 +1,3 @@
-package backend;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -47,7 +45,8 @@ public class ManageStockDB {
 
 
     public int addItem(ManageStock i){
-        String addQuerry = "INSERT INTO stock2 (product_id, name, price, volume, added_on, expiry_date, distributor_id, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String addQuerry = "INSERT INTO stock (product_id, name, price, volume, added_on, expiry_date" +
+                ", distributor_id, image, profit_percent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         String added, expiry;
         long long_added, long_expiry;
         java.util.Date util_added, util_expiry;
@@ -59,7 +58,7 @@ public class ManageStockDB {
             //step1
             PreparedStatement pst = con.prepareStatement(addQuerry);
             //step 2
-            pst.setInt(1, i.getProduct_id());
+            pst.setString(1, i.getProduct_id());
             pst.setString(2, i.getName());
             pst.setDouble(3, i.getPrice());
             pst.setInt(4, i.getVolume());
@@ -81,6 +80,7 @@ public class ManageStockDB {
             FileInputStream fis = new FileInputStream(i.getFile());
 
             pst.setBinaryStream(8, (InputStream)fis, (int)i.getFile().length()); //length of file 3rd argument
+            pst.setDouble(9, i.getProfit_percent());
 
 
             //step 3
@@ -94,11 +94,40 @@ public class ManageStockDB {
             e.printStackTrace();
             return 0;
         }
-//        catch (ParseException e) {
-//            e.printStackTrace();
-//            return 0;
-//        }
 
+    }
+
+    public int addToExisting(ManageStock i){
+
+        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        String updateQuerry = "UPDATE stock SET volume = ?"
+                + "WHERE product_id = ?";
+        try{
+            PreparedStatement pst = con.prepareStatement(updateQuerry);
+
+            String newQuery = "SELECT volume FROM stock WHERE product_id = ?";
+            PreparedStatement pst2 = con.prepareStatement(newQuery);
+            pst2.setString(1, i.getProduct_id());
+            ResultSet rs= pst2.executeQuery();
+
+            int volume = 0;
+            if (rs.next()) {
+                volume = rs.getInt("volume");
+            }
+
+
+            int newVolume = volume + i.getVolume();
+
+            pst.setInt(1, newVolume);
+            pst.setString(2, i.getProduct_id());
+
+            rows = pst.executeUpdate();
+            return  rows;
+        }catch(SQLException e){
+            System.err.println(e);
+            return 0;
+        }
     }
 
     public int delete(ManageStock i){
@@ -106,7 +135,7 @@ public class ManageStockDB {
 
         try{
             PreparedStatement pst = con.prepareStatement(deleteQuerry);
-            pst.setInt(1, i.getProduct_id());
+            pst.setString(1, i.getProduct_id());
             rows = pst.executeUpdate();
             return  rows;
         }catch(SQLException e){
@@ -116,21 +145,22 @@ public class ManageStockDB {
     }
 
     public ManageStock fDelete(ManageStock i){
-        String q = "SELECT * FROM stock2 WHERE product_id = ?";
+        String q = "SELECT * FROM stock WHERE product_id = ?";
         try{
             PreparedStatement pST = con.prepareStatement(q);
-            pST.setInt(1, i.getProduct_id());
+            pST.setString(1, i.getProduct_id());
 
             ResultSet rs = pST.executeQuery();
             ManageStock stockItem = new ManageStock();
             if (rs.next()) {
-                stockItem.setProduct_id(rs.getInt("product_id"));
+                stockItem.setProduct_id(rs.getString("product_id"));
                 stockItem.setName(rs.getString("name"));
                 stockItem.setPrice(rs.getDouble("price"));
                 stockItem.setVolume(rs.getInt("volume"));
                 stockItem.setAdded_on(rs.getString("added_on"));
                 stockItem.setExpiry_date((rs.getString("expiry_date")));
                 stockItem.setDistributor_id(rs.getString("distributor_id"));
+                stockItem.setProfit_percent(rs.getDouble("profit_percent"));
 
                 return stockItem;
             }
@@ -150,7 +180,7 @@ public class ManageStockDB {
         SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
 
         String updateQuerry = "UPDATE stock SET name = ?, price = ?, volume = ?, added_on = ?, " +
-                "expiry_date = ?, distributor_id = ?, image = ?"
+                "expiry_date = ?, distributor_id = ?, image = ?, profit_percent = ?"
                 + "WHERE product_id = ?";
         try{
             PreparedStatement pst = con.prepareStatement(updateQuerry);
@@ -166,7 +196,8 @@ public class ManageStockDB {
             FileInputStream fis = new FileInputStream(i.getFile());
             pst.setBinaryStream(7, (InputStream)fis, (int)i.getFile().length()); //length of file 3rd argument
 
-            pst.setInt(8, i.getProduct_id());
+            pst.setDouble(8, i.getProfit_percent());
+            pst.setString(9, i.getProduct_id());
 
             rows = pst.executeUpdate();
             return  rows;
@@ -180,7 +211,7 @@ public class ManageStockDB {
     }
 
     public ObservableList<ManageStock> list(){
-        String listQuerry = "SELECT * FROM stock2 WHERE TO_DATE(expiry_date, 'DD-MON-YYYY') > current_date";
+        String listQuerry = "SELECT * FROM stock WHERE TO_DATE(expiry_date, 'DD-MON-YYYY') > current_date";
         ObservableList<ManageStock> obList = FXCollections.observableArrayList();
         String query2 = "WHERE TO_DATE(expiry_date, 'DD-MON-YYYY') - current_date <= 7 AND TO_DATE(expiry_date, 'DD-MON-YYYY') - current_date > 0";
 
@@ -190,9 +221,10 @@ public class ManageStockDB {
             ResultSet rs = pST.executeQuery();
             while(rs.next()){
 
-                obList.add(new ManageStock(rs.getInt("product_id"), rs.getString("name"),
+                obList.add(new ManageStock(rs.getString("product_id"), rs.getString("name"),
                         rs.getInt("price"), rs.getInt("volume"),
-                        rs.getString("distributor_id"), rs.getString("added_on"), rs.getString("expiry_date")));
+                        rs.getString("distributor_id"), rs.getString("added_on"),
+                        rs.getString("expiry_date"), rs.getDouble("profit_percent")));
 
             }
 
@@ -205,7 +237,7 @@ public class ManageStockDB {
     }
 
     public ObservableList<ManageStock> expiredList(){
-        String listQuerry = "SELECT * FROM stock2 WHERE TO_DATE(expiry_date, 'DD-MON-YYYY') < current_date";
+        String listQuerry = "SELECT * FROM stock WHERE TO_DATE(expiry_date, 'DD-MON-YYYY') < current_date";
         ObservableList<ManageStock> obList = FXCollections.observableArrayList();
 
         try{
@@ -213,9 +245,10 @@ public class ManageStockDB {
             ResultSet rs = pST.executeQuery();
             while(rs.next()){
 
-                obList.add(new ManageStock(rs.getInt("product_id"), rs.getString("name"),
+                obList.add(new ManageStock(rs.getString("product_id"), rs.getString("name"),
                         rs.getInt("price"), rs.getInt("volume"),
-                        rs.getString("distributor_id"), rs.getString("added_on"), rs.getString("expiry_date")));
+                        rs.getString("distributor_id"), rs.getString("added_on")
+                        , rs.getString("expiry_date"), rs.getDouble("profit_percent")));
 
             }
 
@@ -228,18 +261,19 @@ public class ManageStockDB {
     }
 
     public ObservableList<ManageStock> find(ManageStock i) {
-        String findQuerry = "SELECT * FROM stock2 WHERE product_id = ?";
+        String findQuerry = "SELECT * FROM stock WHERE product_id = ?";
         ObservableList<ManageStock> obList = FXCollections.observableArrayList();
         try {
             PreparedStatement pST = con.prepareStatement(findQuerry);
-            pST.setInt(1, i.getProduct_id());
+            pST.setString(1, i.getProduct_id());
 
             ResultSet rs = pST.executeQuery();
             if (rs.next()) {
 
-                obList.add(new ManageStock(rs.getInt("product_id"), rs.getString("name"),
+                obList.add(new ManageStock(rs.getString("product_id"), rs.getString("name"),
                         rs.getInt("price"), rs.getInt("volume"),
-                        rs.getString("distributor_id"), rs.getString("added_on"), rs.getString("expiry_date")));
+                        rs.getString("distributor_id"), rs.getString("added_on")
+                        , rs.getString("expiry_date"), rs.getDouble("profit_percent")));
                 return obList;
             } else {
                 return null;
@@ -253,11 +287,11 @@ public class ManageStockDB {
 
 
     public InputStream findImage(ManageStock i ){
-        String findQuerry = "SELECT * FROM stock2 WHERE product_id = ?";
+        String findQuerry = "SELECT * FROM stock WHERE product_id = ?";
         InputStream is = null;
         try {
             PreparedStatement pST = con.prepareStatement(findQuerry);
-            pST.setInt(1, i.getProduct_id());
+            pST.setString(1, i.getProduct_id());
 
             ResultSet rs = pST.executeQuery();
             if (rs.next()) {
@@ -271,5 +305,7 @@ public class ManageStockDB {
         return is;
 
     }
+
+
 }
 
