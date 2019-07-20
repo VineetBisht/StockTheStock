@@ -16,7 +16,7 @@ public class StockTheStock extends Application {
         mainContainer.loadScreen(Files.employeeMain, Files.employeeMainFile);
         mainContainer.loadScreen(Files.login,Files.loginFile);
         mainContainer.loadScreen(Files.SignUp,Files.SignUpFile);
-        mainContainer.loadScreen(Files.manageEmp,Files.manageEmpFile);
+        mainContainer.loadScreen(Files.manageStock,Files.manageStockFile);
         mainContainer.loadScreen(Files.managerMain,Files.managerMainFile);
         mainContainer.loadScreen(Files.billing,Files.billingFile);
         mainContainer.setStage(stage);

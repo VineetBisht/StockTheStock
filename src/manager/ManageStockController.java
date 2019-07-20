@@ -14,7 +14,6 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -22,7 +21,6 @@ import javafx.stage.Stage;
 import javafx.scene.image.ImageView ;
 import javafx.scene.image.Image;
 //import javax.swing.text.html.ImageView;
-import java.awt.*;
 import java.io.*;
 import java.net.URL;
 import java.time.LocalDate;
@@ -123,13 +121,13 @@ public class ManageStockController implements Initializable, ControlledScreen {
         u_profitField.setPromptText("Enter profit % for product");
 
         //Default image for image view
-        defaultImage = new Image("IMG/no-image.png");
+        defaultImage = new Image("resources/images/no-image.png");
         a_imageView.setImage(defaultImage);
         f_imageView.setImage(defaultImage);
         u_imageView.setImage(defaultImage);
 
         //profitLogo image set
-        toolLogo = new Image("IMG/logo_question.png");
+        toolLogo = new Image("resources/images/logo_question.png");
         a_profitLogo.setImage(toolLogo);
         u_profitLogo.setImage(toolLogo);
         f_graphLogo.setImage(toolLogo);
@@ -308,6 +306,11 @@ public class ManageStockController implements Initializable, ControlledScreen {
 
         //delete tab
         d_idField.setText("");
+    }
+
+    @FXML
+    void close(ActionEvent event) {
+        myController.getStage().hide();
     }
 
     //This method will be used to delete records from the database for stocks
