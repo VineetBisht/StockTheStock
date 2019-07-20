@@ -1,10 +1,7 @@
 <br />
 <p align="center">
-  <a>
-   ![Alt text](/src/resources/images/Logo.png?raw=true "Logo")
-  </a>
 
-  <h3 align="center">Stock The Stock</h3>
+  <h1 align="center">Stock The Stock</h1>
 
   <p align="center">
     Best way to manage your stock inventory
