@@ -1,3 +1,9 @@
+package manager;
+
+import backend.ControlledScreen;
+import backend.ManageStock;
+import backend.ManageStockDB;
+import backend.ScreensController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,8 +29,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class ManageStockController implements Initializable {
+public class ManageStockController implements Initializable, ControlledScreen {
 
+    ScreensController myController;
     //---------------------------Controller for ManageStock Page(variables + onAction methods)--------------------------
     @FXML
     private AnchorPane ManagerMain;
@@ -545,4 +552,8 @@ public class ManageStockController implements Initializable {
     }
 
 
+    @Override
+    public void setScreenParent(ScreensController screenPage) {
+        screenPage=myController;
+    }
 }

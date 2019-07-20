@@ -1,3 +1,5 @@
+package backend;
+
 import java.io.File;
 
 //Main class that will handle stock on the database
