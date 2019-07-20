@@ -1,7 +1,6 @@
-package backend;
-
 import java.io.File;
 
+//Main class that will handle stock on the database
 public class ManageStock {
     String product_id;
     String name;
@@ -14,6 +13,7 @@ public class ManageStock {
     String distributor_id;
     String added_on, expiry_date;
 
+    //Constructors will be used while loading table views while showing stocks
     public ManageStock(String product_id, String name, double price, int volume, String distributor_id, String added_on,
                        String expiry_date, double profit_percent) {
         this.product_id = product_id;

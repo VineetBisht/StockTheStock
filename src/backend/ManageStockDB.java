@@ -1,4 +1,16 @@
-package backend;
+
+
+
+/*
+
+    * This java file is used to contain methods that will be used to fire respective sql query to
+      fetch respective data from the database.
+    * Here preapredStatement is being used to create queries as well as executing it(by using respective
+      methods)
+    *
+
+ */
+
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -49,17 +61,17 @@ public class ManageStockDB {
     public int addItem(ManageStock i){
         String addQuerry = "INSERT INTO stock (product_id, name, price, volume, added_on, expiry_date" +
                 ", distributor_id, image, profit_percent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        String added, expiry;
-        long long_added, long_expiry;
-        java.util.Date util_added, util_expiry;
-        java.sql.Date sql_added, sql_expiry;
-        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
+//        String added, expiry;
+//        long long_added, long_expiry;
+//        java.util.Date util_added, util_expiry;
+//        java.sql.Date sql_added, sql_expiry;
+//        SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
 
 //        SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy");
         try{
-            //step1
+
             PreparedStatement pst = con.prepareStatement(addQuerry);
-            //step 2
+
             pst.setString(1, i.getProduct_id());
             pst.setString(2, i.getName());
             pst.setDouble(3, i.getPrice());
@@ -99,7 +111,61 @@ public class ManageStockDB {
 
     }
 
-    public int addToExisting(ManageStock i){
+    public int addItemIdToProductCounter(ManageStock i){
+
+        String addQuerry = "INSERT INTO productcounter (product_id, counter) VALUES (?, ?)";
+        try{
+
+            PreparedStatement pst = con.prepareStatement(addQuerry);
+            int counter = 0;
+            pst.setString(1, i.getProduct_id());
+            pst.setInt(2, counter);
+            rows = pst.executeUpdate();
+            return rows;
+        }catch(SQLException e){
+            System.err.println(e);
+            return 0;
+        }
+
+    }
+
+
+    public int[] setGrapgh(ManageStock i){
+        int complaintCounter = 0, soldCounter = 0;
+        String complaintQuerry = "SELECT counter FROM complaintscounter WHERE pid = ?";
+        String soldQuerry = "SELECT counter FROM product_counter WHERE product_id = ?";        //change according to vineet db
+        try{
+
+            PreparedStatement pstComplaint = con.prepareStatement(complaintQuerry);
+            PreparedStatement pstSold = con.prepareStatement(soldQuerry);
+
+            pstComplaint.setString(1, i.getProduct_id());
+            pstSold.setString(1, i.getProduct_id());
+
+            ResultSet resultComplaint = pstComplaint.executeQuery();
+            if (resultComplaint.next()) {
+                complaintCounter = resultComplaint.getInt("counter");
+            }
+
+            ResultSet resultSold = pstSold.executeQuery();
+            if (resultSold.next()) {
+                soldCounter = resultSold.getInt("counter");
+            }
+
+            //All values fetched
+            int[] counters = new int[2];
+            counters[0] = soldCounter;
+            counters[1] = complaintCounter;
+            return counters;
+
+        }catch(SQLException e){
+            System.err.println(e);
+            return null;
+        }
+
+    }
+
+        public int addToExisting(ManageStock i){
 
         SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
 //        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -180,7 +246,7 @@ public class ManageStockDB {
         java.util.Date util_added, util_expiry;
         java.sql.Date sql_added, sql_expiry;
         SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
-
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
         String updateQuerry = "UPDATE stock SET name = ?, price = ?, volume = ?, added_on = ?, " +
                 "expiry_date = ?, distributor_id = ?, image = ?, profit_percent = ?"
                 + "WHERE product_id = ?";
@@ -219,7 +285,7 @@ public class ManageStockDB {
 
         try{
             PreparedStatement pST = con.prepareStatement(listQuerry);
-            con.prepareStatement(query2);
+            PreparedStatement pST2 = con.prepareStatement(query2);
             ResultSet rs = pST.executeQuery();
             while(rs.next()){
 

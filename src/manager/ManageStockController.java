@@ -1,12 +1,10 @@
-package manager;
-
-import backend.ManageStock;
-import backend.ManageStockDB;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.*;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -31,7 +29,9 @@ public class ManageStockController implements Initializable {
     @FXML
     private AnchorPane ManagerMain;
     @FXML
-    private ImageView a_imageView, f_imageView;
+    private PieChart f_pieChart;
+    @FXML
+    private ImageView a_imageView, f_imageView, u_imageView;
     @FXML
     private ImageView a_profitLogo, u_profitLogo;
     @FXML
@@ -69,17 +69,87 @@ public class ManageStockController implements Initializable {
     @FXML
     private Tab viewTab, expiredTab;
 
+    ObservableList<PieChart.Data> pieList = FXCollections.observableArrayList();
+    ObservableList<PieChart.Data> pieDefaultList = FXCollections.observableArrayList();
+
 
     Tooltip tool = new Tooltip();
     private FileInputStream fio;
     private File file;
     Image defaultImage, toolLogo;     //To hold default image
-    int result = 0;
+    int result = 0, result2 = 0;
     Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
     Alert alert2 = new Alert(Alert.AlertType.ERROR);
 
 
+    //This method will run whenever the stage of this gui will be loaded
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        //Populating table views
+        populate(v_idColumn, v_nameColumn, v_priceColumn, v_volumeColumn, v_addedOn, v_expiryDate, v_distributorColumn);
+        populate(f_idColumn, f_nameColumn, f_priceColumn, f_volumeColumn, f_addedOn, f_expiryDate, f_distributorColumn);
+        populate(e_idColumn, e_nameColumn, e_priceColumn, e_volumeColumn, e_addedOn, e_expiryDate, e_distributorColumn);
 
+        //setting current date in date picker fields
+        a_addedOn.setValue(LocalDate.now());
+        u_addedOn.setValue(LocalDate.now());
+
+        //Setting place holders
+        a_idField.setPromptText("Enter product id");
+        a_nameField.setPromptText("Enter product name");
+        a_priceField.setPromptText("Enter product price");
+        a_volumeField.setPromptText("Enter product volume");
+        a_expiryDate.setPromptText("Select Date");
+        a_distributor_idField.setPromptText("Enter distributor id");
+        a_profitField.setPromptText("Enter profit % for product");
+
+        d_idField.setPromptText("Enter product id");
+
+        f_idField.setPromptText("Enter product id");
+
+        u_idField.setPromptText("Enter product id");
+        u_nameField.setPromptText("Enter product name");
+        u_priceField.setPromptText("Enter product price");
+        u_volumeField.setPromptText("Enter product volume");
+        u_expiryDate.setPromptText("Select Date");
+        u_distributor_idField.setPromptText("Enter distributor id");
+        u_profitField.setPromptText("Enter profit % for product");
+
+        //Default image for image view
+        defaultImage = new Image("IMG/no-image.png");
+        a_imageView.setImage(defaultImage);
+        f_imageView.setImage(defaultImage);
+        u_imageView.setImage(defaultImage);
+
+        //profitLogo image set
+        toolLogo = new Image("IMG/logo_question.png");
+        a_profitLogo.setImage(toolLogo);
+        u_profitLogo.setImage(toolLogo);
+        f_graphLogo.setImage(toolLogo);
+
+
+        //ToolTip for profit
+//        final Tooltip profit = new Tooltip();
+        String text = "For: \n\t0 to 75$ - 2.5% \n\t75 to 150$ - 4% \n\t150 to 500$ - 8% \n\t500 to 1500$ - 13%";
+        Tooltip.install(a_profitLogo, new Tooltip(text));
+        Tooltip.install(u_profitLogo, new Tooltip(text));
+
+        //ToolTip for profit
+        String graphText = "This graph gives graphical representation\nof how many products sold " +
+                "vs how many \ntimes complaints received for that\nparticular product.";
+        Tooltip.install(f_graphLogo, new Tooltip(graphText));
+
+
+        //Default PieChart
+        int complaintDefault = 1, soldDefault = 1;
+
+        pieDefaultList.add(new PieChart.Data("Sold: " + 0, soldDefault));
+        pieDefaultList.add(new PieChart.Data("Complaints: " + 0, complaintDefault));
+
+        f_pieChart.setData(pieDefaultList);
+    }
+
+    //used for setting defaults in prompt boxes
     public void setAlert(){
         alert1.setTitle("Stock Records");
         alert1.setHeaderText(null);
@@ -87,8 +157,11 @@ public class ManageStockController implements Initializable {
         alert2.setHeaderText(null);
     }
 
+    //This method will run whenever add button is clicked on add item tab
     public void add(ActionEvent actionEvent) {
         ManageStock s = new ManageStock();
+
+        ManageStock snew = new ManageStock();
         ManageStockDB sdb = new ManageStockDB();
         setAlert();
         result = 0;
@@ -139,17 +212,19 @@ public class ManageStockController implements Initializable {
                 alert2.setContentText("Please provide distributor name for item");
                 alert2.showAndWait();
             }else{
-                s.setProduct_id(a_idField.getText());
-                s.setName(a_nameField.getText());
-                s.setPrice(Double.parseDouble(a_priceField.getText()));
-                s.setVolume(Integer.parseInt(a_volumeField.getText()));
-                s.setDistributor_id(a_distributor_idField.getText());
-                s.setAdded_on(a_addedOn.getValue().format(DateTimeFormatter.ofPattern("dd/MMM/yyyy")));
-                s.setExpiry_date(a_expiryDate.getValue().format(DateTimeFormatter.ofPattern("dd/MMM/yyyy")));
-                s.setFile(file);
+                snew.setProduct_id(a_idField.getText());
+                snew.setName(a_nameField.getText());
+                snew.setPrice(Double.parseDouble(a_priceField.getText()));
+                snew.setVolume(Integer.parseInt(a_volumeField.getText()));
+                snew.setDistributor_id(a_distributor_idField.getText());
+                snew.setAdded_on(a_addedOn.getValue().format(DateTimeFormatter.ofPattern("dd/MMM/yyyy")));
+                snew.setExpiry_date(a_expiryDate.getValue().format(DateTimeFormatter.ofPattern("dd/MMM/yyyy")));
+                snew.setProfit_percent(Double.parseDouble(a_profitField.getText()));
+                snew.setFile(file);
 
-                result = sdb.addItem(s);
-                if(result != 0){
+                result = sdb.addItem(snew);
+                result2 = sdb.addItemIdToProductCounter(snew);      //Adding product id to productCounter table
+                if(result != 0 && result2 != 0){
                     alert1.setContentText("Details for item " + a_nameField.getText() + " added successfully");
                     reset(actionEvent);
                     alert1.showAndWait();
@@ -164,6 +239,7 @@ public class ManageStockController implements Initializable {
 
     }
 
+    //this method is used to check if added value for price or volume is integer or not
     private boolean isInt(TextField fieldInput){
         try{
             int input = Integer.parseInt(fieldInput.getText());
@@ -188,7 +264,9 @@ public class ManageStockController implements Initializable {
 //        return isNumeric;
 //    }
 
+    //This method is being used to reset the fields in respective table views
     public void reset(ActionEvent actionEvent) {
+        //add tab
         a_idField.setText("");
         a_nameField.setText("");
         a_priceField.setText("");
@@ -196,7 +274,13 @@ public class ManageStockController implements Initializable {
         a_distributor_idField.setText("");
 //        a_addedOn.getEditor().clear();
         a_expiryDate.getEditor().clear();
+        a_addedOn.setValue(LocalDate.now());
+        a_imageView.setImage(defaultImage);
+        a_profitLogo.setImage(toolLogo);
+//        a_addedOn.setValue(LocalDate.now());
 
+
+        //update tab
         u_idField.setText("");
         u_nameField.setText("");
         u_priceField.setText("");
@@ -204,23 +288,22 @@ public class ManageStockController implements Initializable {
         u_distributor_idField.setText("");
 //        u_addedOn.getEditor().clear();
         u_expiryDate.getEditor().clear();
-
-        a_addedOn.setValue(LocalDate.now());
         u_addedOn.setValue(LocalDate.now());
-
-        d_idField.setText("");
-        f_idField.setText("");
-
-        a_addedOn.setValue(LocalDate.now());
-        u_addedOn.setValue(LocalDate.now());
-
-        a_imageView.setImage(defaultImage);
-        f_imageView.setImage(defaultImage);
-
-        a_profitLogo.setImage(toolLogo);
         u_profitLogo.setImage(toolLogo);
+        u_imageView.setImage(defaultImage);
+//        u_addedOn.setValue(LocalDate.now());
+
+        //find tab
+        f_idField.setText("");
+        f_pieChart.setData(pieDefaultList);
+        f_imageView.setImage(defaultImage);
+        findTable.setItems(null);
+
+        //delete tab
+        d_idField.setText("");
     }
 
+    //This method will be used to delete records from the database for stocks
     public void delete(ActionEvent actionEvent) {
         ManageStock s = new ManageStock();
         ManageStockDB sdb = new ManageStockDB();
@@ -250,7 +333,10 @@ public class ManageStockController implements Initializable {
         }
     }
 
+    //This method is being used to search/find stock on the basis of
+    // provided product id and also to generate graph
     public void find(ActionEvent actionEvent) throws IOException {
+        int soldCounter = 0, complaintCounter = 0;
         ManageStock s = new ManageStock();
         ManageStockDB sdb = new ManageStockDB();
         setAlert();
@@ -282,74 +368,87 @@ public class ManageStockController implements Initializable {
                     alert2.setContentText("Something unexpected error occurred");
                     alert2.showAndWait();
                 }
+
+                //setting graph
+                int[] parameterCounter = sdb.setGrapgh(s);
+                soldCounter = parameterCounter[0];
+                complaintCounter = parameterCounter[1];
+
+                pieList = FXCollections.observableArrayList();
+                pieList.add(new PieChart.Data("Sold: " + soldCounter, soldCounter));
+                pieList.add(new PieChart.Data("Complaints: " + complaintCounter, complaintCounter));
+                f_pieChart.setData(pieList);
+
             }else{
-                alert2.setContentText("There is no Item with Item Id: " + a_idField.getText());
+
+                reset(actionEvent);
+                alert2.setContentText("There is no Item with Item Id: " + f_idField.getText());
                 alert2.showAndWait();
             }
         }
     }
 
+    //This method is being used to update records for stock in the database
     public void update(ActionEvent actionEvent) {
         ManageStock s = new ManageStock();
         ManageStockDB sdb = new ManageStockDB();
         setAlert();
         result = 0;
-        if(u_idField.getText() == null || u_idField.getText().trim().isEmpty()) {
-            alert2.setContentText("Please provide item Id Number");
-            alert2.showAndWait();
-        } else if(u_nameField.getText() == null || u_nameField.getText().trim().isEmpty()){
-            alert2.setContentText("Please provide item Name");
-            alert2.showAndWait();
-        }else if(u_priceField.getText() == null || u_priceField.getText().trim().isEmpty()){
-            alert2.setContentText("Please provide item price");
-            alert2.showAndWait();
-        }else if(isInt(u_priceField)){
-            alert2.setContentText("Only numbers are allowed for price");
-            alert2.showAndWait();
-        }else if(u_volumeField.getText() == null || u_volumeField.getText().trim().isEmpty()){
-            alert2.setContentText("Please provide item total volume");
-            alert2.showAndWait();
-        }else if(isInt(u_volumeField)){
-            alert2.setContentText("Only numbers are allowed for volume");
-            alert2.showAndWait();
-        }else if(u_addedOn.getValue() == null){
-            alert2.setContentText("Please provide date for the item");
-            alert2.showAndWait();
-        }else if(u_expiryDate.getValue() == null){
-            alert2.setContentText("Please provide expiry date for the item");
-            alert2.showAndWait();
-        }else if(u_distributor_idField.getText() == null || u_distributor_idField.getText().trim().isEmpty()){
-            alert2.setContentText("Please provide distributor name for item");
-            alert2.showAndWait();
-        } else{
-            s.setProduct_id(u_idField.getText());
-            s = sdb.fDelete(s);
-            if(s != null){
-                s.setProduct_id(u_idField.getText());
-                s.setName(u_nameField.getText());
-                s.setPrice(Double.parseDouble(u_priceField.getText()));
-                s.setVolume(Integer.parseInt(u_volumeField.getText()));
-                s.setDistributor_id(u_distributor_idField.getText());
-                s.setAdded_on(u_addedOn.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-                s.setExpiry_date(u_expiryDate.getValue().format(DateTimeFormatter.ofPattern("dd-MM-yyyy")));
-                result = sdb.update(s);
-                if(result != 0){
-                    alert1.setContentText("Record for Item with Item Id: " + u_idField.getText() + " updated successfully");
-                    alert1.showAndWait();
-                }
-                else{
-                    alert2.setContentText("Something unexpected error occurred");
-                    alert2.showAndWait();
-                }
-            }
-            else{
-                alert2.setContentText("There is no Item with Item Id: " + u_idField.getText());
+        s.setProduct_id(u_idField.getText());
+        s = sdb.fDelete(s);
+        if(s != null) {
+            if(u_idField.getText() == null || u_idField.getText().trim().isEmpty()) {
+                alert2.setContentText("Please provide item Id Number");
                 alert2.showAndWait();
+            } else if(u_nameField.getText() == null || u_priceField.getText() == null ||
+                    u_volumeField.getText() == null || u_addedOn.getValue() == null ||
+                    u_expiryDate.getValue() == null || u_distributor_idField.getText() == null ||
+                    u_nameField.getText().trim().isEmpty()){
+                alert1.setContentText("Nothing is updated for item with id " + u_idField.getText());
+                alert1.showAndWait();
+            }else if(u_priceField.getLength() > 0 && isInt(u_priceField)){
+                alert2.setContentText("Only numbers are allowed for price");
+                alert2.showAndWait();
+            }else if(u_volumeField.getLength()> 0 && isInt(u_volumeField)){
+                alert2.setContentText("Only numbers are allowed for volume");
+                alert2.showAndWait();
+            } else{
+                s.setProduct_id(u_idField.getText());
+                s = sdb.fDelete(s);
+                if(s != null){
+                    s.setProduct_id(u_idField.getText());
+                    s.setName(u_nameField.getText());
+                    s.setPrice(Double.parseDouble(u_priceField.getText()));
+                    s.setVolume(Integer.parseInt(u_volumeField.getText()));
+                    s.setDistributor_id(u_distributor_idField.getText());
+                    s.setAdded_on(u_addedOn.getValue().format(DateTimeFormatter.ofPattern("dd/MMM/yyyy")));
+                    s.setExpiry_date(u_expiryDate.getValue().format(DateTimeFormatter.ofPattern("dd/MMM/yyyy")));
+                    s.setProfit_percent(Double.parseDouble(u_profitField.getText()));
+                    s.setFile(file);
+                    result = sdb.update(s);
+                    if(result != 0){
+                        alert1.setContentText("Record for Item with Item Id: " + u_idField.getText() + " updated successfully");
+                        reset(actionEvent);
+                        alert1.showAndWait();
+                    }
+                    else{
+                        alert2.setContentText("Something unexpected error occurred");
+                        alert2.showAndWait();
+                    }
+                }
+
             }
+
         }
+        else{
+            alert2.setContentText("There is no Item with Item Id: " + u_idField.getText());
+            alert2.showAndWait();
+        }
+
     }
 
 
+    //This method is being used to list database records for stock on the view stock tab of table view
     @FXML
     public void list(Event ev) {
         setAlert();
@@ -368,6 +467,8 @@ public class ManageStockController implements Initializable {
         }
     }
 
+    //This method is being used to list database records for stock that are expired on the
+    // expired stock tab of table view
     @FXML
     public void expiredList(Event event) {
         setAlert();
@@ -386,60 +487,8 @@ public class ManageStockController implements Initializable {
         }
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        populate(v_idColumn, v_nameColumn, v_priceColumn, v_volumeColumn, v_addedOn, v_expiryDate, v_distributorColumn);
-        populate(f_idColumn, f_nameColumn, f_priceColumn, f_volumeColumn, f_addedOn, f_expiryDate, f_distributorColumn);
-        populate(e_idColumn, e_nameColumn, e_priceColumn, e_volumeColumn, e_addedOn, e_expiryDate, e_distributorColumn);
 
-        a_addedOn.setValue(LocalDate.now());
-        u_addedOn.setValue(LocalDate.now());
-
-        a_idField.setPromptText("Enter product id");
-        a_nameField.setPromptText("Enter product name");
-        a_priceField.setPromptText("Enter product price");
-        a_volumeField.setPromptText("Enter product volume");
-        a_expiryDate.setPromptText("Select Date");
-        a_distributor_idField.setPromptText("Enter distributor id");
-        a_profitField.setPromptText("Enter profit % for product");
-
-        d_idField.setPromptText("Enter product id");
-
-        f_idField.setPromptText("Enter product id");
-
-        u_idField.setPromptText("Enter product id");
-        u_nameField.setPromptText("Enter product name");
-        u_priceField.setPromptText("Enter product price");
-        u_volumeField.setPromptText("Enter product volume");
-        u_expiryDate.setPromptText("Select Date");
-        u_distributor_idField.setPromptText("Enter distributor id");
-        u_profitField.setPromptText("Enter profit % for product");
-
-        //Default image for image view
-        defaultImage = new Image("IMG/no-image.png");
-        a_imageView.setImage(defaultImage);
-        f_imageView.setImage(defaultImage);
-
-        //profitLogo image set
-        toolLogo = new Image("IMG/logo_question.png");
-        a_profitLogo.setImage(toolLogo);
-        u_profitLogo.setImage(toolLogo);
-        f_graphLogo.setImage(toolLogo);
-
-
-        //ToolTip for profit
-//        final Tooltip profit = new Tooltip();
-        String text = "For: \n\t0 to 75$ - 2.5% \n\t75 to 150$ - 4% \n\t150 to 500$ - 8% \n\t500 to 1500$ - 13%";
-        Tooltip.install(a_profitLogo, new Tooltip(text));
-        Tooltip.install(u_profitLogo, new Tooltip(text));
-
-        //ToolTip for profit
-        String graphText = "This graph gives graphical representation\nof how many products sold " +
-                "vs how many \ntimes complaints received for that\nparticular product.";
-        Tooltip.install(f_graphLogo, new Tooltip(graphText));
-
-    }
-
+    //This method is being used in initialize method to populate database records
     private void populate(TableColumn<ManageStock, Integer> idColumn
             , TableColumn<ManageStock, String> nameColumn
             , TableColumn<ManageStock, Double> priceColumn
@@ -456,7 +505,7 @@ public class ManageStockController implements Initializable {
         distributorColumn.setCellValueFactory(new PropertyValueFactory<>("distributor_id"));
     }
 
-
+    //This method is used to handle/choose image for a particular product on add item tab of table view
     public void fileChooser(ActionEvent actionEvent) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose product image");
@@ -473,6 +522,24 @@ public class ManageStockController implements Initializable {
 
     }
 
+    //This method is used to handle/choose image for a particular product on update item tab of table view
+    public void fileChooser2(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose product image");
+
+        Stage stage = (Stage)ManagerMain.getScene().getWindow();
+
+        file = fileChooser.showOpenDialog(stage);
+
+
+        if(file != null){
+            Image image = new Image(file.toURI().toString());
+            u_imageView.setImage(image);
+        }
+
+    }
+
+    //This method is being used to update date
     public void updateDate(Event event) {
         u_addedOn.setValue(LocalDate.now());
     }
