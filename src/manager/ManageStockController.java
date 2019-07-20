@@ -310,7 +310,7 @@ public class ManageStockController implements Initializable, ControlledScreen {
 
     @FXML
     void close(ActionEvent event) {
-        myController.getStage().hide();
+        System.exit(0);
     }
 
     //This method will be used to delete records from the database for stocks
