@@ -4,28 +4,18 @@ import backend.ControlledScreen;
 import backend.Datatable;
 import backend.Files;
 import backend.ScreensController;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
-import javafx.concurrent.Task;
-import javafx.scene.control.Alert;
 import org.apache.commons.lang.time.StopWatch;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import javafx.util.Duration;
-
-import javax.xml.crypto.Data;
 import java.net.URL;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
-import java.util.concurrent.TimeUnit;
 
 public class EmployeeMainController implements ControlledScreen, Initializable {
     ScreensController myController, mainController;

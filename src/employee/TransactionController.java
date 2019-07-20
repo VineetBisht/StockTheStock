@@ -17,7 +17,6 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.*;
 
@@ -77,7 +76,7 @@ public class TransactionController implements ControlledScreen, Initializable {
         if (obj == null) {
             txt_price.setText("");
         }else{
-            list.add(edb.findObject(Integer.parseInt(txt_product.getText()), Integer.parseInt(txt_qty.getText())));
+            list.add(obj);
         }
     }
 
@@ -93,13 +92,11 @@ public class TransactionController implements ControlledScreen, Initializable {
         try{
             InputStream input = new FileInputStream(new File(Files.jasperResourcePath));
             JasperDesign jasperDesign = JRXmlLoader.load(input);
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            JasperCompileManager.compileReport(jasperDesign);
             List<Cart> li= new ArrayList<>(list);
 
-            for(Cart i: li)System.out.println(i.getProduct_id());
-
             JRBeanCollectionDataSource beanCollectionDataSource= new JRBeanCollectionDataSource(li);
-            Map parameters=new HashMap();
+            Map<String, Object> parameters = new HashMap<String, Object>();
             parameters.put("ds",beanCollectionDataSource);
             JasperPrint js = JasperFillManager.fillReport(Files.jasperPath+"Bill.jasper",parameters,beanCollectionDataSource);
             OutputStream os=new FileOutputStream(new File(Files.jasperPath+new Date().getTime()+".pdf"));
@@ -176,11 +173,15 @@ public class TransactionController implements ControlledScreen, Initializable {
     }
 
     private void calc(String newValue) {
-        if(!(newValue.isEmpty() || txt_product.getText().isEmpty() ||txt_qty.getText().isEmpty())) {
-            Cart item=edb.findObject(Integer.parseInt(txt_product.getText()),Integer.parseInt(txt_qty.getText()));
-            System.out.println(item.getVolume());
-            txt_price.setText(String.valueOf(item.getVolume()*item.getPrice()));
-        }else {
+        try{
+            if(!(newValue.isEmpty() || txt_product.getText().isEmpty() ||txt_qty.getText().isEmpty())) {
+                Cart item=edb.findObject(Integer.parseInt(txt_product.getText()),Integer.parseInt(txt_qty.getText()));
+                System.out.println(item.getVolume());
+                txt_price.setText(String.valueOf(item.getVolume()*item.getPrice()));
+            }else {
+                txt_price.setText("");
+            }
+        }catch(Exception e){
             txt_price.setText("");
         }
     }
