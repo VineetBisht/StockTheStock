@@ -76,7 +76,7 @@ git clone https://github.com/2019-summer-db-java-itc5201-b/project-brogrammers
 
 Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
 
-![Logo](project-brogrammers/tree/master/src/resources/images/Logo.png?raw=true "Title")
+![Logo](src/resources/images/Logo.png?raw=true "Logo")
 
 
 ## Roadmap
