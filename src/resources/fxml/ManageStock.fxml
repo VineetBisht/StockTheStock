@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
@@ -14,7 +15,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="ManagerMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="824.0" stylesheets="@../css/DarkTheme.css" xmlns="http://javafx.com/javafx/8.0.999-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="manager.ManageStockController">
+<AnchorPane fx:id="ManagerMain" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="534.0" prefWidth="824.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ManageStockController">
     <children>
         <TabPane layoutY="37.0" prefHeight="497.0" prefWidth="826.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
@@ -22,13 +23,13 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="452.0" prefWidth="749.0" style="-fx-background-color: White;">
                             <children>
-                                <Label layoutX="417.0" layoutY="50.0" text="Name" />
+                                <Label layoutX="438.0" layoutY="50.0" text="Name" />
                                 <TextField fx:id="a_idField" layoutX="150.0" layoutY="45.0" />
                                 <Label layoutX="61.0" layoutY="97.0" text="Price" />
                                 <TextField fx:id="a_nameField" layoutX="509.0" layoutY="45.0" />
                                 <Label layoutX="71.0" layoutY="50.0" text="Id" />
                                 <TextField fx:id="a_priceField" layoutX="150.0" layoutY="92.0" />
-                                <Label layoutX="412.0" layoutY="97.0" text="Volume" />
+                                <Label layoutX="424.0" layoutY="97.0" text="Volume" />
                                 <TextField fx:id="a_volumeField" layoutX="509.0" layoutY="92.0" />
                                 <Label layoutX="34.0" layoutY="201.0" text="Distributor Id" />
                                 <TextField fx:id="a_distributor_idField" layoutX="151.0" layoutY="196.0" />
@@ -39,8 +40,11 @@
                         <DatePicker fx:id="a_addedOn" layoutX="151.0" layoutY="145.0" prefHeight="31.0" prefWidth="187.0" />
                         <DatePicker fx:id="a_expiryDate" layoutX="509.0" layoutY="145.0" prefHeight="31.0" prefWidth="187.0" />
                         <Label layoutX="57.0" layoutY="251.0" text="Image" />
-                        <Button fx:id="a_choose" layoutX="160.0" layoutY="249.0" mnemonicParsing="false" onAction="#fileChooser" prefHeight="39.0" prefWidth="132.0" text="Choose FIle" />
-                        <ImageView fx:id="a_imageView" fitHeight="154.0" fitWidth="300.0" layoutX="400.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button fx:id="a_choose" layoutX="168.0" layoutY="246.0" mnemonicParsing="false" onAction="#fileChooser" prefHeight="31.0" prefWidth="104.0" text="Choose FIle" />
+                        <ImageView fx:id="a_imageView" fitHeight="165.0" fitWidth="319.0" layoutX="400.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="423.0" layoutY="201.0" text="Profit %" />
+                        <TextField fx:id="a_profitField" layoutX="509.0" layoutY="196.0" />
+                        <ImageView fx:id="a_profitLogo" fitHeight="27.0" fitWidth="26.0" layoutX="709.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -49,9 +53,9 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="452.0" prefWidth="749.0" style="-fx-background-color: White;">
                             <children>
-                                <TextField fx:id="d_idField" layoutX="298.0" layoutY="170.0" />
-                                <Label layoutX="246.0" layoutY="175.0" text="Id" />
-                                <Button fx:id="deleteButton" layoutX="330.0" layoutY="232.0" mnemonicParsing="false" onAction="#delete" prefHeight="31.0" prefWidth="104.0" text="Delete" />
+                                <TextField fx:id="d_idField" layoutX="327.0" layoutY="170.0" />
+                                <Label layoutX="274.0" layoutY="175.0" text="Id" />
+                                <Button fx:id="deleteButton" layoutX="298.0" layoutY="235.0" mnemonicParsing="false" onAction="#delete" prefHeight="31.0" prefWidth="104.0" text="Delete" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -60,7 +64,7 @@
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: white;">
                             <children>
-                                <TableView fx:id="findTable" layoutY="190.0" prefHeight="112.0" prefWidth="826.0">
+                                <TableView fx:id="findTable" layoutY="125.0" prefHeight="81.0" prefWidth="826.0">
                                     <columns>
                                         <TableColumn fx:id="f_idColumn" text="Id " />
                                         <TableColumn fx:id="f_nameColumn" minWidth="0.0" prefWidth="143.0" text="Name" />
@@ -71,10 +75,13 @@
                                         <TableColumn fx:id="f_distributorColumn" prefWidth="157.0" text="Distributor Id" />
                                     </columns>
                                 </TableView>
-                                <Label layoutX="63.0" layoutY="91.0" text="Id" />
-                                <TextField fx:id="f_idField" layoutX="104.0" layoutY="86.0" />
-                                <Button fx:id="findButton" layoutX="329.0" layoutY="86.0" mnemonicParsing="false" onAction="#find" prefHeight="31.0" prefWidth="104.0" text="Find" />
-                        <ImageView fx:id="f_imageView" fitHeight="149.0" fitWidth="268.0" layoutX="519.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" />
+                                <Label layoutX="26.0" layoutY="28.0" text="Id" />
+                                <TextField fx:id="f_idField" layoutX="67.0" layoutY="23.0" />
+                                <Button fx:id="findButton" layoutX="292.0" layoutY="23.0" mnemonicParsing="false" onAction="#find" prefHeight="31.0" prefWidth="104.0" text="Find" />
+                        <ImageView fx:id="f_imageView" fitHeight="94.0" fitWidth="168.0" layoutX="442.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                        <PieChart fx:id="f_pieChart" layoutX="229.0" layoutY="206.0" prefHeight="254.0" prefWidth="381.0" />
+                        <Label layoutX="54.0" layoutY="243.0" text="Product Success" />
+                        <ImageView fx:id="f_graphLogo" fitHeight="17.0" fitWidth="17.0" layoutX="161.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true" />
                             </children>
                         </AnchorPane>
                     </content>
@@ -91,16 +98,20 @@
                                 <TextField fx:id="u_priceField" layoutX="159.0" layoutY="111.0" />
                                 <Label layoutX="408.0" layoutY="116.0" text="Volume" />
                                 <TextField fx:id="u_volumeField" layoutX="493.0" layoutY="111.0" />
-                                <Label layoutX="45.0" layoutY="289.0" text="Distributor Id" />
-                                <TextField fx:id="u_distributor_idField" layoutX="159.0" layoutY="284.0" />
-                                <Button fx:id="updateButton" layoutX="167.0" layoutY="348.0" mnemonicParsing="false" onAction="#update" text="Update" />
+                                <Label layoutX="51.0" layoutY="240.0" text="Distributor Id" />
+                                <TextField fx:id="u_distributor_idField" layoutX="165.0" layoutY="235.0" />
+                                <Button fx:id="updateButton" layoutX="125.0" layoutY="348.0" mnemonicParsing="false" onAction="#update" text="Update" />
                         <Label layoutX="65.0" layoutY="176.0" text="Added On" />
-                        <Label layoutX="400.0" layoutY="176.0" text="Expiry Date" />
+                        <Label layoutX="390.0" layoutY="176.0" text="Expiry Date" />
                         <DatePicker fx:id="u_addedOn" layoutX="161.0" layoutY="171.0" prefHeight="31.0" prefWidth="185.0" />
                         <DatePicker fx:id="u_expiryDate" layoutX="494.0" layoutY="171.0" prefHeight="31.0" prefWidth="185.0" />
-                        <ImageView fx:id="u_imageView" fitHeight="157.0" fitWidth="275.0" layoutX="408.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true" />
-                        <Label layoutX="73.0" layoutY="236.0" text="Image" />
-                        <Button fx:id="u_choose" layoutX="167.0" layoutY="231.0" mnemonicParsing="false" onAction="#update" text="Choose File" />
+                        <ImageView fx:id="u_imageView" fitHeight="157.0" fitWidth="295.0" layoutX="384.0" layoutY="285.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label layoutX="72.0" layoutY="299.0" text="Image" />
+                        <Button fx:id="u_choose" layoutX="166.0" layoutY="294.0" mnemonicParsing="false" onAction="#fileChooser2" text="Choose File" />
+                        <Label layoutX="413.0" layoutY="240.0" text="Profit %" />
+                        <TextField fx:id="u_profitField" layoutX="493.0" layoutY="235.0" />
+                        <ImageView fx:id="u_profitLogo" fitHeight="27.0" fitWidth="26.0" layoutX="694.0" layoutY="237.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button fx:id="u_resetButton" layoutX="215.0" layoutY="348.0" mnemonicParsing="false" onAction="#reset" prefHeight="31.0" prefWidth="110.0" text="Reset" />
                             </children>
                         </AnchorPane>
                     </content>
