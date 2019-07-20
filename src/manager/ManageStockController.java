@@ -384,10 +384,26 @@ public class ManageStockController implements Initializable, ControlledScreen {
                 soldCounter = parameterCounter[0];
                 complaintCounter = parameterCounter[1];
 
-                pieList = FXCollections.observableArrayList();
-                pieList.add(new PieChart.Data("Sold: " + soldCounter, soldCounter));
-                pieList.add(new PieChart.Data("Complaints: " + complaintCounter, complaintCounter));
-                f_pieChart.setData(pieList);
+                if(soldCounter == 0 && complaintCounter == 0){
+                    soldCounter = 1;
+                    complaintCounter = 1;
+                    System.out.println(soldCounter + " " + complaintCounter);
+                    pieList = FXCollections.observableArrayList();
+                    pieList.add(new PieChart.Data("Sold: " + 0, soldCounter));
+                    pieList.add(new PieChart.Data("Complaints: " + 0, complaintCounter));
+                    f_pieChart.setData(pieList);
+                }else{
+                    System.out.println(soldCounter + " " + complaintCounter);
+                    pieList = FXCollections.observableArrayList();
+                    pieList.add(new PieChart.Data("Sold: " + soldCounter, soldCounter));
+                    pieList.add(new PieChart.Data("Complaints: " + complaintCounter, complaintCounter));
+                    f_pieChart.setData(pieList);
+                }
+//                System.out.println(soldCounter + " " + complaintCounter);
+//                pieList = FXCollections.observableArrayList();
+//                pieList.add(new PieChart.Data("Sold: " + soldCounter, soldCounter));
+//                pieList.add(new PieChart.Data("Complaints: " + complaintCounter, complaintCounter));
+//                f_pieChart.setData(pieList);
 
             }else{
 
