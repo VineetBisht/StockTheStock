@@ -1,9 +1,7 @@
 <br />
 <p align="center">
 
-  <center>
-  <img src="src/resources/images/Logo.png?raw=true" width="200" style="display: block;margin-left: auto;margin-right: auto;width: 50%;">
-  </center>
+  ![Logo](src/resources/images/Logo.png?raw=true)
   <p align="center">
     Best way to manage your stock inventory
     <br />
