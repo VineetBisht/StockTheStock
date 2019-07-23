@@ -114,7 +114,7 @@ Free of use and distribution.
 ![Logo](src/resources/images/login.png?raw=true)
 ![Logo](src/resources/images/signup.png?raw=true)
 ![Logo](src/resources/images/Employee%20Management.png?raw=true)
-![Logo](src/resources/images/Find%20Stock.png?raw=true)
+![Logo](src/resources/images/Find%20stock.png?raw=true)
 ![Logo](src/resources/images/display%20all%20stocks.png?raw=true)
 ![Logo](src/resources/images/Customer%20Complaints.png?raw=true)
 ![Logo](src/resources/images/Complaints.png?raw=true)
