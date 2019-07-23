@@ -28,8 +28,6 @@
 
 ## About The Project
 
-[![Stock the Stock][product-screenshot]](https://example.com)
-
 This was an ambitious project as we had undertaken a lot of functionalities for it when compared to the duration.
 
 Why you should use this:
@@ -111,3 +109,13 @@ Free of use and distribution.
 * [StackOverflow][www.stackoverfow.com]
 * [TutorialsPoint][www.tutorialspoint.net]
 * [J2EE][http://www.java2s.com/]
+
+## Some Sample Screenshots
+![Logo](src/resources/images/login.png?raw=true)
+![Logo](src/resources/images/signup.png?raw=true)
+![Logo](src/resources/images/employee%20management.png?raw=true)
+![Logo](src/resources/images/find%20stock.png?raw=true)
+![Logo](src/resources/images/display%20all%20stocks.png?raw=true)
+![Logo](src/resources/images/customer%20complaints.png?raw=true)
+![Logo](src/resources/images/complaints.png?raw=true)
+![Logo](src/resources/images/billing.png?raw=true)
