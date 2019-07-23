@@ -181,7 +181,7 @@ public class ManageEmPController implements Initializable, ControlledScreen {
     @FXML
     Label lblUpd;
     int counterDateEmp = 0;//increasing the counter as we find records with the empid in the table for the current week
-    String usrnm = "N01324490";
+    String usrnm = "hr";
     //String usrnm = "N01328150";
 
     String passwd = "oracle";
@@ -192,7 +192,7 @@ int count=0;
     void getEmpCount() throws SQLException
     {
         
-        String query = "Select count(*) from Employees";
+        String query = "Select count(*) from Datatable";
 
         con = DriverManager.getConnection(urld, usrnm, passwd);
 
@@ -203,10 +203,8 @@ int count=0;
         {
             count=rs.getInt("count(*)");
         }
-        
-        
-
     }
+    
     @FXML
     private void displaySchedule2() throws SQLException, ParseException {
         int id = Integer.parseInt(txtid.getText());
@@ -296,7 +294,6 @@ int count=0;
         scd.calculateTotalHours();              //calling clculate hours to calculate total hours assigned
         obscom.add(scd);
         mytableSchedule.setItems(obscom);
-
     }
 
     int columnNumber;
@@ -350,42 +347,47 @@ int count=0;
 
     @FXML
     private Button btndelEmp;
-//
-//    @FXML
-//    void deleteEmp() throws SQLException {
-//        
-//        int id = Integer.parseInt(txtDelEmp.getText());
-//        con = DriverManager.getConnection(urld, usrnm, passwd);
-//
-//        String query = "delete from employees where employee_id=?";
-//        PreparedStatement prep = con.prepareStatement(query);
-//        prep.setInt(1, id);
-//        int x = prep.executeUpdate();
-//        if (x == 1) {
-//            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "The schedule has been deleted.", ButtonType.OK, ButtonType.CANCEL);
-//            Optional<ButtonType> res = alert.showAndWait();
-//
-//        } else {
-//
-//            Alert alert = new Alert(Alert.AlertType.ERROR, "Error in deleting schedule.", ButtonType.OK, ButtonType.CANCEL);
-//            Optional<ButtonType> res = alert.showAndWait();
-//        }
-//
-//    }
+@FXML
+    private void close() {
+        System.exit(0);
+    }
+    @FXML
+    void deleteEmp() throws SQLException {
+        
+        int id = Integer.parseInt(txtDelEmp.getText());
+        con = DriverManager.getConnection(urld, usrnm, passwd);
+
+        String query = "delete from datatable where emp_id=?";
+        PreparedStatement prep = con.prepareStatement(query);
+        prep.setInt(1, id);
+        int x = prep.executeUpdate();
+        if (x == 1) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "The schedule has been deleted.", ButtonType.OK, ButtonType.CANCEL);
+            Optional<ButtonType> res = alert.showAndWait();
+
+        } else {
+
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Error in deleting schedule.", ButtonType.OK, ButtonType.CANCEL);
+            Optional<ButtonType> res = alert.showAndWait();
+        }
+
+    }
 
     @FXML
     private TextField txtEmpSal;
 
     @FXML
     private Button btnEmpSal;
-@FXML private Label lblSalaryDisplay;
+    
+    @FXML private Label lblSalaryDisplay;
+    
     @FXML void getEmployeeSalary() throws SQLException
     {
         try{
          int id = Integer.parseInt(txtEmpSal.getText());
         con = DriverManager.getConnection(urld, usrnm, passwd);
 
-        String query = "select salary from employees where employee_id=?";
+        String query = "select salary from datatable where emp_id=?";
         PreparedStatement prep = con.prepareStatement(query);
         prep.setInt(1, id);
         ResultSet rs = prep.executeQuery();
@@ -517,8 +519,9 @@ int count=0;
 
             }
         }
+        
         columnNumber -= 1;
-         btnCancelSch.setVisible(false);
+        btnCancelSch.setVisible(false);
         btnCommitSch.setVisible(false);
         updstarttm.setVisible(false);
         updendtm.setVisible(false);
@@ -562,49 +565,6 @@ int count=0;
 
     @FXML
     Label lbldate;
-
-    void empComplaintSetValue() {
-
-        compId.setCellValueFactory(new PropertyValueFactory<ComplaintEmp, Integer>("compId"));
-
-        empId.setCellValueFactory(new PropertyValueFactory<ComplaintEmp, Integer>("empid"));
-
-        comSubject.setCellValueFactory(new PropertyValueFactory<ComplaintEmp, String>("subject"));
-
-        comDesc.setCellValueFactory(new PropertyValueFactory<ComplaintEmp, String>("desc"));
-
-        status.setCellValueFactory(new PropertyValueFactory<ComplaintEmp, String>("status"));
-
-        date.setCellValueFactory(new PropertyValueFactory<ComplaintEmp, Date>("dt"));
-
-        ObservableList<ComplaintEmp> obscom = FXCollections.observableArrayList();;
-
-        try {
-
-            String query = "Select * from employeecomplaint";
-
-            con = DriverManager.getConnection(urld, usrnm, passwd);
-
-            ResultSet rs = con.createStatement().executeQuery(query);
-
-            ComplaintEmp comp = null;
-
-            while (rs.next()) {
-                comp = new ComplaintEmp();
-                comp.setCompId(rs.getInt("complaintid"));
-                comp.setEmpid(rs.getInt("empid"));
-                comp.setDt(rs.getDate("complaintdate"));
-                comp.setSubject(rs.getString("subject"));
-                comp.setDesc(rs.getString("description"));
-                comp.setStatus(rs.getString("status"));
-                obscom.add(comp);
-            }
-        } catch (Exception ex) {
-        }
-
-        mytable.setItems(obscom);
-
-    }
 
     @FXML
     void insertSchedule(ActionEvent event) {
@@ -674,6 +634,9 @@ int count=0;
                         timeFlag = 1;
                     }
                 }
+                 if (cb2.getValue().equals("AM")&& endTimeValue==12 && startTimeValue==12 && cb3.getValue().equals("PM")) {
+                      timeFlag = 1;
+                    } 
                 if (timeFlag == 1) {
 
                     Alert alert = new Alert(Alert.AlertType.WARNING, "Time is not set properly.", ButtonType.OK, ButtonType.CANCEL);
@@ -720,48 +683,7 @@ int count=0;
             }
         }
     }
-
-    void custComplaintSetValue() {
-
-        compempId.setCellValueFactory(new PropertyValueFactory<ComplaintCust, Integer>("compId"));
-
-        prodId.setCellValueFactory(new PropertyValueFactory<ComplaintCust, Integer>("prodId"));
-
-        custName.setCellValueFactory(new PropertyValueFactory<ComplaintCust, String>("customerNm"));
-
-        comempDesc.setCellValueFactory(new PropertyValueFactory<ComplaintCust, String>("desc"));
-
-        comdate.setCellValueFactory(new PropertyValueFactory<ComplaintCust, Date>("dt"));
-
-        try {
-            con = DriverManager.getConnection(urld, usrnm, passwd);
-            String query = "Select * from customercomplaint";
-
-            PreparedStatement ps = con.prepareStatement(query);
-
-            ResultSet rs = ps.executeQuery();
-
-            ComplaintCust comp2;
-
-            ObservableList<ComplaintCust> obscom2 = FXCollections.observableArrayList();
-
-            while (rs.next()) {
-                comp2 = new ComplaintCust();
-                comp2.setCompId(rs.getInt(1));
-                comp2.setProdId(rs.getInt(2));
-                comp2.setCustomerNm(rs.getString(3));
-                comp2.setDt(rs.getDate(4));
-                comp2.setDesc(rs.getString(5));
-
-                obscom2.add(comp2);
-
-            }
-            mytable2.setItems(obscom2);
-        } catch (SQLException ex) {
-            Logger.getLogger(ManageEmPController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
+    
     int idValue;
 
     void getEmployee() {
@@ -781,7 +703,7 @@ int count=0;
 
         int weekNo = cal.get(Calendar.WEEK_OF_YEAR);//getting the current week number
 
-        String query = "select * from employees";
+        String query = "select * from datatable";
 
         try {
             Date dt = new Date();
@@ -801,7 +723,7 @@ int count=0;
             ObservableList<Employee> empObs = FXCollections.observableArrayList();
 
             while (rs.next()) {             //getting each and every employee record from the employee table and futher checking their schedule
-                int tempEmpId = rs.getInt("employee_id");
+                int tempEmpId = rs.getInt("emp_id");
 
                 String query2 = "select * from schedule where emp_id=" + tempEmpId;
 
@@ -840,7 +762,7 @@ int count=0;
 
                     buttonSchedule[empCounter].setOnAction(this::handleButtonAction);                  //setting a handling button for every event
 
-                    emp = new Employee(rs.getInt("employee_id"), (rs.getString("first_name") + " " + rs.getString("last_name")), buttonSchedule[empCounter]);
+                    emp = new Employee(rs.getInt("emp_id"), (rs.getString("first_name") + " " + rs.getString("last_name")), buttonSchedule[empCounter]);
                     empObs.add(emp);
 
                     empCounter++;//for kepping track of the buttons being built dynamically in the tableview
@@ -940,9 +862,9 @@ int count=0;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        empComplaintSetValue();
+       // empComplaintSetValue();
 
-        custComplaintSetValue();
+        //custComplaintSetValue();
         try {
             getEmpCount();
         } catch (SQLException ex) {
@@ -966,4 +888,108 @@ int count=0;
     public void setScreenParent(ScreensController screenPage) {
         myController = screenPage;
     }
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------------------
+    //
+//    void custComplaintSetValue() {
+//
+//        compempId.setCellValueFactory(new PropertyValueFactory<ComplaintCust, Integer>("compId"));
+//
+//        prodId.setCellValueFactory(new PropertyValueFactory<ComplaintCust, Integer>("prodId"));
+//
+//        custName.setCellValueFactory(new PropertyValueFactory<ComplaintCust, String>("customerNm"));
+//
+//        comempDesc.setCellValueFactory(new PropertyValueFactory<ComplaintCust, String>("desc"));
+//
+//        comdate.setCellValueFactory(new PropertyValueFactory<ComplaintCust, Date>("dt"));
+//
+//        try {
+//            con = DriverManager.getConnection(urld, usrnm, passwd);
+//            String query = "Select * from customercomplaint";
+//
+//            PreparedStatement ps = con.prepareStatement(query);
+//
+//            ResultSet rs = ps.executeQuery();
+//
+//            ComplaintCust comp2;
+//
+//            ObservableList<ComplaintCust> obscom2 = FXCollections.observableArrayList();
+//
+//            while (rs.next()) {
+//                comp2 = new ComplaintCust();
+//                comp2.setCompId(rs.getInt(1));
+//                comp2.setProdId(rs.getInt(2));
+//                comp2.setCustomerNm(rs.getString(3));
+//                comp2.setDt(rs.getDate(4));
+//                comp2.setDesc(rs.getString(5));
+//
+//                obscom2.add(comp2);
+//
+//            }
+//            mytable2.setItems(obscom2);
+//        } catch (SQLException ex) {
+//            Logger.getLogger(ManageEmPController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
+
+//
+//    void empComplaintSetValue() {
+//
+//        compId.setCellValueFactory(new PropertyValueFactory<ComplaintEmp, Integer>("compId"));
+//
+//        empId.setCellValueFactory(new PropertyValueFactory<ComplaintEmp, Integer>("empid"));
+//
+//        comSubject.setCellValueFactory(new PropertyValueFactory<ComplaintEmp, String>("subject"));
+//
+//        comDesc.setCellValueFactory(new PropertyValueFactory<ComplaintEmp, String>("desc"));
+//
+//        status.setCellValueFactory(new PropertyValueFactory<ComplaintEmp, String>("status"));
+//
+//        date.setCellValueFactory(new PropertyValueFactory<ComplaintEmp, Date>("dt"));
+//
+//        ObservableList<ComplaintEmp> obscom = FXCollections.observableArrayList();;
+//
+//        try {
+//
+//            String query = "Select * from employeecomplaint";
+//
+//            con = DriverManager.getConnection(urld, usrnm, passwd);
+//
+//            ResultSet rs = con.createStatement().executeQuery(query);
+//
+//            ComplaintEmp comp = null;
+//
+//            while (rs.next()) {
+//                comp = new ComplaintEmp();
+//                comp.setCompId(rs.getInt("complaintid"));
+//                comp.setEmpid(rs.getInt("empid"));
+//                comp.setDt(rs.getDate("complaintdate"));
+//                comp.setSubject(rs.getString("subject"));
+//                comp.setDesc(rs.getString("description"));
+//                comp.setStatus(rs.getString("status"));
+//                obscom.add(comp);
+//            }
+//        } catch (Exception ex) {
+//        }
+//
+//        mytable.setItems(obscom);
+//
+//    }
+
 }
