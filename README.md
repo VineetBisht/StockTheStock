@@ -113,9 +113,9 @@ Free of use and distribution.
 ## Some Sample Screenshots
 ![Logo](src/resources/images/login.png?raw=true)
 ![Logo](src/resources/images/signup.png?raw=true)
-![Logo](src/resources/images/employee%20management.png?raw=true)
-![Logo](src/resources/images/find%20stock.png?raw=true)
+![Logo](src/resources/images/Employee%20Management.png?raw=true)
+![Logo](src/resources/images/Find%20Stock.png?raw=true)
 ![Logo](src/resources/images/display%20all%20stocks.png?raw=true)
-![Logo](src/resources/images/customer%20complaints.png?raw=true)
-![Logo](src/resources/images/complaints.png?raw=true)
+![Logo](src/resources/images/Customer%20Complaints.png?raw=true)
+![Logo](src/resources/images/Complaints.png?raw=true)
 ![Logo](src/resources/images/billing.png?raw=true)
