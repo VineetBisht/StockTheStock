@@ -21,8 +21,8 @@ public class Files {
     public static String managerMain="manager";
     public static String managerMainFile="/resources/fxml/ManagerMain.fxml";
 
-//    public static String employeeControl="employeeControl";
-//    public static String employeeControlFile="/resources/fxml/EmployeeControl.fxml";
+    public static String managerCompl="manageCompl";
+    public static String managerComplFile="/resources/fxml/ManageComplaints.fxml";
 //    public static String expired="expired";
 //    public static String expiredFile="/resources/fxml/Expired.fxml";
 //    public static String managerHome="managerHome";

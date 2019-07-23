@@ -30,7 +30,8 @@ public class ManagerMain implements ControlledScreen, Initializable {
 
     @FXML
     void complaints(ActionEvent event) {
-
+        mainController.setScreen(Files.managerCompl);
+        stage.show();
     }
 
     @FXML
@@ -70,6 +71,7 @@ public class ManagerMain implements ControlledScreen, Initializable {
         this.mainController = mainContainer;
         mainContainer.loadScreen(Files.manageStock, Files.manageStockFile);
         mainContainer.loadScreen(Files.manageEmp, Files.manageEmpFile);
+        mainContainer.loadScreen(Files.managerCompl, Files.managerComplFile);
         mainContainer.setStage(stage);
 
         Datatable d=new Datatable();

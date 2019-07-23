@@ -90,7 +90,7 @@ public class Schedule {
     public void calculateTotalHours() {
         String[][] timings = new String[7][6];
         double hours = 0;
-
+        
         for (int i = 0; i < 7; i++) {
             for (int j = 0; j < 6; j++) {
 
@@ -141,13 +141,12 @@ public class Schedule {
             timings[5][0]="";
         }
         
-        if (!friTime.equals("")) {
+        if (!satTime.equals("")) {
             timings[6] = satTime.split(" ");
         }
         else{
             timings[6][0]="";
         }
-        
         for (int i = 0; i <= 6; i++) {
 
             if (!timings[i][0].equals("")) {                            //checking if the string for a particular day is not empty
@@ -163,7 +162,6 @@ public class Schedule {
                         hours += (time2 - time1);                       //if he started at some other time in the morning, the total hours he worked would
                         //be the endtime-starttime as the endtime will be bigger unit that the start time.
                     }
-                    System.out.println("" + hours);
                 } else {
 //                if(timings[i][1].equals("AM") && timings[i][5].equals("PM"))
 //                {
@@ -191,9 +189,6 @@ public class Schedule {
                     
                         }
                     }
-                    System.out.println("" + (time2 + time1));
-                    //   }
-                    System.out.println("" + hours);
                 }
             }
         }

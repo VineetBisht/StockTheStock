@@ -12,10 +12,12 @@ import javafx.scene.control.Button;
  * @author Shivam
  */
 public class Employee {
+
     private int empno;
 
     private String empName;
     Button btn;
+    
     public void setEmpName(String empName) {
         this.empName = empName;
     }
@@ -30,6 +32,7 @@ public class Employee {
         this.empno = empno;
         this.empName = empName;
         this.btn = btn;
+        btn.setMaxSize(150,50);
     }
 
     public void setBtn(Button btn) {
@@ -84,5 +87,5 @@ public class Employee {
     public String getFname() {
         return fname;
     }
-    
+
 }
