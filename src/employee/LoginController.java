@@ -78,6 +78,7 @@ public class LoginController implements Initializable, ControlledScreen {
                 d.timesheet(p);
             
             int flag=checkLoginTimings(username.getText());
+            flag=1;
             if(flag==1)
             {
                 

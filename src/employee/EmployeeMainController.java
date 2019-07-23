@@ -5,6 +5,7 @@ import backend.Datatable;
 import backend.Files;
 import backend.ScreensController;
 import javafx.application.Platform;
+import javafx.stage.StageStyle;
 import org.apache.commons.lang.time.StopWatch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -85,6 +86,7 @@ public class EmployeeMainController implements ControlledScreen, Initializable {
         mainContainer.loadScreen(Files.complaint, Files.complaintFile);
         mainContainer.setStage(stage);
         primaryStage = stage;
+        stage.initStyle(StageStyle.UNDECORATED);
 
         Datatable d=new Datatable();
         welcom_name.setText(welcom_name.getText()+" "+d.getUserName());

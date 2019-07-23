@@ -192,7 +192,7 @@ int count=0;
     void getEmpCount() throws SQLException
     {
         
-        String query = "Select count(*) from Datatable";
+        String query = "Select count(*) from Datatable where designation='employee'";
 
         con = DriverManager.getConnection(urld, usrnm, passwd);
 
@@ -349,7 +349,7 @@ int count=0;
     private Button btndelEmp;
 @FXML
     private void close() {
-        System.exit(0);
+        myController.getStage().hide();
     }
     @FXML
     void deleteEmp() throws SQLException {
@@ -634,9 +634,7 @@ int count=0;
                         timeFlag = 1;
                     }
                 }
-                 if (cb2.getValue().equals("AM")&& endTimeValue==12 && startTimeValue==12 && cb3.getValue().equals("PM")) {
-                      timeFlag = 1;
-                    } 
+
                 if (timeFlag == 1) {
 
                     Alert alert = new Alert(Alert.AlertType.WARNING, "Time is not set properly.", ButtonType.OK, ButtonType.CANCEL);
@@ -703,7 +701,7 @@ int count=0;
 
         int weekNo = cal.get(Calendar.WEEK_OF_YEAR);//getting the current week number
 
-        String query = "select * from datatable";
+        String query = "select * from datatable where designation='employee'";
 
         try {
             Date dt = new Date();

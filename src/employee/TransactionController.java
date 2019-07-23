@@ -105,6 +105,11 @@ public class TransactionController implements ControlledScreen, Initializable {
         }catch(Exception e){
             e.printStackTrace();
         }
+        txt_price.setText("");
+        txt_product.setText("");
+        txt_qty.setText("");
+        txt_total.setText("");
+        list.clear();
     }
 
     @FXML
