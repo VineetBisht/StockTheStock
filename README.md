@@ -99,10 +99,30 @@ See the [open issues](https://github.com/othneildrew/Best-README-Template/issues
 
 Contribution is what made this project possible. Here are the people to be credit:
 
-1. Simranjeet Singh Sahni.
-2. Simranjeet Singh
-3. Vineet Bisht
-4. Shivam Ghai
+1. Simranjeet Singh Sahni:
+    - Add/Removing Stocks along with images
+    - Calculating expiry of products
+    - Product Detailed Analysis 
+    - Managing Main Manager Home screen
+    
+2. Simranjeet Singh:
+    - Login Controller
+    - SignUp Controller 
+    - Message Encryption (AES)
+    - Email OTP Service Setup
+    
+3. Vineet Bisht:
+    - Screen Change Framework 
+    - Billing transaction
+    - Customer Side Complaint.
+    - Customer Side Refunds
+    
+4. Shivam Ghai:
+    - Manage Employees.
+    - Setting Employee Schedule
+    - Managing Customer Complaints
+    
+* FXML Designing was done together.
 
 ## License
 
