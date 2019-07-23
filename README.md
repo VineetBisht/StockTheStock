@@ -66,6 +66,10 @@ src/resources/library
 ```
 folder have been included in you project structure.
 
+## Important
+```
+Use Java 1.8 because of the library compatibility issues
+```
 ### Installation
 
 Clone the repo
