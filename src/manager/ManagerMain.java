@@ -11,6 +11,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -73,6 +74,7 @@ public class ManagerMain implements ControlledScreen, Initializable {
         mainContainer.loadScreen(Files.manageEmp, Files.manageEmpFile);
         mainContainer.loadScreen(Files.managerCompl, Files.managerComplFile);
         mainContainer.setStage(stage);
+        stage.initStyle(StageStyle.UNDECORATED);
 
         Datatable d=new Datatable();
         welcom_name.setText(welcom_name.getText()+" "+d.getUserName());
