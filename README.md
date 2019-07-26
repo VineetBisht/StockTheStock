@@ -93,37 +93,6 @@ Or you can simply create a new account.
 
 See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a list of proposed features (and known issues).
 
-
-
-## Contributing
-
-Contribution is what made this project possible. Here are the people to be credit:
-
-1. Simranjeet Singh Sahni:
-    - Add/Removing Stocks along with images
-    - Calculating expiry of products
-    - Product Detailed Analysis 
-    - Managing Main Manager Home screen
-    
-2. Simranjeet Singh:
-    - Login Controller
-    - SignUp Controller 
-    - Message Encryption (AES)
-    - Email OTP Service Setup
-    
-3. Vineet Bisht:
-    - Screen Change Framework 
-    - Billing transaction
-    - Customer Side Complaint.
-    - Customer Side Refunds
-    
-4. Shivam Ghai:
-    - Manage Employees.
-    - Setting Employee Schedule
-    - Managing Customer Complaints
-    
-* FXML Designing was done together.
-
 ## License
 
 Free of use and distribution.
