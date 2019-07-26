@@ -87,6 +87,7 @@ Manager -> Username:sam, Pass:sam
 
 Or you can simply create a new account. 
 
+* The Bill of each Transaction is generated in the template/receipts folder in pdf form 
 * The SignUp screen makes use of an OTP which will be sent to your registered email for confirmation. 
 
 ## Roadmap
